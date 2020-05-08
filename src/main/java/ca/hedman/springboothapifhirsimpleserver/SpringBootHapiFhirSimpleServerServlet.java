@@ -1,7 +1,6 @@
 package ca.hedman.springboothapifhirsimpleserver;
 
 import ca.hedman.springboothapifhirsimpleserver.provider.PatientProvider;
-import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.api.EncodingEnum;
 import ca.uhn.fhir.rest.server.HardcodedServerAddressStrategy;
 import ca.uhn.fhir.rest.server.IResourceProvider;
@@ -27,7 +26,6 @@ public class SpringBootHapiFhirSimpleServerServlet extends RestfulServer {
 
     @Autowired
     SpringBootHapiFhirSimpleServerServlet(Environment environment) {
-
         this.env = environment;
     }
 
@@ -42,23 +40,10 @@ public class SpringBootHapiFhirSimpleServerServlet extends RestfulServer {
         setResourceProviders(providers);
 
         /*
-        Add Interceptors
+        Add Logging, CORS Interceptors
          */
         registerInterceptor(new CustomLoggingInterceptor());
         registerInterceptor(new ResponseHighlighterInterceptor());
-
-        /*
-        Various config
-         */
-        setDefaultResponseEncoding(EncodingEnum.JSON);
-        setImplementationDescription("Spring Boot HAPI-FHIR Simple Server");
-        IServerAddressStrategy addressStrategy = new HardcodedServerAddressStrategy(env.getProperty("serverUrl"));
-        setServerAddressStrategy(addressStrategy);
-        setDefaultPrettyPrint(true);
-
-        /*
-         Enable CORS
-         */
         CorsConfiguration config = new CorsConfiguration();
         CorsInterceptor corsInterceptor = new CorsInterceptor(config);
         config.addAllowedHeader("Accept");
@@ -68,6 +53,13 @@ public class SpringBootHapiFhirSimpleServerServlet extends RestfulServer {
         config.addExposedHeader("Content-Location");
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         registerInterceptor(corsInterceptor);
+
+        /*
+        Various config
+         */
+        setDefaultResponseEncoding(EncodingEnum.JSON);
+        setImplementationDescription("Spring Boot HAPI-FHIR Simple Server");
+        setDefaultPrettyPrint(true);
 
     }
 }
