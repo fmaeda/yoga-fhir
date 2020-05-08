@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352a52d0-3885-419e-a1be-27871fd85751" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerServlet.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +138,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588861117929</updated>
-      <workItem from="1588861123159" duration="22253000" />
+      <workItem from="1588861123159" duration="22415000" />
     </task>
     <task id="LOCAL-00001" summary="birth">
       <created>1588953115062</created>
@@ -157,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588953271948</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="remove superfluous server url property">
+      <created>1588954176345</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588954176345</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +170,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="birth" />
     <MESSAGE value="add Intellij run configs" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Intellij run configs" />
+    <MESSAGE value="remove superfluous server url property" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove superfluous server url property" />
   </component>
   <component name="WindowStateProjectService">
     <state x="312" y="127" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588953219611">
@@ -181,10 +186,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="573" y="331" width="570" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1680.1010@0.0.1680.1010" timestamp="1588873376736" />
-    <state x="376" y="105" key="CommitChangelistDialog2" timestamp="1588953270846">
+    <state x="376" y="105" key="CommitChangelistDialog2" timestamp="1588954175335">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="376" y="105" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1588953270846" />
+    <state x="376" y="105" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1588954175335" />
     <state x="181" y="147" width="1388" height="726" key="DiffContextDialog" timestamp="1588953093404">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -233,10 +238,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="508" y="169" key="SpringBootCustomization/0.0.1680.1010@0.0.1680.1010" timestamp="1588861301418" />
-    <state x="467" y="244" key="Vcs.Push.Dialog.v2" timestamp="1588953276046">
+    <state x="467" y="244" key="Vcs.Push.Dialog.v2" timestamp="1588954180536">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="467" y="244" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1588953276046" />
+    <state x="467" y="244" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1588954180536" />
     <state x="514" y="128" width="670" height="676" key="search.everywhere.popup" timestamp="1588880988013">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
