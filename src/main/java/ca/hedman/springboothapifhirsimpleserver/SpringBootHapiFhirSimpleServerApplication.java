@@ -5,11 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Configuration;
 
 @ServletComponentScan
 @SpringBootApplication
-@Configuration
 public class SpringBootHapiFhirSimpleServerApplication extends SpringBootServletInitializer {
 
     private static final Class<SpringBootHapiFhirSimpleServerApplication> applicationClass = SpringBootHapiFhirSimpleServerApplication.class;
