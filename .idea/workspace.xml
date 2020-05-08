@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352a52d0-3885-419e-a1be-27871fd85751" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-boot-hapi-fhir-simple-server.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ca/hedman/springboothapifhirsimpleserver/CustomLoggingInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ca/hedman/springboothapifhirsimpleserver/provider/PatientProvider.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/hedman/springboothapifhirsimpleserver/SpringBootHapiFhirSimpleServerServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +28,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1baD4G2CrwNEVoCqPFKPt3VNOsI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
     <option name="autoscrollFromSource" value="true" />
@@ -146,7 +140,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588861117929</updated>
-      <workItem from="1588861123159" duration="23417000" />
+      <workItem from="1588861123159" duration="25994000" />
     </task>
     <task id="LOCAL-00001" summary="birth">
       <created>1588953115062</created>
@@ -176,7 +170,28 @@
       <option name="project" value="LOCAL" />
       <updated>1588954304937</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="git ignore target">
+      <created>1588956858934</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588956858934</updated>
+    </task>
+    <task id="LOCAL-00006" summary="new README.md">
+      <created>1588958092854</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588958092854</updated>
+    </task>
+    <task id="LOCAL-00007" summary="removed redundant config annotation">
+      <created>1588958798979</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1588958798979</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +202,9 @@
     <MESSAGE value="add Intellij run configs" />
     <MESSAGE value="remove superfluous server url property" />
     <MESSAGE value="git ignore target" />
-    <option name="LAST_COMMIT_MESSAGE" value="git ignore target" />
+    <MESSAGE value="new README.md" />
+    <MESSAGE value="removed redundant config annotation" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed redundant config annotation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="312" y="127" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588953219611">
@@ -202,10 +219,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="573" y="331" width="570" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1680.1010@0.0.1680.1010" timestamp="1588873376736" />
-    <state x="376" y="105" key="CommitChangelistDialog2" timestamp="1588954304101">
+    <state x="376" y="105" key="CommitChangelistDialog2" timestamp="1588958798120">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="376" y="105" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1588954304101" />
+    <state x="376" y="105" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1588958798120" />
     <state x="181" y="147" width="1388" height="726" key="DiffContextDialog" timestamp="1588953093404">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -214,38 +231,38 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="599" y="213" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1588952704856" />
-    <state width="1528" height="320" key="GridCell.Tab.0.bottom" timestamp="1588954502721">
+    <state width="1528" height="320" key="GridCell.Tab.0.bottom" timestamp="1588958690034">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1528" height="320" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1588954502721" />
-    <state width="1528" height="320" key="GridCell.Tab.0.center" timestamp="1588954502721">
+    <state width="1528" height="320" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1588958690034" />
+    <state width="1528" height="320" key="GridCell.Tab.0.center" timestamp="1588958690034">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1528" height="320" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1588954502721" />
-    <state width="1528" height="320" key="GridCell.Tab.0.left" timestamp="1588954502721">
+    <state width="1528" height="320" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1588958690034" />
+    <state width="1528" height="320" key="GridCell.Tab.0.left" timestamp="1588958690034">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1528" height="320" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1588954502721" />
-    <state width="1528" height="320" key="GridCell.Tab.0.right" timestamp="1588954502721">
+    <state width="1528" height="320" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1588958690034" />
+    <state width="1528" height="320" key="GridCell.Tab.0.right" timestamp="1588958690034">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1528" height="320" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1588954502721" />
-    <state width="1528" height="320" key="GridCell.Tab.1.bottom" timestamp="1588954502722">
+    <state width="1528" height="320" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1588958690034" />
+    <state width="1528" height="320" key="GridCell.Tab.1.bottom" timestamp="1588958690035">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1528" height="320" key="GridCell.Tab.1.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1588954502722" />
-    <state width="1528" height="320" key="GridCell.Tab.1.center" timestamp="1588954502722">
+    <state width="1528" height="320" key="GridCell.Tab.1.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1588958690035" />
+    <state width="1528" height="320" key="GridCell.Tab.1.center" timestamp="1588958690035">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1528" height="320" key="GridCell.Tab.1.center/0.0.1680.1010@0.0.1680.1010" timestamp="1588954502722" />
-    <state width="1528" height="320" key="GridCell.Tab.1.left" timestamp="1588954502721">
+    <state width="1528" height="320" key="GridCell.Tab.1.center/0.0.1680.1010@0.0.1680.1010" timestamp="1588958690035" />
+    <state width="1528" height="320" key="GridCell.Tab.1.left" timestamp="1588958690034">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1528" height="320" key="GridCell.Tab.1.left/0.0.1680.1010@0.0.1680.1010" timestamp="1588954502721" />
-    <state width="1528" height="320" key="GridCell.Tab.1.right" timestamp="1588954502722">
+    <state width="1528" height="320" key="GridCell.Tab.1.left/0.0.1680.1010@0.0.1680.1010" timestamp="1588958690034" />
+    <state width="1528" height="320" key="GridCell.Tab.1.right" timestamp="1588958690035">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1528" height="320" key="GridCell.Tab.1.right/0.0.1680.1010@0.0.1680.1010" timestamp="1588954502722" />
+    <state width="1528" height="320" key="GridCell.Tab.1.right/0.0.1680.1010@0.0.1680.1010" timestamp="1588958690035" />
     <state x="338" y="46" key="SettingsEditor" timestamp="1588861320386">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -254,10 +271,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="508" y="169" key="SpringBootCustomization/0.0.1680.1010@0.0.1680.1010" timestamp="1588861301418" />
-    <state x="467" y="244" key="Vcs.Push.Dialog.v2" timestamp="1588954307357">
+    <state x="467" y="244" key="Vcs.Push.Dialog.v2" timestamp="1588958800639">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="467" y="244" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1588954307357" />
+    <state x="467" y="244" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1588958800639" />
     <state x="514" y="128" width="670" height="676" key="search.everywhere.popup" timestamp="1588880988013">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

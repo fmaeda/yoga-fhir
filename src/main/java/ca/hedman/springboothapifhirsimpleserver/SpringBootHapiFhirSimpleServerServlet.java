@@ -2,9 +2,7 @@ package ca.hedman.springboothapifhirsimpleserver;
 
 import ca.hedman.springboothapifhirsimpleserver.provider.PatientProvider;
 import ca.uhn.fhir.rest.api.EncodingEnum;
-import ca.uhn.fhir.rest.server.HardcodedServerAddressStrategy;
 import ca.uhn.fhir.rest.server.IResourceProvider;
-import ca.uhn.fhir.rest.server.IServerAddressStrategy;
 import ca.uhn.fhir.rest.server.RestfulServer;
 import ca.uhn.fhir.rest.server.interceptor.CorsInterceptor;
 import ca.uhn.fhir.rest.server.interceptor.ResponseHighlighterInterceptor;
@@ -58,7 +56,7 @@ public class SpringBootHapiFhirSimpleServerServlet extends RestfulServer {
         Various config
          */
         setDefaultResponseEncoding(EncodingEnum.JSON);
-        setImplementationDescription("Spring Boot HAPI-FHIR Simple Server");
+        setImplementationDescription("Spring Boot HAPI-FHIR (R4) Simple Server");
         setDefaultPrettyPrint(true);
 
     }
