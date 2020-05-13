@@ -38,19 +38,10 @@ public class SpringBootHapiFhirSimpleServerServlet extends RestfulServer {
         setResourceProviders(providers);
 
         /*
-        Add Logging, CORS Interceptors
+        Add Interceptors
          */
-        registerInterceptor(new CustomLoggingInterceptor());
-        registerInterceptor(new ResponseHighlighterInterceptor());
-        CorsConfiguration config = new CorsConfiguration();
-        CorsInterceptor corsInterceptor = new CorsInterceptor(config);
-        config.addAllowedHeader("Accept");
-        config.addAllowedHeader("Content-Type");
-        config.addAllowedOrigin("*");
-        config.addExposedHeader("Location");
-        config.addExposedHeader("Content-Location");
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        registerInterceptor(corsInterceptor);
+        registerInterceptor(new CustomLoggingInterceptor()); // your logging
+        registerInterceptor(new ResponseHighlighterInterceptor()); // enable viewing in browser
 
         /*
         Various config
