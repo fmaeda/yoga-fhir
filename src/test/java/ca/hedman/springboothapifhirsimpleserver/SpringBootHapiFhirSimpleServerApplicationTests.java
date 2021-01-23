@@ -16,7 +16,7 @@ class SpringBootHapiFhirSimpleServerApplicationTests {
     @Test
     public void metadata() {
         ResponseEntity<String> entity = this.restTemplate.getForEntity(
-                "/fhir/metadata",
+                "/metadata",
                 String.class);
         assert (entity.getStatusCode().equals(HttpStatus.OK));
         assert (entity.getBody()).contains("\"status\": \"active\"");
@@ -25,7 +25,7 @@ class SpringBootHapiFhirSimpleServerApplicationTests {
     @Test
     public void patientResourceFound() {
         ResponseEntity<String> entity = this.restTemplate.getForEntity(
-                "/fhir/Patient/1",
+                "/Patient/1",
                 String.class);
         assert (entity.getStatusCode().equals(HttpStatus.OK));
         assert (entity.getBody()).contains("\"family\": \"Stitt\"");
@@ -34,7 +34,7 @@ class SpringBootHapiFhirSimpleServerApplicationTests {
     @Test
     public void patientResourceNotFound() {
         ResponseEntity<String> entity = this.restTemplate.getForEntity(
-                "/fhir/Patient/999", // non-existent patient
+                "/Patient/999", // non-existent patient
                 String.class);
         assert (entity.getStatusCode().equals(HttpStatus.NOT_FOUND));
     }

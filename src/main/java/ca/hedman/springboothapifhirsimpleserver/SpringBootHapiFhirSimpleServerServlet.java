@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/fhir/*", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/*", loadOnStartup = 1)
 public class SpringBootHapiFhirSimpleServerServlet extends RestfulServer {
 
     private static final long serialVersionUID = 1L;
