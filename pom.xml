@@ -73,16 +73,22 @@
             <artifactId>hapi-fhir-validation-resources-r4</artifactId>
             <version>${hapifhir_version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>ca.uhn.hapi.fhir</groupId>-->
-<!--            <artifactId>hapi-fhir-validation-resources-r4b</artifactId>-->
-<!--            <version>${hapifhir_version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>ch.qos.logback</groupId>-->
-<!--            <artifactId>logback-classic</artifactId>-->
-<!--            <version>1.2.3</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>ca.uhn.hapi.fhir</groupId>
+            <artifactId>hapi-fhir-validation</artifactId>
+            <version>${hapifhir_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ca.uhn.hapi.fhir</groupId>
+            <artifactId>hapi-fhir-caching-caffeine</artifactId>
+            <version>${hapifhir_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
 
     </dependencies>
 

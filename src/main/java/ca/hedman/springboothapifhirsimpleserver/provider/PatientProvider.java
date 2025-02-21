@@ -13,59 +13,59 @@ import ca.uhn.fhir.rest.server.IResourceProvider;
 import ca.uhn.fhir.rest.server.exceptions.ResourceNotFoundException;
 
 
+import lombok.RequiredArgsConstructor;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Patient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-    @Component
-    public class PatientProvider implements IResourceProvider {
+@RequiredArgsConstructor
+public class PatientProvider implements IResourceProvider {
 
-        private static Long counter = 1L;
+    private Long counter = 1L;
 
-        private static final ConcurrentHashMap<String, Patient> patients = new ConcurrentHashMap<>();
+    private final FhirContext fhirContext;
 
-        static {
-            patients.put(String.valueOf(counter), createPatient("Stitt"));
-            patients.put(String.valueOf(counter), createPatient("Hodges"));
-            patients.put(String.valueOf(counter), createPatient("Desmond"));
+    private final ConcurrentHashMap<String, Patient> patients = new ConcurrentHashMap<>();
+
+    @Read
+    public Patient find(@IdParam final IdType id) {
+        if (patients.containsKey(id.getIdPart())) {
+            return patients.get(id.getIdPart());
+        } else {
+            throw new ResourceNotFoundException(id);
         }
+    }
 
+    @Create
+    public MethodOutcome createPatient(@ResourceParam Patient patient) {
+//        var validator = fhirContext.newValidator();
+//        var module = new FhirInstanceValidator(ctx);
+//        validator.registerValidatorModule(module);
 
-        @Read
-        public Patient find(@IdParam final IdType id) {
-            if (patients.containsKey(id.getIdPart())) {
-                return patients.get(id.getIdPart());
-            } else {
-                throw new ResourceNotFoundException(id);
-            }
-        }
+        patient.setId(createId(counter, 1L));
+        patients.put(String.valueOf(counter), patient);
 
-        @Create
-        public MethodOutcome createPatient(@ResourceParam Patient patient) {
+        return new MethodOutcome(patient.getIdElement());
+    }
 
-            patient.setId(createId(counter, 1L));
-            patients.put(String.valueOf(counter), patient);
+    @Override
+    public Class<Patient> getResourceType() {
+        return Patient.class;
+    }
 
-            return new MethodOutcome(patient.getIdElement());
-        }
+    private IdType createId(final Long id, final Long versionId) {
+        return new IdType("Patient", "" + id, "" + versionId);
+    }
 
-        @Override
-        public Class<Patient> getResourceType() {
-            return Patient.class;
-        }
-
-        private static IdType createId(final Long id, final Long versionId) {
-            return new IdType("Patient", "" + id, "" + versionId);
-        }
-
-        private static Patient createPatient(final String name) {
-            final Patient patient = new Patient();
-            patient.getName().add(new HumanName().setFamily(name));
-            patient.setId(createId(counter, 1L));
-            counter++;
-            return patient;
-        }
+    private Patient createPatient(final String name) {
+        final Patient patient = new Patient();
+        patient.getName().add(new HumanName().setFamily(name));
+        patient.setId(createId(counter, 1L));
+        counter++;
+        return patient;
+    }
 
 
 }
