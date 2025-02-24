@@ -5,10 +5,7 @@ import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.validation.SingleValidationMessage;
 import lombok.SneakyThrows;
-import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
-import org.hl7.fhir.common.hapi.validation.support.PrePopulatedValidationSupport;
-import org.hl7.fhir.common.hapi.validation.support.SnapshotGeneratingValidationSupport;
-import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain;
+import org.hl7.fhir.common.hapi.validation.support.*;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
 import org.hl7.fhir.r4.model.*;
 import org.springframework.util.ResourceUtils;
@@ -27,8 +24,7 @@ public class Teste {
         }
     }
 
-    private static <T extends MetadataResource> T parseStructureDefinition(FhirContext ctx, String jsonPath, Class<T> klazz) {
-        IParser parser = ctx.newJsonParser();
+    private static <T extends MetadataResource> T parseStructureDefinition(IParser parser, String jsonPath, Class<T> klazz) {
         try {
             File file = ResourceUtils.getFile("classpath:definitions/" + jsonPath);
             InputStream in = new FileInputStream(file);
@@ -40,53 +36,55 @@ public class Teste {
 
     @SneakyThrows
     public static void main(String[] args) {
-//        SpringApplication.run(FhirApplication.class, args);
-
-
         FhirContext ctx = FhirContext.forR4();
-        IParser parser = ctx.newJsonParser();
+        var xmlParser = ctx.newXmlParser();
+        var jsonParser = ctx.newJsonParser();
 
         var validator = ctx.newValidator();
         var instanceValidator = new FhirInstanceValidator(ctx);
 
         var valSupport = new PrePopulatedValidationSupport(ctx);
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRIndividuoSD.json", StructureDefinition.class));
-        valSupport.addCodeSystem(parseStructureDefinition(ctx, "rnds/BRDivisaoGeograficaBrasilCS.json", CodeSystem.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRDocumentoIndividuoSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BREnderecoSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRJurisdicaoOrgaoEmissorSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRMeioContatoSD.json", StructureDefinition.class));
-        valSupport.addValueSet(parseStructureDefinition(ctx, "rnds/BRMunicipioVS.json", ValueSet.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRMunicipioSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRNomeIndividuoSD.json", StructureDefinition.class));
-        valSupport.addValueSet(parseStructureDefinition(ctx, "rnds/BRSexoVS.json", ValueSet.class));
-        valSupport.addValueSet(parseStructureDefinition(ctx, "rnds/BRUnidadeFederativaVS.json", ValueSet.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRParentesIndividuoSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRRacaCorEtniaSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRPaisSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRQualidadeCadastroIndividuoSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRNacionalidadeSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRIndividuoProtegidoSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRNaturalizacaoSD.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "rnds/BRNaturalizacaoSD.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/BRIndividuo.StructureDefinition.xml", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/Extension/BRParentesIndividuo.StructureDefinition.xml", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/Extension/BRRacaCorEtnia.StructureDefinition.xml", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/Extension/BRPais.StructureDefinition.xml", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/DataType/BRDocumentoIndividuo.StructureDefinition.xml", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/DataType/BRNomeIndividuo.StructureDefinition.xml", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/DataType/BREndereco.StructureDefinition.xml", StructureDefinition.class));
 
-//        valSupport.addValueSet(parseStructureDefinition(ctx, "hl7/administrative-gender-vs.json", ValueSet.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/patient-ds.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/extension-ds.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/human-name-ds.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/period-ds.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/codeable-concept-ds.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/coding-ds.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/identifier-ds.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/reference-ds.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/contact-point-ds.json", StructureDefinition.class));
+//        valSupport.addValueSet(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/ValueSet/BRPais.ValueSet.xml", ValueSet.class));
+//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "hl7/administrative-gender-vs.json", ValueSet.class));
+//        valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "hl7/administrative-gender-cs.json", CodeSystem.class));
+//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRSexoVS.json", ValueSet.class));
+//        valSupport.addValueSet(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/ValueSet/BRSexo.ValueSet.xml", ValueSet.class));
 
-        var npmValidationSupport = new NpmPackageValidationSupport(ctx);
-        npmValidationSupport.loadPackageFromClasspath("classpath:definitions/terminologias.tgz");
+        valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "rnds/BRPaisCS.json", CodeSystem.class));
+        valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "rnds/BRDivisaoGeograficaBrasilCS.json", CodeSystem.class));
+
+        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRMunicipioVS.json", ValueSet.class));
+        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRUnidadeFederativaVS.json", ValueSet.class));
+        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRPaisVS.json", ValueSet.class));
+        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRTipoDocumentoIndividuoVS.json", ValueSet.class));
+        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRSexoVS.json", ValueSet.class));
+
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRIndividuoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BREnderecoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRRacaCorEtniaSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRPaisSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRDocumentoIndividuoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRNomeIndividuoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRQualidadeCadastroIndividuoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRParentesIndividuoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRMunicipioSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRNacionalidadeSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRIndividuoProtegidoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRNaturalizacaoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRJurisdicaoOrgaoEmissorSD.json", StructureDefinition.class)); // extension
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRMeioContatoSD.json", StructureDefinition.class));
 
         ValidationSupportChain support = new ValidationSupportChain(
                 valSupport,
-                npmValidationSupport,
+                new InMemoryTerminologyServerValidationSupport(ctx),
                 new DefaultProfileValidationSupport(ctx),
                 new SnapshotGeneratingValidationSupport(ctx)
         );
@@ -94,7 +92,7 @@ public class Teste {
         validator.registerValidatorModule(instanceValidator);
 
         String input = readResourceAsString("samples/individuo.json");
-        Patient parsed = parser.parseResource(Patient.class, input);
+        Patient parsed = jsonParser.parseResource(Patient.class, input);
 
         var validationRes = validator.validateWithResult(parsed);
         if (validationRes.isSuccessful()) {
