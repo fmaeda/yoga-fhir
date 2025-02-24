@@ -4,6 +4,8 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.validation.SingleValidationMessage;
+import lombok.SneakyThrows;
+import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.PrePopulatedValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.SnapshotGeneratingValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain;
@@ -36,6 +38,7 @@ public class Teste {
         }
     }
 
+    @SneakyThrows
     public static void main(String[] args) {
 //        SpringApplication.run(FhirApplication.class, args);
 
@@ -78,10 +81,17 @@ public class Teste {
 //        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/reference-ds.json", StructureDefinition.class));
 //        valSupport.addStructureDefinition(parseStructureDefinition(ctx, "hl7/contact-point-ds.json", StructureDefinition.class));
 
-        ValidationSupportChain support = new ValidationSupportChain(valSupport, new DefaultProfileValidationSupport(ctx), new SnapshotGeneratingValidationSupport(ctx));
+        var npmValidationSupport = new NpmPackageValidationSupport(ctx);
+        npmValidationSupport.loadPackageFromClasspath("classpath:definitions/terminologias.tgz");
+
+        ValidationSupportChain support = new ValidationSupportChain(
+                valSupport,
+                npmValidationSupport,
+                new DefaultProfileValidationSupport(ctx),
+                new SnapshotGeneratingValidationSupport(ctx)
+        );
         instanceValidator.setValidationSupport(support);
         validator.registerValidatorModule(instanceValidator);
-
 
         String input = readResourceAsString("samples/individuo.json");
         Patient parsed = parser.parseResource(Patient.class, input);
