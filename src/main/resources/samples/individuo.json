@@ -3,12 +3,12 @@
   "id" : "dfc68402-7e80-4365-97df-52c4c870a159",
   "meta" : {
     "profile" : [
-      "https://rnds-fhir.saude.gov.br/StructureDefinition/BRIndividuo-1.0"
+      "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0"
     ]
   },
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>GABRIELA INACIO ALVES(OFFICIAL)</b> female, DoB: 1976-09-15 ( Tax ID number: 12345678900(use: OFFICIAL))</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Record is active\">Active:</td><td>true</td><td style=\"background-color: #f3f5da\" title=\"Known status of Patient\">Deceased:</td><td colspan=\"3\">false</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Patient\">Contact Detail:</td><td colspan=\"3\">081 SQN  BLOCO M 604 APARTAMENTO ASA NORTE 315780 53 70752130 (HOME)</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Extensão para representar um país.\"><a href=\"StructureDefinition-BRPais-1.0.html\">País:</a></td><td colspan=\"3\"><ul><li><span title=\"Codes: {https://rnds-fhir.saude.gov.br/CodeSystem/BRPais 10}\">BRASIL</span></li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Extensão para para representar dados relacionados à raça/cor e etnia de um indivíduo.\">Raça/Cor e Etnina:</td><td colspan=\"3\"><ul><li>race: <span title=\"Codes: {https://rnds-fhir.saude.gov.br/CodeSystem/BRRacaCor-1.0 01}\">01</span></li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Resource para representar parentescos de indivíduo.\">Parentes do Indivíduo:</td><td colspan=\"3\"><ul><li>relationship: MTH</li><li>parent: MARILIA FARES DA ROCHA ALVES(OFFICIAL)</li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Resource para representar parentescos de indivíduo.\">Parentes do Indivíduo:</td><td colspan=\"3\"><ul><li>relationship: FTH</li><li>parent: JURACY ALVES(OFFICIAL)</li></ul></td></tr></table></div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>GABRIELA INACIO ALVES(OFFICIAL)</b> female, DoB: 1976-09-15 ( Tax ID number: 12345678900(use: OFFICIAL))</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Record is active\">Active:</td><td>true</td><td style=\"background-color: #f3f5da\" title=\"Known status of Patient\">Deceased:</td><td colspan=\"3\">false</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Patient\">Contact Detail:</td><td colspan=\"3\">081 SQN  BLOCO M 604 APARTAMENTO ASA NORTE 315780 53 70752130 (HOME)</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Extensão para representar um país.\"><a href=\"StructureDefinition-BRPais-1.0.html\">País:</a></td><td colspan=\"3\"><ul><li><span title=\"Codes: {http://www.saude.gov.br/fhir/r4/CodeSystem/BRPais 10}\">BRASIL</span></li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Extensão para para representar dados relacionados à raça/cor e etnia de um indivíduo.\">Raça/Cor e Etnina:</td><td colspan=\"3\"><ul><li>race: <span title=\"Codes: {http://www.saude.gov.br/fhir/r4/CodeSystem/BRRacaCor-1.0 01}\">01</span></li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Resource para representar parentescos de indivíduo.\">Parentes do Indivíduo:</td><td colspan=\"3\"><ul><li>relationship: MTH</li><li>parent: MARILIA FARES DA ROCHA ALVES(OFFICIAL)</li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Resource para representar parentescos de indivíduo.\">Parentes do Indivíduo:</td><td colspan=\"3\"><ul><li>relationship: FTH</li><li>parent: JURACY ALVES(OFFICIAL)</li></ul></td></tr></table></div>"
   },
   "extension" : [
     {
@@ -25,7 +25,7 @@
           }
         }
       ],
-      "url" : "https://rnds-fhir.saude.gov.br/StructureDefinition/BRParentesIndividuo-1.0"
+      "url" : "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRParentesIndividuo-1.0"
     },
     {
       "extension" : [
@@ -41,7 +41,7 @@
           }
         }
       ],
-      "url" : "https://rnds-fhir.saude.gov.br/StructureDefinition/BRParentesIndividuo-1.0"
+      "url" : "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRParentesIndividuo-1.0"
     },
     {
       "extension" : [
@@ -50,21 +50,21 @@
           "valueCodeableConcept" : {
             "coding" : [
               {
-                "system" : "https://rnds-fhir.saude.gov.br/CodeSystem/BRRacaCor-1.0",
+                "system" : "http://www.saude.gov.br/fhir/r4/CodeSystem/BRRacaCor-1.0",
                 "code" : "01"
               }
             ]
           }
         }
       ],
-      "url" : "https://rnds-fhir.saude.gov.br/StructureDefinition/BRRacaCorEtnia-1.0"
+      "url" : "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRRacaCorEtnia-1.0"
     },
     {
-      "url" : "https://rnds-fhir.saude.gov.br/StructureDefinition/BRPais-1.0",
+      "url" : "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRPais-1.0",
       "valueCodeableConcept" : {
         "coding" : [
           {
-            "system" : "https://rnds-fhir.saude.gov.br/CodeSystem/BRPais",
+            "system" : "http://www.saude.gov.br/fhir/r4/CodeSystem/BRPais",
             "code" : "10"
           }
         ]
@@ -82,7 +82,7 @@
           }
         ]
       },
-      "system" : "https://rnds-fhir.saude.gov.br/NamingSystem/cpf",
+      "system" : "http://www.saude.gov.br/fhir/r4/NamingSystem/cpf",
       "value" : "12345678900"
     }
   ],
