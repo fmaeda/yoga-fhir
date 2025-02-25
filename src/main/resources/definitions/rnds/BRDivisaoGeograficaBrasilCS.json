@@ -6,7 +6,7 @@
   },
   "language": "pt-BR",
   "url": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRDivisaoGeograficaBrasil",
-  "version": "201701A",
+  "version": "1.0",
   "name": "Divisão Geográfica do Brasil",
   "status": "active",
   "experimental": false,

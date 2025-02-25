@@ -7,7 +7,7 @@
   "language": "pt-BR",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"pt-BR\" lang=\"pt-BR\"><ul><li>Include codes from <a href=\"CodeSystem-BRDivisaoGeograficaBrasil.html\"><code>https://rnds-fhir.saude.gov.br/CodeSystem/BRDivisaoGeograficaBrasil</code></a> where type  =  city</li></ul></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"pt-BR\" lang=\"pt-BR\"><ul><li>Include codes from <a href=\"CodeSystem-BRDivisaoGeograficaBrasil.html\"><code>http://rnds-fhir.saude.gov.br/CodeSystem/BRDivisaoGeograficaBrasil</code></a> where type  =  city</li></ul></div>"
   },
   "extension": [
     {
@@ -17,7 +17,7 @@
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-conformance-derivedFrom",
-            "valueCanonical": "https://www.saude.gov.br/fhir/r4/ImplementationGuide/rnds"
+            "valueCanonical": "http://www.saude.gov.br/fhir/r4/ImplementationGuide/rnds"
           }
         ]
       }
@@ -29,7 +29,7 @@
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-conformance-derivedFrom",
-            "valueCanonical": "https://www.saude.gov.br/fhir/r4/ImplementationGuide/rnds"
+            "valueCanonical": "http://www.saude.gov.br/fhir/r4/ImplementationGuide/rnds"
           }
         ]
       }
@@ -48,7 +48,7 @@
       "telecom": [
         {
           "system": "url",
-          "value": "https://saude.gov.br"
+          "value": "http://saude.gov.br"
         }
       ]
     }
@@ -68,8 +68,8 @@
   "compose": {
     "include": [
       {
-        "system": "https://www.saude.gov.br/fhir/r4/CodeSystem/BRDivisaoGeograficaBrasil",
-        "version": "*",
+        "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRDivisaoGeograficaBrasil",
+        "version": "1.0",
         "filter": [
           {
             "property": "type",

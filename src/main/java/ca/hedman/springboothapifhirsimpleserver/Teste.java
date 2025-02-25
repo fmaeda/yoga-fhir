@@ -34,6 +34,25 @@ public class Teste {
         }
     }
 
+    public static void main2(String[] args) {
+        FhirContext ctx = FhirContext.forR4();
+        var patient = new Patient();
+        patient.addAddress()
+                .setUse(Address.AddressUse.HOME)
+                .setType(Address.AddressType.PHYSICAL)
+                .setCity("315780")
+                .setState("53")
+                .setPostalCode("70752130")
+                .addLine("081")
+                .addLine("SQN BLoco M")
+                .addLine("604")
+                .addLine("ASA NORTE");
+
+        var parser = ctx.newJsonParser();
+        String encoded = parser.setPrettyPrint(true).encodeResourceToString(patient);
+        System.out.println("Encoded: " + encoded);
+    }
+
     @SneakyThrows
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
@@ -44,28 +63,16 @@ public class Teste {
         var instanceValidator = new FhirInstanceValidator(ctx);
 
         var valSupport = new PrePopulatedValidationSupport(ctx);
-//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/BRIndividuo.StructureDefinition.xml", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/Extension/BRParentesIndividuo.StructureDefinition.xml", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/Extension/BRRacaCorEtnia.StructureDefinition.xml", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/Extension/BRPais.StructureDefinition.xml", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/DataType/BRDocumentoIndividuo.StructureDefinition.xml", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/DataType/BRNomeIndividuo.StructureDefinition.xml", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/DataType/BREndereco.StructureDefinition.xml", StructureDefinition.class));
-
-//        valSupport.addValueSet(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/ValueSet/BRPais.ValueSet.xml", ValueSet.class));
-//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "hl7/administrative-gender-vs.json", ValueSet.class));
-//        valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "hl7/administrative-gender-cs.json", CodeSystem.class));
-//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRSexoVS.json", ValueSet.class));
-//        valSupport.addValueSet(parseStructureDefinition(xmlParser, "rnds-definicoes-fhir/ValueSet/BRSexo.ValueSet.xml", ValueSet.class));
-
         valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "rnds/BRPaisCS.json", CodeSystem.class));
         valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "rnds/BRDivisaoGeograficaBrasilCS.json", CodeSystem.class));
+        valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "rnds/BRTipoLogradouroCS.json", CodeSystem.class));
 
         valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRMunicipioVS.json", ValueSet.class));
         valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRUnidadeFederativaVS.json", ValueSet.class));
         valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRPaisVS.json", ValueSet.class));
         valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRTipoDocumentoIndividuoVS.json", ValueSet.class));
         valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRSexoVS.json", ValueSet.class));
+        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRTipoLogradouroVS.json", ValueSet.class));
 
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRIndividuoSD.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BREnderecoSD.json", StructureDefinition.class));
@@ -81,20 +88,22 @@ public class Teste {
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRNaturalizacaoSD.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRJurisdicaoOrgaoEmissorSD.json", StructureDefinition.class)); // extension
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRMeioContatoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRParentesIndividuoSD.json", StructureDefinition.class));
 
         ValidationSupportChain support = new ValidationSupportChain(
+                new DefaultProfileValidationSupport(ctx),
                 valSupport,
                 new InMemoryTerminologyServerValidationSupport(ctx),
-                new DefaultProfileValidationSupport(ctx),
                 new SnapshotGeneratingValidationSupport(ctx)
         );
         instanceValidator.setValidationSupport(support);
         validator.registerValidatorModule(instanceValidator);
 
-        String input = readResourceAsString("samples/individuo.json");
-        Patient parsed = jsonParser.parseResource(Patient.class, input);
+        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/individuo.json"));
 
-        var validationRes = validator.validateWithResult(parsed);
+//        Patient parsedXml = xmlParser.parseResource(Patient.class, readResourceAsString("samples/individuo.xml"));
+
+        var validationRes = validator.validateWithResult(parsedJson);
         if (validationRes.isSuccessful()) {
             System.out.println("SUCESSO!!!");
         } else {

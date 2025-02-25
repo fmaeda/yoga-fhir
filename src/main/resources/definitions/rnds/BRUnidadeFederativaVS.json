@@ -16,7 +16,7 @@
     "include": [
       {
         "system": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRDivisaoGeograficaBrasil",
-        "version": "*",
+        "version": "1.0",
         "filter": [
           {
             "property": "type",

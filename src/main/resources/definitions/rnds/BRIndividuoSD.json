@@ -6,7 +6,7 @@
   },
   "language": "pt-BR",
   "url": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRIndividuo-1.0",
-  "version": "01.10",
+  "version": "1.0",
   "name": "BRIndividuo",
   "title": "Indivíduo",
   "status": "active",
@@ -340,12 +340,6 @@
       {
         "id": "Patient.address.type",
         "path": "Patient.address.type",
-        "min": 1
-      },
-      {
-        "id": "Patient.address.line:streetType",
-        "path": "Patient.address.line",
-        "sliceName": "streetType",
         "min": 1
       },
       {
