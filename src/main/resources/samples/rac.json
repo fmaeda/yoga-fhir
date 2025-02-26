@@ -1,0 +1,108 @@
+{
+  "resourceType": "Bundle",
+  "type": "document",
+  "id": "rac",
+  "identifier" : {
+    "value" : "14343561"
+  },
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:2d83f621-2a9b-4080-b7ae-ea8152ebc561",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "composition",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDocumento-1.0",
+              "code": "RAC",
+              "display": "Registro de Atendimento Clínico"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:a041a5d4-64cf-47c5-8317-fa19478ae6cd",
+          "type": "Patient"
+        },
+        "encounter": {
+          "reference": "urn:uuid:eb9a77a9-7f4a-4ca0-a9fa-2a0ecd4ec356",
+          "type": "Encounter"
+        },
+        "date": "2023-07-25T12:00:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:4b826750-bff3-496c-bfef-c549ea9f1ee3",
+            "type": "Practitioner"
+          }
+        ],
+        "title": "Registro de Atendimento Clínico"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a041a5d4-64cf-47c5-8317-fa19478ae6cd",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient",
+        "identifier": [
+          {
+            "system": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRDocumentoIndividuo-1.0",
+            "value": "123456789"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Silva",
+            "given": [
+              "João"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1980-01-01"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:eb9a77a9-7f4a-4ca0-a9fa-2a0ecd4ec356",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "encounter",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+        },
+        "period": {
+          "start": "2023-07-25T10:00:00Z",
+          "end": "2023-07-25T11:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4b826750-bff3-496c-bfef-c549ea9f1ee3",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner",
+        "identifier": [
+          {
+            "system": "http://www.saude.gov.br/fhir/r4/StructureDefinition/BRDocumentoIndividuo-1.0",
+            "value": "123456789"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Souza",
+            "given": [
+              "Maria"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

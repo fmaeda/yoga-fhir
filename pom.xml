@@ -98,6 +98,25 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>ca.uhn.hapi.fhir</groupId>
+                <artifactId>hapi-fhir-ac</artifactId>
+                <version>0.0.1-SNAPSHOT</version> <!-- Use a versão mais recente -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-pojo</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <packageName>com.exemplo.fhir</packageName> <!-- Pacote dos POJOs -->
+                    <fhirVersion>R4</fhirVersion> <!-- Versão do FHIR -->
+                    <profiles>
+                        <profile>path/para/seu/profile.json</profile> <!-- Caminho do profile FHIR -->
+                    </profiles>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

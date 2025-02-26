@@ -89,6 +89,7 @@ public class Teste {
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRJurisdicaoOrgaoEmissorSD.json", StructureDefinition.class)); // extension
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRMeioContatoSD.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRParentesIndividuoSD.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRRegistroAtendimentoClinicoSD.json", StructureDefinition.class));
 
         ValidationSupportChain support = new ValidationSupportChain(
                 new DefaultProfileValidationSupport(ctx),
@@ -98,12 +99,12 @@ public class Teste {
         );
         instanceValidator.setValidationSupport(support);
         validator.registerValidatorModule(instanceValidator);
-
+        Bundle bundle = jsonParser.parseResource(Bundle.class, readResourceAsString("samples/rac.json"));
         Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/individuo.json"));
 
 //        Patient parsedXml = xmlParser.parseResource(Patient.class, readResourceAsString("samples/individuo.xml"));
 
-        var validationRes = validator.validateWithResult(parsedJson);
+        var validationRes = validator.validateWithResult(bundle);
         if (validationRes.isSuccessful()) {
             System.out.println("SUCESSO!!!");
         } else {
