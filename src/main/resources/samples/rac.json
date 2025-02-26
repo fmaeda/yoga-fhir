@@ -2,8 +2,10 @@
   "resourceType": "Bundle",
   "type": "document",
   "id": "rac",
-  "identifier" : {
-    "value" : "14343561"
+  "timestamp": "2023-07-25T12:00:00Z",
+  "identifier": {
+    "value": "urn:uuid:3f13fbe2-fd96-48ab-a4a7-e36af73fcc15",
+    "system": "urn:ietf:rfc:3986"
   },
   "entry": [
     {
