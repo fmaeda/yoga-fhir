@@ -82,7 +82,6 @@
           }
         ]
       },
-      "system": "http://www.saude.gov.br/fhir/r4/NamingSystem/cpf",
       "value": "12345678900"
     }
   ],
