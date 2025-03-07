@@ -3,7 +3,8 @@ package ca.hedman.springboothapifhirsimpleserver;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.parser.IParser;
-import ca.uhn.fhir.validation.SingleValidationMessage;
+import ca.uhn.fhir.validation.ResultSeverityEnum;
+import ca.uhn.fhir.validation.ValidationResult;
 import lombok.SneakyThrows;
 import org.hl7.fhir.common.hapi.validation.support.*;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
@@ -12,8 +13,11 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class Teste {
+    private static final String LOG_VALIDATION_MESSAGE_TEMPLATE = "%s at %s - %s";
 
     private static String readResourceAsString(String filePath) {
         try {
@@ -134,8 +138,8 @@ public class Teste {
         );
         instanceValidator.setValidationSupport(support);
         validator.registerValidatorModule(instanceValidator);
-//        Bundle bundle = jsonParser.parseResource(Bundle.class, readResourceAsString("samples/rac.json"));
-        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
+        Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
+//        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
 //        Patient parsedXml = xmlParser.parseResource(Patient.class, readResourceAsString("samples/individuo.xml"));
 
@@ -143,9 +147,16 @@ public class Teste {
         if (validationRes.isSuccessful()) {
             System.out.println("SUCESSO!!!");
         } else {
-            for (SingleValidationMessage msg : validationRes.getMessages()) {
-                System.out.println("ERRO: " + msg.getMessage());
-            }
+            final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
+                    .filter(message -> message.getSeverity().equals(severity))
+                    .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));
+            logger.accept(ResultSeverityEnum.INFORMATION);
+            logger.accept(ResultSeverityEnum.WARNING);
+            logger.accept(ResultSeverityEnum.ERROR);
+            logger.accept(ResultSeverityEnum.FATAL);
+
+            System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size());
+
         }
 
 //        System.out.println("Parsed: " + parsed.getName().getFirst().getFamily());
