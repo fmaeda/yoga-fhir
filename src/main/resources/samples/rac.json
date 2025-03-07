@@ -1,10 +1,6 @@
 {
   "resourceType": "Composition",
   "id": "7681618d-399d-4291-b321-32ce6d645088",
-  "text": {
-    "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Composition 7681618d-399d-4291-b321-32ce6d645088</b></p><a name=\"7681618d-399d-4291-b321-32ce6d645088\"> </a><a name=\"hc7681618d-399d-4291-b321-32ce6d645088\"> </a><a name=\"7681618d-399d-4291-b321-32ce6d645088-pt-BR\"> </a><p><b>status</b>: Final</p><p><b>type</b>: <span title=\"Codes:{http://loinc.org 11488-4}\">Nota de consulta</span></p><p><b>category</b>: <span title=\"Codes:{http://loinc.org 11488-4}\">Nota de consulta</span></p><p><b>encounter</b>: <a href=\"Encounter-c6d553d8-cce0-404b-9d1f-eeffbf7fc6df.html\">Ambulatorial</a></p><p><b>date</b>: 2024-12-19 14:30:00+0000</p><p><b>author</b>: <a href=\"Practitioner-d3b61455-f432-48f0-b83b-ba825922d735.html\">Maria Clara</a></p><p><b>title</b>: Registro de Atendimento Clínico</p></div>"
-  },
   "status": "final",
   "type": {
     "coding": [
