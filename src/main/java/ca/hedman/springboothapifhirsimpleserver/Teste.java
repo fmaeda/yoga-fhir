@@ -144,20 +144,15 @@ public class Teste {
 //        Patient parsedXml = xmlParser.parseResource(Patient.class, readResourceAsString("samples/individuo.xml"));
 
         var validationRes = validator.validateWithResult(parsedJson);
-        if (validationRes.isSuccessful()) {
-            System.out.println("SUCESSO!!!");
-        } else {
-            final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
-                    .filter(message -> message.getSeverity().equals(severity))
-                    .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));
-            logger.accept(ResultSeverityEnum.INFORMATION);
-            logger.accept(ResultSeverityEnum.WARNING);
-            logger.accept(ResultSeverityEnum.ERROR);
-            logger.accept(ResultSeverityEnum.FATAL);
+        final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
+                .filter(message -> message.getSeverity().equals(severity))
+                .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));
+        logger.accept(ResultSeverityEnum.INFORMATION);
+        logger.accept(ResultSeverityEnum.WARNING);
+        logger.accept(ResultSeverityEnum.ERROR);
+        logger.accept(ResultSeverityEnum.FATAL);
 
-            System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size());
-
-        }
+        System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size());
 
 //        System.out.println("Parsed: " + parsed.getName().getFirst().getFamily());
 //        parsed.addAddress(new Address().setCity("Maringá"));
