@@ -4,16 +4,17 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.validation.ResultSeverityEnum;
-import ca.uhn.fhir.validation.ValidationResult;
 import lombok.SneakyThrows;
-import org.hl7.fhir.common.hapi.validation.support.*;
+import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport;
+import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
+import org.hl7.fhir.common.hapi.validation.support.PrePopulatedValidationSupport;
+import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
 import org.hl7.fhir.r4.model.*;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class Teste {
@@ -60,41 +61,38 @@ public class Teste {
     @SneakyThrows
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
-        var xmlParser = ctx.newXmlParser();
         var jsonParser = ctx.newJsonParser();
-
         var validator = ctx.newValidator();
         var instanceValidator = new FhirInstanceValidator(ctx);
-
         var valSupport = new PrePopulatedValidationSupport(ctx);
-//        valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "rnds/BRPaisCS.json", CodeSystem.class));
-//        valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "rnds/BRDivisaoGeograficaBrasilCS.json", CodeSystem.class));
-//        valSupport.addCodeSystem(parseStructureDefinition(jsonParser, "rnds/BRTipoLogradouroCS.json", CodeSystem.class));
-//
-//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRMunicipioVS.json", ValueSet.class));
-//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRUnidadeFederativaVS.json", ValueSet.class));
-//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRPaisVS.json", ValueSet.class));
-//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRTipoDocumentoIndividuoVS.json", ValueSet.class));
-//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRSexoVS.json", ValueSet.class));
-//        valSupport.addValueSet(parseStructureDefinition(jsonParser, "rnds/BRTipoLogradouroVS.json", ValueSet.class));
-//
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRIndividuoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BREnderecoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRRacaCorEtniaSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRPaisSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRDocumentoIndividuoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRNomeIndividuoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRQualidadeCadastroIndividuoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRParentesIndividuoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRMunicipioSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRNacionalidadeSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRIndividuoProtegidoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRNaturalizacaoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRJurisdicaoOrgaoEmissorSD.json", StructureDefinition.class)); // extension
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRMeioContatoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRParentesIndividuoSD.json", StructureDefinition.class));
-//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "rnds/BRRegistroAtendimentoClinicoSD.json", StructureDefinition.class));
+        addJSONDefinitions(valSupport, jsonParser);
+        var npmPackageSupport = new NpmPackageValidationSupport(ctx);
+        npmPackageSupport.loadPackageFromClasspath("classpath:definitions/terminologias.tgz");
+        var supportChain = new ValidationSupportChain(
+                new DefaultProfileValidationSupport(ctx),
+                valSupport,
+                new InMemoryTerminologyServerValidationSupport(ctx),
+                npmPackageSupport
+//                new SnapshotGeneratingValidationSupport(ctx)
+        );
+        instanceValidator.setValidationSupport(supportChain);
+        validator.registerValidatorModule(instanceValidator);
+//        Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
+        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
+        var validationRes = validator.validateWithResult(parsedJson);
+        final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
+                .filter(message -> message.getSeverity().equals(severity))
+                .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));
+        logger.accept(ResultSeverityEnum.INFORMATION);
+        logger.accept(ResultSeverityEnum.WARNING);
+        logger.accept(ResultSeverityEnum.ERROR);
+        logger.accept(ResultSeverityEnum.FATAL);
+
+        System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size());
+    }
+
+    private static void addJSONDefinitions(PrePopulatedValidationSupport valSupport, IParser jsonParser) {
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-allergyintolerance.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-capacidadefuncional.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-careplan.json", StructureDefinition.class));
@@ -129,46 +127,7 @@ public class Teste {
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-specimen.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-sumarioalta.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-vitalsigns.json", StructureDefinition.class));
-
-        ValidationSupportChain support = new ValidationSupportChain(
-                new DefaultProfileValidationSupport(ctx),
-                valSupport,
-                new InMemoryTerminologyServerValidationSupport(ctx)//,
-//                new SnapshotGeneratingValidationSupport(ctx)
-        );
-        instanceValidator.setValidationSupport(support);
-        validator.registerValidatorModule(instanceValidator);
-        Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
-//        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
-
-//        Patient parsedXml = xmlParser.parseResource(Patient.class, readResourceAsString("samples/individuo.xml"));
-
-        var validationRes = validator.validateWithResult(parsedJson);
-        final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
-                .filter(message -> message.getSeverity().equals(severity))
-                .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));
-        logger.accept(ResultSeverityEnum.INFORMATION);
-        logger.accept(ResultSeverityEnum.WARNING);
-        logger.accept(ResultSeverityEnum.ERROR);
-        logger.accept(ResultSeverityEnum.FATAL);
-
-        System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size());
-
-//        System.out.println("Parsed: " + parsed.getName().getFirst().getFamily());
-//        parsed.addAddress(new Address().setCity("Maringá"));
-
-//        String encoded = parser.setPrettyPrint(true).encodeResourceToString(parsed);
-//        System.out.println("Encoded: " + encoded);
-
-//        Header header = new BasicHeader("", "");
-//
-//        Patient patient = new Patient();
-//        patient.addName()
-//                .setFamily()
-//                .addGiven()
-//                .addGiven();
-//
-//        patient.addExtension("", Type);
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-ips-brasil-raca-br-ips.json", StructureDefinition.class));
     }
 
 }

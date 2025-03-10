@@ -7,7 +7,7 @@ import java.util.List;
 
 public record RAC(
         String id,
-        CompositionStatus status,
+        Status status,
         String title,
         LocalDateTime dateTime,
         CompositionType type,
@@ -17,6 +17,23 @@ public record RAC(
         List<Author> author,
         List<Section> section
 ) {
+    public enum Status {
+        PRELIMINAR,
+        FINAL,
+        RETIFICADO,
+        INCORRETO;
+
+        Status of(CompositionStatus compositionStatus) {
+            return switch (compositionStatus) {
+                case PRELIMINARY -> PRELIMINAR;
+                case FINAL -> FINAL;
+                case AMENDED -> RETIFICADO;
+                case ENTEREDINERROR -> INCORRETO;
+                default -> throw new IllegalArgumentException("Unexpected value: " + compositionStatus);
+            };
+        }
+    }
+
     public record CompositionType(List<Coding> coding, String text) {
     }
 
