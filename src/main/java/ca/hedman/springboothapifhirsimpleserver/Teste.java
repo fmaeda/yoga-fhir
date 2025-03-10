@@ -39,25 +39,6 @@ public class Teste {
         }
     }
 
-    public static void main2(String[] args) {
-        FhirContext ctx = FhirContext.forR4();
-        var patient = new Patient();
-        patient.addAddress()
-                .setUse(Address.AddressUse.HOME)
-                .setType(Address.AddressType.PHYSICAL)
-                .setCity("315780")
-                .setState("53")
-                .setPostalCode("70752130")
-                .addLine("081")
-                .addLine("SQN BLoco M")
-                .addLine("604")
-                .addLine("ASA NORTE");
-
-        var parser = ctx.newJsonParser();
-        String encoded = parser.setPrettyPrint(true).encodeResourceToString(patient);
-        System.out.println("Encoded: " + encoded);
-    }
-
     @SneakyThrows
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
