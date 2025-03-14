@@ -8,8 +8,8 @@
     "coding": [
       {
         "system": "http://loinc.org",
-        "code": "11488-4",
-        "display": "Consult note"
+        "code": "60591-5",
+        "display": "Sumário Internacional do Paciente"
       }
     ],
     "text": "Nota de consulta"
@@ -103,7 +103,7 @@
         "coding": [
           {
             "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRAlergenosCBARA",
-            "code": "A100",
+            "code": "amendoim",
             "display": "Amendoim"
           }
         ]

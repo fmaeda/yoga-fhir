@@ -46,7 +46,7 @@ public class Teste {
         var validator = ctx.newValidator();
         var instanceValidator = new FhirInstanceValidator(ctx);
         var valSupport = new PrePopulatedValidationSupport(ctx);
-        addJSONDefinitions(valSupport, jsonParser);
+        addJSONDefinitions(valSupport, ctx);
         var npmPackageSupport = new NpmPackageValidationSupport(ctx);
         npmPackageSupport.loadPackageFromClasspath("classpath:definitions/terminologias.tgz");
         var supportChain = new ValidationSupportChain(
@@ -58,8 +58,8 @@ public class Teste {
         );
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
-//        Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
-        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
+        Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
+//        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
         var validationRes = validator.validateWithResult(parsedJson);
         final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
@@ -73,7 +73,10 @@ public class Teste {
         System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size());
     }
 
-    private static void addJSONDefinitions(PrePopulatedValidationSupport valSupport, IParser jsonParser) {
+    private static void addJSONDefinitions(PrePopulatedValidationSupport valSupport, FhirContext ctx) {
+        var jsonParser = ctx.newJsonParser();
+        var xmlParser = ctx.newXmlParser();
+
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-allergyintolerance.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-capacidadefuncional.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-careplan.json", StructureDefinition.class));
@@ -109,6 +112,8 @@ public class Teste {
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-sumarioalta.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-vitalsigns.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-ips-brasil-raca-br-ips.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-sexo-nascimento-br-ips.json", StructureDefinition.class));
+        valSupport.addCodeSystem(parseStructureDefinition(xmlParser, "loinc/loinc.xml", CodeSystem.class));
     }
 
 }
