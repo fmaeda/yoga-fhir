@@ -1,149 +1,311 @@
 {
-  "resourceType": "Composition",
-  "id": "7681618d-399d-4291-b321-32ce6d645088",
-  "status": "final",
-  "type": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "11488-4",
-        "display": "Consult note"
-      }
-    ],
-    "text": "Nota de consulta"
-  },
-  "category": [
-    {
-      "coding": [
-        {
+  "resourceType": "Bundle",
+  "id": "e6bf40ea-df0f-4715-bbe3-c0748371ae6d",
+  "type": "document",
+  "entry": [ {
+    "fullUrl": "urn:uuid:73a373c1-261d-4629-bc9b-a1c61f191c68",
+    "resource": {
+      "resourceType": "Composition",
+      "id": "73a373c1-261d-4629-bc9b-a1c61f191c68",
+      "status": "final",
+      "type": {
+        "coding": [ {
           "system": "http://loinc.org",
           "code": "11488-4",
           "display": "Consult note"
-        }
-      ],
-      "text": "Nota de consulta"
+        } ]
+      },
+      "subject": {
+        "reference": "Patient/null"
+      },
+      "date": "2024-12-19T14:30:00Z",
+      "title": "Registro de Atendimento Clínico"
     }
-  ],
-  "subject": {
-    "reference": "Patient/b2f63a4c-ddaa-4652-8481-ac1ff473104e",
-    "display": "João Carlos Silva"
-  },
-  "encounter": {
-    "reference": "Encounter/c6d553d8-cce0-404b-9d1f-eeffbf7fc6df",
-    "display": "Ambulatorial"
-  },
-  "date": "2025-03-07T14:30:22-03:00",
-  "author": [
-    {
-      "reference": "Practitioner/d3b61455-f432-48f0-b83b-ba825922d735",
-      "display": "Maria Clara"
+  }, {
+    "fullUrl": "urn:uuid:null",
+    "resource": {
+      "resourceType": "Patient",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+        "valueAddress": {
+          "use": "home",
+          "type": "both",
+          "text": "Rua Paris",
+          "line": [ "Rua Paris11" ],
+          "city": "Paranavaí",
+          "state": "PR",
+          "postalCode": "87935-180",
+          "country": "Brasil"
+        }
+      }, {
+        "url": "http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "http://snomed.info/sct",
+            "code": "446151000124109",
+            "display": "Identifies as male gender (finding)"
+          } ]
+        }
+      }, {
+        "url": "https://ips.saude.gov.br/fhir/StructureDefinition/raca-br-ips",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRRacaCor",
+            "code": "04",
+            "display": "Amarela"
+          } ]
+        }
+      }, {
+        "url": "https://ips.saude.gov.br/fhir/StructureDefinition/sexo-nascimento-br-ips",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "http://hl7.org/fhir/administrative-gender",
+            "code": "male",
+            "display": "Masculino"
+          } ]
+        }
+      } ],
+      "identifier": [ {
+        "use": "official",
+        "type": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "TAX",
+            "display": "Tax ID number"
+          } ]
+        },
+        "system": "https://saude.gov.br/fhir/sid/cpf",
+        "value": "12345678909"
+      }, {
+        "use": "official",
+        "type": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "HC",
+            "display": "Health Card Number"
+          } ]
+        },
+        "system": "https://saude.gov.br/fhir/sid/cns",
+        "value": "123456789"
+      } ],
+      "name": [ {
+        "family": "Maeda",
+        "given": [ "Fabiano" ]
+      } ],
+      "address": [ {
+        "use": "home",
+        "type": "both",
+        "text": "Av. Brasil",
+        "line": [ "Av. Brasil1" ],
+        "city": "Rondon",
+        "state": "PR",
+        "postalCode": "87800-000",
+        "country": "Brasil"
+      } ],
+      "contact": [ {
+        "telecom": [ {
+          "system": "phone",
+          "value": "(61) 98888-8888",
+          "use": "mobile"
+        }, {
+          "system": "phone",
+          "value": "(61) 5555-8888",
+          "use": "home"
+        }, {
+          "system": "email",
+          "value": "teste@teste.com",
+          "use": "home"
+        } ],
+        "address": {
+          "use": "home",
+          "type": "both",
+          "text": "Av. São Paulo",
+          "line": [ "Av. São Paulo123" ],
+          "city": "Maringá",
+          "state": "PR",
+          "postalCode": "85000-000",
+          "country": "Brasil"
+        }
+      } ]
     }
-  ],
-  "title": "Registro de Atendimento Clínico",
-  "section": [
-    {
-      "title": "Diagnósticos Avaliados",
-      "code": {
-        "coding": [
-          {
-            "system": "http://loinc.org",
-            "code": "57852-6",
-            "display": "Problem list Reported"
-          }
-        ],
-        "text": "Lista de Problemas - Diagnósticos Avaliados"
-      },
-      "entry": [
-        {
-          "reference": "Condition/91d8d24f-a70d-4ebf-8dea-71cf92ce1bd5"
-        }
-      ]
-    },
-    {
-      "title": "Procedimentos Realizados",
-      "code": {
-        "coding": [
-          {
-            "system": "http://loinc.org",
-            "code": "47519-4",
-            "display": "Procedures Hx Doc"
-          }
-        ],
-        "text": "Procedimentos Realizados"
-      },
-      "entry": [
-        {
-          "reference": "Procedure/b0030c23-bd7d-445e-bfe5-020828f7dbaf"
-        }
-      ]
-    },
-    {
-      "title": "Sinais Vitais",
-      "code": {
-        "coding": [
-          {
-            "system": "http://loinc.org",
-            "code": "85354-9",
-            "display": "Blood pressure panel with all children optional"
-          }
-        ]
-      },
-      "entry": [
-        {
-          "reference": "Observation/07ce5462-f77b-4ad6-af8c-2f67a6500b97"
-        }
-      ]
-    },
-    {
-      "title": "Alergias e Intolerâncias",
-      "code": {
-        "coding": [
-          {
-            "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRAlergenosCBARA",
-            "code": "A100",
-            "display": "Amendoim"
-          }
-        ]
-      },
-      "entry": [
-        {
-          "reference": "AllergyIntolerance/42a8e4ee-cc8b-4c07-bee2-da8fe14ada34"
-        }
-      ]
-    },
-    {
-      "title": "Medicamentos",
-      "code": {
-        "coding": [
-          {
-            "system": "http://www.whocc.no/atc",
-            "code": "J01MA12",
-            "display": "levofloxacin"
-          }
-        ]
-      },
-      "entry": [
-        {
-          "reference": "Medication/3a46210c-7eb3-48ec-aa67-db7e7ee18864"
-        }
-      ]
-    },
-    {
-      "title": "Plano de Cuidados",
-      "code": {
-        "coding": [
-          {
-            "system": "http://loinc.org",
-            "code": "18776-5",
-            "display": "Plan of care note"
-          }
-        ]
-      },
-      "entry": [
-        {
-          "reference": "CarePlan/1ed343f2-5231-40d6-a6ea-4428105b7532"
-        }
-      ]
+  }, {
+    "fullUrl": "urn:uuid:88391053-911f-434c-a39c-a0e1a4ab0fd5",
+    "resource": {
+      "resourceType": "Encounter",
+      "id": "88391053-911f-434c-a39c-a0e1a4ab0fd5",
+      "status": "finished",
+      "subject": {
+        "reference": "Patient/null"
+      }
     }
-  ]
+  }, {
+    "fullUrl": "urn:uuid:0abf4779-3631-42d0-90fb-cab71c34ed6d",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "0abf4779-3631-42d0-90fb-cab71c34ed6d",
+      "name": [ {
+        "family": "Oliveira",
+        "given": [ "Maria Clara" ]
+      } ]
+    }
+  }, {
+    "fullUrl": "urn:uuid:f17e21b9-028c-4c16-b83b-72860649e026",
+    "resource": {
+      "resourceType": "Condition",
+      "id": "f17e21b9-028c-4c16-b83b-72860649e026",
+      "code": {
+        "coding": [ {
+          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10",
+          "code": "R06.0",
+          "display": "Dispnéia"
+        } ]
+      },
+      "subject": {
+        "reference": "Patient/null"
+      },
+      "encounter": {
+        "reference": "Encounter/88391053-911f-434c-a39c-a0e1a4ab0fd5"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:277ab105-5ae3-4ca1-a0e8-74c16bb1ca03",
+    "resource": {
+      "resourceType": "Procedure",
+      "id": "277ab105-5ae3-4ca1-a0e8-74c16bb1ca03",
+      "status": "completed",
+      "subject": {
+        "reference": "Patient/null"
+      },
+      "encounter": {
+        "reference": "Encounter/88391053-911f-434c-a39c-a0e1a4ab0fd5"
+      },
+      "performer": [ {
+        "actor": {
+          "reference": "Practitioner/0abf4779-3631-42d0-90fb-cab71c34ed6d"
+        }
+      } ]
+    }
+  }, {
+    "fullUrl": "urn:uuid:daebe924-000d-4e7f-8d73-102d531251a9",
+    "resource": {
+      "resourceType": "Observation",
+      "id": "daebe924-000d-4e7f-8d73-102d531251a9",
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "85354-9",
+          "display": "Vital signs"
+        } ]
+      },
+      "subject": {
+        "reference": "Patient/null"
+      },
+      "encounter": {
+        "reference": "Encounter/88391053-911f-434c-a39c-a0e1a4ab0fd5"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:8bd33228-9e92-49af-9872-37d6477715eb",
+    "resource": {
+      "resourceType": "AllergyIntolerance",
+      "id": "8bd33228-9e92-49af-9872-37d6477715eb",
+      "clinicalStatus": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+          "code": "active",
+          "display": "Active"
+        } ]
+      },
+      "verificationStatus": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+          "code": "confirmed",
+          "display": "Confirmed"
+        } ]
+      },
+      "type": "allergy",
+      "category": [ "medication" ],
+      "criticality": "high",
+      "code": {
+        "coding": [ {
+          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRAlergenosCBARA",
+          "code": "camarao",
+          "display": "Alergia a camarão"
+        } ]
+      },
+      "patient": {
+        "reference": "Patient/null"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:fa1e4dc0-34ff-4468-b7b0-2063eefe2379",
+    "resource": {
+      "resourceType": "Medication",
+      "id": "fa1e4dc0-34ff-4468-b7b0-2063eefe2379",
+      "code": {
+        "coding": [ {
+          "system": "http://www.whocc.no/atc",
+          "code": "J01MA12",
+          "display": "Levofloxacino; sistêmico"
+        } ]
+      },
+      "status": "active"
+    }
+  }, {
+    "fullUrl": "urn:uuid:6a105651-0d18-4f7e-bdd2-2cca2f5243fb",
+    "resource": {
+      "resourceType": "CarePlan",
+      "id": "6a105651-0d18-4f7e-bdd2-2cca2f5243fb",
+      "status": "active",
+      "intent": "plan",
+      "title": "Plano de Cuidados para Asma Persistente Moderada",
+      "description": "Plano de cuidado voltado para controle de asma e monitoramento do paciente.",
+      "subject": {
+        "reference": "Patient/null"
+      },
+      "created": "2024-12-19T00:00:00"
+    }
+  }, {
+    "fullUrl": "urn:uuid:852a1748-3503-4220-ae11-926907ab95b2",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "852a1748-3503-4220-ae11-926907ab95b2",
+      "active": true,
+      "name": "Hospital Sírio-Libanês"
+    }
+  }, {
+    "fullUrl": "urn:uuid:a55b234b-c436-40f7-ae6d-8032a3654001",
+    "resource": {
+      "resourceType": "Location",
+      "id": "a55b234b-c436-40f7-ae6d-8032a3654001",
+      "name": "Clínica Geral - Enfermaria Norte",
+      "managingOrganization": {
+        "reference": "Organization/852a1748-3503-4220-ae11-926907ab95b2"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:745e03bf-faa6-4ec5-be3c-62594f5497ad",
+    "resource": {
+      "resourceType": "DiagnosticReport",
+      "id": "745e03bf-faa6-4ec5-be3c-62594f5497ad",
+      "status": "final",
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "24323-8",
+          "display": "Complete Blood Count"
+        } ]
+      },
+      "subject": {
+        "reference": "Patient/null"
+      },
+      "encounter": {
+        "reference": "Encounter/88391053-911f-434c-a39c-a0e1a4ab0fd5"
+      },
+      "performer": [ {
+        "reference": "Organization/852a1748-3503-4220-ae11-926907ab95b2"
+      } ]
+    }
+  } ]
 }

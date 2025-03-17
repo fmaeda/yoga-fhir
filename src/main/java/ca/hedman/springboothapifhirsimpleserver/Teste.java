@@ -5,10 +5,7 @@ import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.validation.ResultSeverityEnum;
 import lombok.SneakyThrows;
-import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport;
-import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
-import org.hl7.fhir.common.hapi.validation.support.PrePopulatedValidationSupport;
-import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain;
+import org.hl7.fhir.common.hapi.validation.support.*;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
 import org.hl7.fhir.r4.model.*;
 import org.springframework.util.ResourceUtils;
@@ -54,11 +51,13 @@ public class Teste {
                 valSupport,
                 new InMemoryTerminologyServerValidationSupport(ctx),
                 npmPackageSupport
-//                new SnapshotGeneratingValidationSupport(ctx)
+//                new RemoteTerminologyServiceValidationSupport(ctx, "https://tx.fhir.org/loinc/")
         );
+//new CommonCodeSystemsTerminologyService(ctx),
+//                new SnapshotGeneratingValidationSupport(ctx)
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
-        Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
+        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("samples/rac-bundle.json"));
 //        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
         var validationRes = validator.validateWithResult(parsedJson);
