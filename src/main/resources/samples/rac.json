@@ -13,7 +13,7 @@
       {
         "system": "http://loinc.org",
         "code": "60591-5",
-        "display": "Sumário Internacional do Paciente"
+        "display": "Patient summary Document"
       }
     ],
     "text": "Nota de consulta"
@@ -52,7 +52,7 @@
           {
             "system": "http://loinc.org",
             "code": "57852-6",
-            "display": "Problem list Reported"
+            "display": "Problem list Narrative - Reported"
           }
         ],
         "text": "Lista de Problemas - Diagnósticos Avaliados"
@@ -71,7 +71,7 @@
           {
             "system": "http://loinc.org",
             "code": "47519-4",
-            "display": "Procedures Hx Doc"
+            "display": "History of Procedures Document"
           }
         ],
         "text": "Procedimentos Realizados"

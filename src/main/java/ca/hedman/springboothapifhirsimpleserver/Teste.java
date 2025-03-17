@@ -3,11 +3,14 @@ package ca.hedman.springboothapifhirsimpleserver;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.parser.IParser;
+import ca.uhn.fhir.rest.client.interceptor.BasicAuthInterceptor;
 import ca.uhn.fhir.validation.ResultSeverityEnum;
 import lombok.SneakyThrows;
 import org.hl7.fhir.common.hapi.validation.support.*;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
-import org.hl7.fhir.r4.model.*;
+import org.hl7.fhir.r4.model.Composition;
+import org.hl7.fhir.r4.model.MetadataResource;
+import org.hl7.fhir.r4.model.StructureDefinition;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
@@ -39,6 +42,11 @@ public class Teste {
     @SneakyThrows
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
+
+        var authInterceptor = new BasicAuthInterceptor("fmaeda", "QZK!neu7bxt7wqu5fcv");
+        var remoteTerminologyService = new RemoteTerminologyServiceValidationSupport(ctx, "https://fhir.loinc.org");
+        remoteTerminologyService.addClientInterceptor(authInterceptor);
+
         var jsonParser = ctx.newJsonParser();
         var validator = ctx.newValidator();
         var instanceValidator = new FhirInstanceValidator(ctx);
@@ -50,14 +58,13 @@ public class Teste {
                 new DefaultProfileValidationSupport(ctx),
                 valSupport,
                 new InMemoryTerminologyServerValidationSupport(ctx),
-                npmPackageSupport
-//                new RemoteTerminologyServiceValidationSupport(ctx, "https://tx.fhir.org/loinc/")
-        );
-//new CommonCodeSystemsTerminologyService(ctx),
+                npmPackageSupport,
+                remoteTerminologyService
 //                new SnapshotGeneratingValidationSupport(ctx)
+        );
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
-        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("samples/rac-bundle.json"));
+        Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
 //        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
         var validationRes = validator.validateWithResult(parsedJson);
@@ -112,7 +119,7 @@ public class Teste {
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-vitalsigns.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-ips-brasil-raca-br-ips.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-sexo-nascimento-br-ips.json", StructureDefinition.class));
-        valSupport.addCodeSystem(parseStructureDefinition(xmlParser, "loinc/loinc.xml", CodeSystem.class));
+//        valSupport.addCodeSystem(parseStructureDefinition(xmlParser, "loinc/loinc.xml", CodeSystem.class));
     }
 
 }
