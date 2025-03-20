@@ -1,6 +1,7 @@
 package br.com.libertyti.yogafhir.factory;
 
 import br.com.libertyti.yogafhir.model.Paciente;
+import ca.uhn.fhir.context.FhirContext;
 import org.hl7.fhir.r4.model.*;
 
 import java.util.Date;
@@ -10,8 +11,8 @@ import java.util.UUID;
 public class RacBundleFactory {
     private final PatientFactory patientFactory;
 
-    public RacBundleFactory() {
-        this.patientFactory = new PatientFactory();
+    public RacBundleFactory(FhirContext context) {
+        this.patientFactory = new PatientFactory(context);
     }
 
     public Bundle createRacBundle(Paciente paciente) {
@@ -149,7 +150,8 @@ public class RacBundleFactory {
         allergyIntolerance.setVerificationStatus(new CodeableConcept().addCoding(
                 new Coding("http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "confirmed", "Confirmed")));
         allergyIntolerance.setType(AllergyIntolerance.AllergyIntoleranceType.ALLERGY);
-        allergyIntolerance.setCategory(List.of(new Enumeration<>(new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory(), AllergyIntolerance.AllergyIntoleranceCategory.MEDICATION)));        allergyIntolerance.setCriticality(AllergyIntolerance.AllergyIntoleranceCriticality.HIGH);
+        allergyIntolerance.setCategory(List.of(new Enumeration<>(new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory(), AllergyIntolerance.AllergyIntoleranceCategory.MEDICATION)));
+        allergyIntolerance.setCriticality(AllergyIntolerance.AllergyIntoleranceCriticality.HIGH);
         allergyIntolerance.setCode(new CodeableConcept().addCoding(
                 new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRAlergenosCBARA", "camarao", "Alergia a camarão")));
         allergyIntolerance.setPatient(new Reference("Patient/" + patient.getId()));

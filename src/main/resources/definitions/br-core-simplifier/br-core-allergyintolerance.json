@@ -1,0 +1,294 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-allergyintolerance",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-allergyintolerance",
+  "name": "br-core-allergyintolerance",
+  "title": "br-core-allergyintolerance",
+  "status": "active",
+  "description": "Este perfil define as características mínimas para o recurso [br-core-allergyintolerance](https://saude.gov.br/fhir/StructureDefinition/br-core-%20allergyintolerance.html) registrar, pesquisar e buscar alergias/reações adversas associadas a um paciente. O perfil especifica quais elementos principais, extensões, vocabulários e conjuntos de valores **DEVEM** estar presentes e restringe como os elementos são usados. Além disso, fornece a base para o desenvolvimento de padrões para casos de uso específicos promove a interoperabilidade e a adoção. ",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "AllergyIntolerance",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "AllergyIntolerance.id",
+        "path": "AllergyIntolerance.id",
+        "short": "Identificador lógico deste artefato.",
+        "definition": "Identificador lógico deste artefato."
+      },
+      {
+        "id": "AllergyIntolerance.meta",
+        "path": "AllergyIntolerance.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "AllergyIntolerance.implicitRules",
+        "path": "AllergyIntolerance.implicitRules",
+        "short": "Conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Conjunto de regras sob as quais este conteúdo foi criado"
+      },
+      {
+        "id": "AllergyIntolerance.language",
+        "path": "AllergyIntolerance.language",
+        "short": "Idioma do conteúdo do recurso",
+        "definition": "Idioma do conteúdo do recurso"
+      },
+      {
+        "id": "AllergyIntolerance.text",
+        "path": "AllergyIntolerance.text",
+        "short": "Resumo do texto do recurso em linguagem natural",
+        "definition": "Resumo do texto do recurso em linguagem natural"
+      },
+      {
+        "id": "AllergyIntolerance.contained",
+        "path": "AllergyIntolerance.contained",
+        "short": "Recursos contidos em linha",
+        "definition": "Recursos contidos em linha"
+      },
+      {
+        "id": "AllergyIntolerance.modifierExtension",
+        "path": "AllergyIntolerance.modifierExtension",
+        "short": "Extensão que não pode ser ignorada",
+        "definition": "Extensão que não pode ser ignorada"
+      },
+      {
+        "id": "AllergyIntolerance.identifier",
+        "path": "AllergyIntolerance.identifier",
+        "short": "Identificadores externos para este item",
+        "definition": "Identificadores externos para este item"
+      },
+      {
+        "id": "AllergyIntolerance.clinicalStatus",
+        "path": "AllergyIntolerance.clinicalStatus",
+        "short": "O estado clínico da alergia ou intolerância.",
+        "definition": "O estado clínico da alergia ou intolerância."
+      },
+      {
+        "id": "AllergyIntolerance.verificationStatus",
+        "path": "AllergyIntolerance.verificationStatus",
+        "short": "Afirmação sobre a certeza associada a uma propensão, ou risco potencial, de uma reação à substância identificada.",
+        "definition": "Afirmação sobre a certeza associada a uma propensão, ou risco potencial, de uma reação à substância identificada."
+      },
+      {
+        "id": "AllergyIntolerance.type",
+        "path": "AllergyIntolerance.type",
+        "short": "Tipo da reação: Alergia | intolerância - Mecanismo subjacente (se conhecido)",
+        "definition": "Identificação do mecanismo fisiológico subjacente a um Risco de Reação."
+      },
+      {
+        "id": "AllergyIntolerance.category",
+        "path": "AllergyIntolerance.category",
+        "short": "Categoria de uma substância identificada associada a alergias ou intolerâncias: comida | medicamento | ambiente | biológico",
+        "definition": "Categoria de uma substância identificada associada a alergias ou intolerâncias."
+      },
+      {
+        "id": "AllergyIntolerance.criticality",
+        "path": "AllergyIntolerance.criticality",
+        "short": "Criticalidade da reação: baixo | alto | incapaz de avaliar",
+        "definition": "Estimativa do dano clínico potencial, ou gravidade, de uma reação a uma substância identificada."
+      },
+      {
+        "id": "AllergyIntolerance.code",
+        "path": "AllergyIntolerance.code",
+        "short": "Código do conceito referenciando o IPS",
+        "definition": "Tipo de substância/produto, condição de alergia ou intolerância ou ou código para alergia ausente/desconhecida.",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://simplifier.net/redenacionaldedadosemsaude/valueset-bralergenos-1.0"
+        }
+      },
+      {
+        "id": "AllergyIntolerance.patient",
+        "path": "AllergyIntolerance.patient",
+        "short": "Dados do paciente",
+        "definition": "Referência do paciente",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "AllergyIntolerance.patient.id",
+        "path": "AllergyIntolerance.patient.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "AllergyIntolerance.patient.extension",
+        "path": "AllergyIntolerance.patient.extension",
+        "short": "Conteúdo adicional definido por implementações.",
+        "definition": "Conteúdo adicional definido por implementações."
+      },
+      {
+        "id": "AllergyIntolerance.patient.reference",
+        "path": "AllergyIntolerance.patient.reference",
+        "short": "Referência literal, URL relativa, interna ou absoluta",
+        "definition": "Referência literal, URL relativa, interna ou absoluta"
+      },
+      {
+        "id": "AllergyIntolerance.patient.type",
+        "path": "AllergyIntolerance.patient.type",
+        "short": "Tipo ao qual a referência se refere (por exemplo: Paciente).",
+        "definition": "Tipo ao qual a referência se refere (por exemplo: Paciente)."
+      },
+      {
+        "id": "AllergyIntolerance.patient.identifier",
+        "path": "AllergyIntolerance.patient.identifier",
+        "short": "Referência lógica, quando a referência literal não é conhecida.",
+        "definition": "Referência lógica, quando a referência literal não é conhecida."
+      },
+      {
+        "id": "AllergyIntolerance.patient.display",
+        "path": "AllergyIntolerance.patient.display",
+        "short": "Texto alternativo para o recurso.",
+        "definition": "Texto alternativo para o recurso."
+      },
+      {
+        "id": "AllergyIntolerance.encounter",
+        "path": "AllergyIntolerance.encounter",
+        "short": "Quando a alergia ou intolerância foi afirmada",
+        "definition": "Quando a alergia ou intolerância foi afirmada",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "AllergyIntolerance.onset[x]",
+        "path": "AllergyIntolerance.onset[x]",
+        "short": "Quando a alergia ou a intolerância foi identificada",
+        "definition": "Quando a alergia ou a intolerância foi identificada"
+      },
+      {
+        "id": "AllergyIntolerance.recordedDate",
+        "path": "AllergyIntolerance.recordedDate",
+        "short": "Data em que a primeira versão da instância do recurso foi registrada.",
+        "definition": "Data em que a primeira versão da instância do recurso foi registrada."
+      },
+      {
+        "id": "AllergyIntolerance.recorder",
+        "path": "AllergyIntolerance.recorder",
+        "short": "Quem registrou a sensibilidade.",
+        "definition": "Quem registrou a sensibilidade.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "AllergyIntolerance.asserter",
+        "path": "AllergyIntolerance.asserter",
+        "short": "Fonte da informação sobre a alergia.",
+        "definition": "Fonte da informação sobre a alergia.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "AllergyIntolerance.lastOccurrence",
+        "path": "AllergyIntolerance.lastOccurrence",
+        "short": "Data (/hora) da última ocorrência conhecida de uma reação.",
+        "definition": "Data (/hora) da última ocorrência conhecida de uma reação."
+      },
+      {
+        "id": "AllergyIntolerance.note",
+        "path": "AllergyIntolerance.note",
+        "short": "Texto adicional não capturado em outros campos.",
+        "definition": "Texto adicional não capturado em outros campos.."
+      },
+      {
+        "id": "AllergyIntolerance.reaction",
+        "path": "AllergyIntolerance.reaction",
+        "short": "Eventos de reação adversa relacionados à exposição da substância",
+        "definition": "Eventos de reação adversa relacionados à exposição da substância"
+      },
+      {
+        "id": "AllergyIntolerance.reaction.id",
+        "path": "AllergyIntolerance.reaction.id",
+        "short": "ID exclusivo para referência entre elementos.",
+        "definition": "ID exclusivo para referência entre elementos."
+      },
+      {
+        "id": "AllergyIntolerance.reaction.extension",
+        "path": "AllergyIntolerance.reaction.extension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas.",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas."
+      },
+      {
+        "id": "AllergyIntolerance.reaction.modifierExtension",
+        "path": "AllergyIntolerance.reaction.modifierExtension",
+        "short": "Conteúdo adicional definido por implementações.",
+        "definition": "Conteúdo adicional definido por implementações."
+      },
+      {
+        "id": "AllergyIntolerance.reaction.substance",
+        "path": "AllergyIntolerance.reaction.substance",
+        "short": "Substância específica ou produto farmacêutico considerado responsável pelo evento.",
+        "definition": "Substância específica ou produto farmacêutico considerado responsável pelo evento."
+      },
+      {
+        "id": "AllergyIntolerance.reaction.manifestation",
+        "path": "AllergyIntolerance.reaction.manifestation",
+        "short": "Código para a manifestação de reação de alergia ou intolerância do subconjunto SNOMED International Patient Set (IPS) do SNOMED CT (IPS Free Set).",
+        "definition": "Código para a manifestação de reação de alergia ou intolerância do subconjunto SNOMED IPS do SNOMED CT (IPS Free Set)."
+      },
+      {
+        "id": "AllergyIntolerance.reaction.description",
+        "path": "AllergyIntolerance.reaction.description",
+        "short": "Descrição do evento como um todo.",
+        "definition": "Descrição do evento como um todo."
+      },
+      {
+        "id": "AllergyIntolerance.reaction.onset",
+        "path": "AllergyIntolerance.reaction.onset",
+        "short": "Data (/hora) em que as manifestações apareceram",
+        "definition": "Data (/hora) em que as manifestações apareceram."
+      },
+      {
+        "id": "AllergyIntolerance.reaction.severity",
+        "path": "AllergyIntolerance.reaction.severity",
+        "short": "Avaliação clínica da gravidade de um evento de reação: leve | moderado | grave (do evento como um todo)",
+        "definition": "mild | moderate | severe (of event as a whole)"
+      },
+      {
+        "id": "AllergyIntolerance.reaction.exposureRoute",
+        "path": "AllergyIntolerance.reaction.exposureRoute",
+        "short": "Como o sujeito foi exposto à substância.",
+        "definition": "Como o sujeito foi exposto à substância."
+      },
+      {
+        "id": "AllergyIntolerance.reaction.note",
+        "path": "AllergyIntolerance.reaction.note",
+        "definition": "Texto sobre evento não capturado em outros campos."
+      }
+    ]
+  }
+}

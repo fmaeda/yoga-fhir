@@ -1,0 +1,518 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-immunization",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-immunization",
+  "name": "br-core-immunization",
+  "status": "active",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Immunization",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Immunization",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Immunization.id",
+        "path": "Immunization.id",
+        "short": "ID lógico deste artefato",
+        "definition": "ID lógico deste artefato"
+      },
+      {
+        "id": "Immunization.meta",
+        "path": "Immunization.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "Immunization.implicitRules",
+        "path": "Immunization.implicitRules",
+        "short": "Regras implícitas de rastreamento",
+        "definition": "Regras implícitas de rastreamento"
+      },
+      {
+        "id": "Immunization.language",
+        "path": "Immunization.language",
+        "short": "Idioma do recurso",
+        "definition": "Idioma do recurso"
+      },
+      {
+        "id": "Immunization.text",
+        "path": "Immunization.text",
+        "short": "Texto narrativo, resumo, instruções ou legenda sobre o recurso",
+        "definition": "Texto narrativo, resumo, instruções ou legenda sobre o recurso"
+      },
+      {
+        "id": "Immunization.contained",
+        "path": "Immunization.contained",
+        "short": "Recursos contidos no artefato",
+        "definition": "Recursos contidos no artefato"
+      },
+      {
+        "id": "Immunization.extension",
+        "path": "Immunization.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.modifierExtension",
+        "path": "Immunization.modifierExtension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.identifier",
+        "path": "Immunization.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "Immunization.status",
+        "path": "Immunization.status",
+        "short": "O status do evento de administração de imunobiológico",
+        "definition": "O status do evento de administração de imunobiológico"
+      },
+      {
+        "id": "Immunization.statusReason",
+        "path": "Immunization.statusReason",
+        "short": "O motivo pelo qual o imunobiológico não foi administrado",
+        "definition": "O motivo pelo qual o imunobiológico não foi administrado",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.vaccineCode",
+        "path": "Immunization.vaccineCode",
+        "short": "Imunobiológico administrado",
+        "definition": "Imunobiológico administrado"
+      },
+      {
+        "id": "Immunization.patient",
+        "path": "Immunization.patient",
+        "short": "O paciente que recebeu o imunobiológico",
+        "definition": "O paciente que recebeu o imunobiológico",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.patient.id",
+        "path": "Immunization.patient.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Immunization.patient.extension",
+        "path": "Immunization.patient.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.patient.reference",
+        "path": "Immunization.patient.reference",
+        "short": "Referência literal,relativa, interna ou externa ou URL",
+        "definition": "Referência literal,relativa, interna ou externa ou URL"
+      },
+      {
+        "id": "Immunization.patient.type",
+        "path": "Immunization.patient.type",
+        "short": "O tipo de referência utilizada",
+        "definition": "O tipo de referência utilizada"
+      },
+      {
+        "id": "Immunization.patient.identifier",
+        "path": "Immunization.patient.identifier",
+        "short": "Referência lógica,quando a referência literal não é conhecida",
+        "definition": "Referência lógica,quando a referência literal não é conhecida"
+      },
+      {
+        "id": "Immunization.patient.display",
+        "path": "Immunization.patient.display",
+        "short": "Texto alternativo para o recurso",
+        "definition": "Texto alternativo para o recurso"
+      },
+      {
+        "id": "Immunization.encounter",
+        "path": "Immunization.encounter",
+        "short": "Referência ao atendimento no qual o imunobiológico foi administrado",
+        "definition": "Referência ao atendimento no qual o imunobiológico foi administrado",
+        "max": "0",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.occurrence[x]",
+        "path": "Immunization.occurrence[x]",
+        "short": "Data em que o imunobiológico foi administrado",
+        "definition": "Data em que o imunobiológico foi administrado"
+      },
+      {
+        "id": "Immunization.recorded",
+        "path": "Immunization.recorded",
+        "short": "Data em que o primeiro registro de vacinação foi feito",
+        "definition": "Data em que o primeiro registro de vacinação foi feito",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.primarySource",
+        "path": "Immunization.primarySource",
+        "short": "Indica se o registro de vacinação foi relatado pelo paciente ou por um profissional de saúde",
+        "definition": "Indica se o registro de vacinação foi relatado pelo paciente ou por um profissional de saúde"
+      },
+      {
+        "id": "Immunization.reportOrigin",
+        "path": "Immunization.reportOrigin",
+        "short": "Indica a fonte do registro de vacinação relatado",
+        "definition": "Indica a fonte do registro de vacinação relatado"
+      },
+      {
+        "id": "Immunization.location",
+        "path": "Immunization.location",
+        "short": "Local onde o imunobiológico foi administrado",
+        "definition": "Local onde o imunobiológico foi administrado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.manufacturer",
+        "path": "Immunization.manufacturer",
+        "short": "Fabricante do imunobiológico",
+        "definition": "Fabricante do imunobiológico",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.lotNumber",
+        "path": "Immunization.lotNumber",
+        "short": "Número do lote do imunobiológico",
+        "definition": "Número do lote do imunobiológico"
+      },
+      {
+        "id": "Immunization.expirationDate",
+        "path": "Immunization.expirationDate",
+        "short": "Data de validade do imunobiológico",
+        "definition": "Data de validade do imunobiológico"
+      },
+      {
+        "id": "Immunization.site",
+        "path": "Immunization.site",
+        "short": "Local de administração do imunobiológico",
+        "definition": "Local de administração do imunobiológico",
+        "min": 1
+      },
+      {
+        "id": "Immunization.route",
+        "path": "Immunization.route",
+        "short": "Via de administração do imunobiológico",
+        "definition": "Via de administração do imunobiológico",
+        "min": 1
+      },
+      {
+        "id": "Immunization.doseQuantity",
+        "path": "Immunization.doseQuantity",
+        "short": "Quantidade de imunobiológico administrado",
+        "definition": "Quantidade de imunobiológico administrado"
+      },
+      {
+        "id": "Immunization.performer",
+        "path": "Immunization.performer",
+        "short": "Profissional de saúde que administrou o imunobiológico",
+        "definition": "Profissional de saúde que administrou o imunobiológico",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Immunization.performer.id",
+        "path": "Immunization.performer.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Immunization.performer.extension",
+        "path": "Immunization.performer.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.performer.modifierExtension",
+        "path": "Immunization.performer.modifierExtension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.performer.function",
+        "path": "Immunization.performer.function",
+        "short": "Função do profissional de saúde no evento de administração de imunobiológico",
+        "definition": "Função do profissional de saúde no evento de administração de imunobiológico",
+        "min": 1
+      },
+      {
+        "id": "Immunization.performer.actor",
+        "path": "Immunization.performer.actor",
+        "short": "Profissional de saúde que administrou o imunobiológico",
+        "definition": "Profissional de saúde que administrou o imunobiológico",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.note",
+        "path": "Immunization.note",
+        "short": "Observações adicionais sobre o evento de administração de imunobiológico",
+        "definition": "Observações adicionais sobre o evento de administração de imunobiológico",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.reasonCode",
+        "path": "Immunization.reasonCode",
+        "short": "Motivo pelo qual o imunobiológico foi administrado",
+        "definition": "Motivo pelo qual o imunobiológico foi administrado",
+        "max": "1"
+      },
+      {
+        "id": "Immunization.reasonReference",
+        "path": "Immunization.reasonReference",
+        "short": "Referência ao motivo pelo qual o imunobiológico foi administrado",
+        "definition": "Referência ao motivo pelo qual o imunobiológico foi administrado",
+        "max": "1",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-diagnosticreport"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.isSubpotent",
+        "path": "Immunization.isSubpotent",
+        "short": "Indica se o imunobiológico foi administrado em uma dose menor que a recomendada",
+        "definition": "Indica se o imunobiológico foi administrado em uma dose menor que a recomendada",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.subpotentReason",
+        "path": "Immunization.subpotentReason",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.education",
+        "path": "Immunization.education",
+        "short": "Informações sobre a educação do paciente sobre o imunobiológico",
+        "definition": "Informações sobre a educação do paciente sobre o imunobiológico",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.education.id",
+        "path": "Immunization.education.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Immunization.education.extension",
+        "path": "Immunization.education.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.education.modifierExtension",
+        "path": "Immunization.education.modifierExtension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.education.documentType",
+        "path": "Immunization.education.documentType",
+        "short": "Tipo de documento educacional",
+        "definition": "Tipo de documento educacional",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.education.reference",
+        "path": "Immunization.education.reference",
+        "short": "Referência ao documento educacional",
+        "definition": "Referência ao documento educacional",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.education.publicationDate",
+        "path": "Immunization.education.publicationDate",
+        "short": "Data de publicação do documento educacional",
+        "definition": "Data de publicação do documento educacional",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.education.presentationDate",
+        "path": "Immunization.education.presentationDate",
+        "short": "Data de apresentação do documento educacional",
+        "definition": "Data de apresentação do documento educacional",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.programEligibility",
+        "path": "Immunization.programEligibility",
+        "short": "Informações sobre a elegibilidade do paciente para o programa de imunização",
+        "definition": "Informações sobre a elegibilidade do paciente para o programa de imunização",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.fundingSource",
+        "path": "Immunization.fundingSource",
+        "short": "Fonte de financiamento do imunobiológico",
+        "definition": "Fonte de financiamento do imunobiológico",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.reaction",
+        "path": "Immunization.reaction",
+        "short": "Reações adversas do paciente ao imunobiológico",
+        "definition": "Reações adversas do paciente ao imunobiológico",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.reaction.id",
+        "path": "Immunization.reaction.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Immunization.reaction.extension",
+        "path": "Immunization.reaction.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.reaction.modifierExtension",
+        "path": "Immunization.reaction.modifierExtension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.reaction.date",
+        "path": "Immunization.reaction.date",
+        "short": "Data em que a reação adversa ocorreu",
+        "definition": "Data em que a reação adversa ocorreu",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.reaction.detail",
+        "path": "Immunization.reaction.detail",
+        "short": "Detalhes sobre a reação adversa",
+        "definition": "Detalhes sobre a reação adversa",
+        "max": "0",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.reaction.reported",
+        "path": "Immunization.reaction.reported",
+        "short": "Indica que a reação adversa foi relatada pelo paciente",
+        "definition": "Indica que a reação adversa foi relatada pelo paciente",
+        "max": "0"
+      },
+      {
+        "id": "Immunization.protocolApplied",
+        "path": "Immunization.protocolApplied",
+        "short": "Protocolos aplicados  durante a administração do imunobiológico",
+        "definition": "Protocolos aplicados  durante a administração do imunobiológico",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Immunization.protocolApplied.id",
+        "path": "Immunization.protocolApplied.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Immunization.protocolApplied.extension",
+        "path": "Immunization.protocolApplied.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.protocolApplied.modifierExtension",
+        "path": "Immunization.protocolApplied.modifierExtension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Immunization.protocolApplied.series",
+        "path": "Immunization.protocolApplied.series",
+        "short": "Nome da série do imunobiológico",
+        "definition": "Nome da série do imunobiológico"
+      },
+      {
+        "id": "Immunization.protocolApplied.authority",
+        "path": "Immunization.protocolApplied.authority",
+        "short": "Autoridade que definiu o protocolo",
+        "definition": "Autoridade que definiu o protocolo de administração do imunobiológico",
+        "max": "0",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.protocolApplied.targetDisease",
+        "path": "Immunization.protocolApplied.targetDisease",
+        "short": "Doença alvo do imunobiológico",
+        "definition": "Doença alvo do imunobiológico"
+      },
+      {
+        "id": "Immunization.protocolApplied.doseNumber[x]",
+        "path": "Immunization.protocolApplied.doseNumber[x]",
+        "short": "Número da dose do imunobiológico",
+        "definition": "Número da dose do imunobiológico"
+      },
+      {
+        "id": "Immunization.protocolApplied.seriesDoses[x]",
+        "path": "Immunization.protocolApplied.seriesDoses[x]",
+        "short": "Número de doses da série do imunobiológico",
+        "definition": "Número de doses da série do imunobiológico"
+      }
+    ]
+  }
+}

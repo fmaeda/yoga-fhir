@@ -1,0 +1,376 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-specimen",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-specimen",
+  "name": "br-core-specimen",
+  "status": "active",
+  "description": "Este perfil restringe o recurso Specimen para representar as características de amostras biológicas no contexto de resultados laboratoriais integrados a um resumo do paciente. O recurso Specimen descreve uma amostra utilizada para análise laboratorial.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Specimen",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Specimen",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Specimen.id",
+        "path": "Specimen.id",
+        "short": "ID lógico deste artefato",
+        "definition": "ID lógico deste artefato"
+      },
+      {
+        "id": "Specimen.meta",
+        "path": "Specimen.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "Specimen.implicitRules",
+        "path": "Specimen.implicitRules",
+        "short": "Um conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Um conjunto de regras sob as quais este conteúdo foi criado"
+      },
+      {
+        "id": "Specimen.language",
+        "path": "Specimen.language",
+        "short": "Idioma do conteúdo do recurso",
+        "definition": "Idioma do conteúdo do recurso"
+      },
+      {
+        "id": "Specimen.text",
+        "path": "Specimen.text",
+        "short": "Resumo do texto do recurso, para interpretação humana",
+        "definition": "Resumo do texto do recurso, para interpretação humana"
+      },
+      {
+        "id": "Specimen.contained",
+        "path": "Specimen.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos"
+      },
+      {
+        "id": "Specimen.extension",
+        "path": "Specimen.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Specimen.modifierExtension",
+        "path": "Specimen.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas",
+        "definition": "Extensões que não podem ser ignoradas"
+      },
+      {
+        "id": "Specimen.identifier",
+        "path": "Specimen.identifier",
+        "short": "Identificador Externo",
+        "definition": "Identificador Externo"
+      },
+      {
+        "id": "Specimen.accessionIdentifier",
+        "path": "Specimen.accessionIdentifier",
+        "short": "Identificador atribuído pelo laboratório",
+        "definition": "Identificador atribuído pelo laboratório"
+      },
+      {
+        "id": "Specimen.status",
+        "path": "Specimen.status",
+        "short": "disponível | indisponível | insatisfatório | inserido com erro: códigos que fornecem o status/disponibilidade de uma amostra.",
+        "definition": "disponível | indisponível | insatisfatório | inserido com erro: códigos que fornecem o status/disponibilidade de uma amostra"
+      },
+      {
+        "id": "Specimen.type",
+        "path": "Specimen.type",
+        "short": "Tipo de material que compõem a amostra",
+        "definition": "Tipo de material que compõem a amostra"
+      },
+      {
+        "id": "Specimen.subject",
+        "path": "Specimen.subject",
+        "short": "Referência de onde veio a amostra. Pode ser de paciente(s), de um local (por exemplo, a fonte de uma amostra ambiental) ou uma amostra de uma substância ou dispositivo",
+        "definition": "Referência de onde veio a amostra. Pode ser de paciente(s), de um local (por exemplo, a fonte de uma amostra ambiental) ou uma amostra de uma substância ou dispositivo",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/Group",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.org/fhir/StructureDefinition/Substance",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.subject.id",
+        "path": "Specimen.subject.id",
+        "short": "ID exclusivo para referência entre elementos",
+        "definition": "ID exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Specimen.subject.extension",
+        "path": "Specimen.subject.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Specimen.subject.reference",
+        "path": "Specimen.subject.reference",
+        "short": "Referência literal, URL relativa, interna ou absoluta",
+        "definition": "Referência literal, URL relativa, interna ou absoluta"
+      },
+      {
+        "id": "Specimen.subject.type",
+        "path": "Specimen.subject.type",
+        "short": "Tipo ao qual a referência se refere (por exemplo, Paciente)",
+        "definition": "Tipo ao qual a referência se refere (por exemplo, Paciente)"
+      },
+      {
+        "id": "Specimen.subject.identifier",
+        "path": "Specimen.subject.identifier",
+        "short": "Referência lógica, quando a referência literal não é conhecida",
+        "definition": "Referência lógica, quando a referência literal não é conhecida"
+      },
+      {
+        "id": "Specimen.subject.display",
+        "path": "Specimen.subject.display",
+        "short": "Texto alternativo para o recurso",
+        "definition": "Texto alternativo para o recurso"
+      },
+      {
+        "id": "Specimen.receivedTime",
+        "path": "Specimen.receivedTime",
+        "short": "Data/hora em que a amostra foi recebida para processamento",
+        "definition": "Data/hora em que a amostra foi recebida para processamento"
+      },
+      {
+        "id": "Specimen.parent",
+        "path": "Specimen.parent",
+        "short": "Origem da amostra",
+        "definition": "Origem da amostra",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-specimen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.request",
+        "path": "Specimen.request",
+        "short": "Por que a amostra foi coletada",
+        "definition": "Por que a amostra foi coletada",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.collection",
+        "path": "Specimen.collection",
+        "short": "Detalhes da coleta",
+        "definition": "Detalhes da coleta"
+      },
+      {
+        "id": "Specimen.collection.id",
+        "path": "Specimen.collection.id",
+        "short": "ID exclusivo para referência entre elementos",
+        "definition": "ID exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Specimen.collection.extension",
+        "path": "Specimen.collection.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Specimen.collection.modifierExtension",
+        "path": "Specimen.collection.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas"
+      },
+      {
+        "id": "Specimen.collection.collector",
+        "path": "Specimen.collection.collector",
+        "short": "Profissional resopnsável pela coleta",
+        "definition": "Profissional resopnsável pela coleta",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.collection.collected[x]",
+        "path": "Specimen.collection.collected[x]",
+        "short": "Data/Hora-Período da coleta",
+        "definition": "Data/Hora-Período da coleta",
+        "min": 1
+      },
+      {
+        "id": "Specimen.collection.duration",
+        "path": "Specimen.collection.duration",
+        "short": "Duração da coleta",
+        "definition": "Duracao da coleta"
+      },
+      {
+        "id": "Specimen.collection.quantity",
+        "path": "Specimen.collection.quantity",
+        "short": "Quantidade de amostra coletada",
+        "definition": "Quantidade de amostra coletada",
+        "min": 1
+      },
+      {
+        "id": "Specimen.collection.method",
+        "path": "Specimen.collection.method",
+        "short": "Método de coleta da amostra",
+        "definition": "Método de coleta da amostra",
+        "min": 1
+      },
+      {
+        "id": "Specimen.collection.bodySite",
+        "path": "Specimen.collection.bodySite",
+        "short": "Local anatômico de coleta da amostra",
+        "definition": "Local anatômico de coleta da amostra"
+      },
+      {
+        "id": "Specimen.collection.fastingStatus[x]",
+        "path": "Specimen.collection.fastingStatus[x]",
+        "short": "Tempo de jejum do paciente, se for o caso",
+        "definition": "Tempo de jejum do paciente, se for o caso"
+      },
+      {
+        "id": "Specimen.processing",
+        "path": "Specimen.processing",
+        "short": "Detalhes da etapa de processamento da amostra e respectivos passos",
+        "definition": "Detalhes da etapa de processamento da amostra e respectivos passos"
+      },
+      {
+        "id": "Specimen.processing.id",
+        "path": "Specimen.processing.id",
+        "short": "ID exclusivo para referência entre elementos",
+        "definition": "ID exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Specimen.processing.extension",
+        "path": "Specimen.processing.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Specimen.processing.modifierExtension",
+        "path": "Specimen.processing.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas"
+      },
+      {
+        "id": "Specimen.processing.description",
+        "path": "Specimen.processing.description",
+        "short": "Texto que descreve o procedimento",
+        "definition": "Texto que descreve o procedimento"
+      },
+      {
+        "id": "Specimen.processing.procedure",
+        "path": "Specimen.processing.procedure",
+        "short": "Indica a etapa de tratamento aplicada a amostra",
+        "definition": "Indica a etapa de tratamento aplicada a amostra"
+      },
+      {
+        "id": "Specimen.processing.additive",
+        "path": "Specimen.processing.additive",
+        "short": "Material utilizado na etapa de processamento da amostra",
+        "definition": "Material utilizado na etapa de processamento da amostra"
+      },
+      {
+        "id": "Specimen.processing.time[x]",
+        "path": "Specimen.processing.time[x]",
+        "short": "Data e hora do processamento da amostra",
+        "definition": "Data e hora do processamento da amostra"
+      },
+      {
+        "id": "Specimen.container",
+        "path": "Specimen.container",
+        "short": "Recipiente que contém a amostra (tubo/lâmina, etc.)",
+        "definition": "Recipiente que contém a amostra (tubo/lâmina, etc.)"
+      },
+      {
+        "id": "Specimen.container.id",
+        "path": "Specimen.container.id",
+        "short": "ID exclusivo para referência entre elementos",
+        "definition": "ID exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Specimen.container.extension",
+        "path": "Specimen.container.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Specimen.container.modifierExtension",
+        "path": "Specimen.container.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas"
+      },
+      {
+        "id": "Specimen.container.identifier",
+        "path": "Specimen.container.identifier",
+        "short": "Id do recipiente",
+        "definition": "Id do recipiente que contém a amostra"
+      },
+      {
+        "id": "Specimen.container.description",
+        "path": "Specimen.container.description",
+        "short": "Descrição do recipiente",
+        "definition": "Descrição do recipiente que contém a amostra"
+      },
+      {
+        "id": "Specimen.container.type",
+        "path": "Specimen.container.type",
+        "short": "Tipo de recipiente associado a amostra",
+        "definition": "Tipo de recipiente associado a amostra"
+      },
+      {
+        "id": "Specimen.container.capacity",
+        "path": "Specimen.container.capacity",
+        "short": "Volume ou tamanho do recipiente",
+        "definition": "Volume ou tamanho do recipiente"
+      },
+      {
+        "id": "Specimen.container.specimenQuantity",
+        "path": "Specimen.container.specimenQuantity",
+        "short": "Quantidade de amostra no recipiente",
+        "definition": "Quantidade de amostra no recipiente"
+      },
+      {
+        "id": "Specimen.container.additive[x]",
+        "path": "Specimen.container.additive[x]",
+        "short": "Aditivo associado ao recipiente",
+        "definition": "Aditivo associado ao recipiente"
+      },
+      {
+        "id": "Specimen.condition",
+        "path": "Specimen.condition",
+        "short": "Estado da amostra",
+        "definition": "Estado da amostra"
+      },
+      {
+        "id": "Specimen.note",
+        "path": "Specimen.note",
+        "short": "Comentários",
+        "definition": "Comentários sobre a Amostra"
+      }
+    ]
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-practitionerrole",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+  "name": "BRCorePractitionerRole",
+  "status": "active",
+  "description": "Este perfil restringe o recurso [PractitionerRole](hl7.org/fhir/R4/practitionerrole.html) que representa um conjunto específico de funções/locais/especialidades/serviços que um profissional pode desempenhar em uma organização por um período de tempo.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "PractitionerRole",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "PractitionerRole.id",
+        "path": "PractitionerRole.id",
+        "short": "ID lógico deste artefato",
+        "definition": "ID lógico deste artefato"
+      },
+      {
+        "id": "PractitionerRole.meta",
+        "path": "PractitionerRole.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "PractitionerRole.implicitRules",
+        "path": "PractitionerRole.implicitRules",
+        "short": "Conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Conjunto de regras sob as quais este conteúdo foi criado"
+      },
+      {
+        "id": "PractitionerRole.language",
+        "path": "PractitionerRole.language",
+        "short": "Idioma do conteúdo do recurso",
+        "definition": "Idioma do conteúdo do recurso"
+      },
+      {
+        "id": "PractitionerRole.text",
+        "path": "PractitionerRole.text",
+        "short": "Resumo textual do recurso em linguagem natural",
+        "definition": "Resumo textual do recurso em linguagem natural"
+      },
+      {
+        "id": "PractitionerRole.contained",
+        "path": "PractitionerRole.contained",
+        "short": "Recursos contidos em linha",
+        "definition": "Recursos contidos em linha"
+      },
+      {
+        "id": "PractitionerRole.modifierExtension",
+        "path": "PractitionerRole.modifierExtension",
+        "short": "Extensão que não pode ser ignorada",
+        "definition": "Extensão que não pode ser ignorada"
+      },
+      {
+        "id": "PractitionerRole.identifier",
+        "path": "PractitionerRole.identifier",
+        "short": "Identificadores externos para este item",
+        "definition": "Identificadores externos para este item"
+      },
+      {
+        "id": "PractitionerRole.identifier.use",
+        "path": "PractitionerRole.identifier.use",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/identifier-use"
+        }
+      },
+      {
+        "id": "PractitionerRole.identifier.type",
+        "path": "PractitionerRole.identifier.type",
+        "min": 1
+      },
+      {
+        "id": "PractitionerRole.identifier.type.coding.system",
+        "path": "PractitionerRole.identifier.type.coding.system",
+        "fixedUri": "http://www.saude.gov.br/fhir/r4/ValueSet/BRTipoDocumentoIndividuo-1.0"
+      },
+      {
+        "id": "PractitionerRole.active",
+        "path": "PractitionerRole.active",
+        "short": "Informa de o registro de função do profissional está em uso ativo",
+        "definition": "Informa de o registro de função do profissional está em uso ativo",
+        "min": 1
+      },
+      {
+        "id": "PractitionerRole.period",
+        "path": "PractitionerRole.period",
+        "short": "Período durante o qual o profissional está autorizado a exercer essa(s) função(ões).",
+        "definition": "Período durante o qual o profissional está autorizado a exercer essa(s) função(ões)."
+      },
+      {
+        "id": "PractitionerRole.practitioner",
+        "path": "PractitionerRole.practitioner",
+        "short": "Profissional capaz de fornecer os serviços definidos para a organização",
+        "definition": "Profissional capaz de fornecer os serviços definidos para a organização",
+        "min": 1,
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "PractitionerRole.organization",
+        "path": "PractitionerRole.organization",
+        "short": "Organização onde as funções estão disponíveis.",
+        "definition": "Organização onde as funções estão disponíveis.",
+        "min": 1,
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "PractitionerRole.code",
+        "path": "PractitionerRole.code",
+        "short": "Códigos dos papeis dos profissionais de saúde.",
+        "definition": "Códigos dos papeis dos profissionais de saúde.",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/ValueSet/BROcupacao-1.0"
+        }
+      },
+      {
+        "id": "PractitionerRole.specialty",
+        "path": "PractitionerRole.specialty",
+        "short": "Especialidade específica do profissional.",
+        "definition": "Especialidade específica do profissional."
+      },
+      {
+        "id": "PractitionerRole.location",
+        "path": "PractitionerRole.location",
+        "short": "Local em que este profissional presta cuidados.",
+        "definition": "Local em que este profissional presta cuidados.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "PractitionerRole.healthcareService",
+        "path": "PractitionerRole.healthcareService",
+        "short": "A lista de serviços de saúde que este profissional fornece para a organização/local(is) desta função.",
+        "definition": "A lista de serviços de saúde que este profissional fornece para a organização/local(is) desta função.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-healthcareservice"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "PractitionerRole.telecom",
+        "path": "PractitionerRole.telecom",
+        "short": "Detalhes de contato específicos para a função/local/serviço.",
+        "definition": "Detalhes de contato específicos para a função/local/serviço."
+      },
+      {
+        "id": "PractitionerRole.availableTime",
+        "path": "PractitionerRole.availableTime",
+        "short": "Horários em que o site do serviço está disponível.",
+        "definition": "Horários em que o site do serviço está disponível."
+      },
+      {
+        "id": "PractitionerRole.availableTime.id",
+        "path": "PractitionerRole.availableTime.id",
+        "short": "ID exclusivo para referência entre elementos.",
+        "definition": "ID exclusivo para referência entre elementos."
+      },
+      {
+        "id": "PractitionerRole.availableTime.extension",
+        "path": "PractitionerRole.availableTime.extension",
+        "short": "Conteúdo adicional definido por implementações.",
+        "definition": "Conteúdo adicional definido por implementações."
+      },
+      {
+        "id": "PractitionerRole.availableTime.modifierExtension",
+        "path": "PractitionerRole.availableTime.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas.",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas."
+      },
+      {
+        "id": "PractitionerRole.availableTime.daysOfWeek",
+        "path": "PractitionerRole.availableTime.daysOfWeek",
+        "short": "Dias da semana: seg| ter| qua| qui| sex| sab | dom.",
+        "definition": "Dias da semana: seg| ter| qua| qui| sex| sab | dom."
+      },
+      {
+        "id": "PractitionerRole.availableTime.allDay",
+        "path": "PractitionerRole.availableTime.allDay",
+        "short": "Sempre disponível? sim ou não, por exemplo: serviço 24 horas.",
+        "definition": "Sempre disponível? por exemplo: serviço 24 horas."
+      },
+      {
+        "id": "PractitionerRole.availableTime.availableStartTime",
+        "path": "PractitionerRole.availableTime.availableStartTime",
+        "short": "Hora de abertura do dia (ignorado se allDay = true)",
+        "definition": "Hora de abertura do dia (ignorado se allDay = true)"
+      },
+      {
+        "id": "PractitionerRole.availableTime.availableEndTime",
+        "path": "PractitionerRole.availableTime.availableEndTime",
+        "short": "Horário de fechamento do dia (ignorado se allDay = true).",
+        "definition": "Horário de fechamento do dia (ignorado se allDay = true)."
+      },
+      {
+        "id": "PractitionerRole.notAvailable",
+        "path": "PractitionerRole.notAvailable",
+        "short": "Não disponível durante este período devido ao motivo fornecido.",
+        "definition": "Não disponível durante este período devido ao motivo fornecido."
+      },
+      {
+        "id": "PractitionerRole.notAvailable.id",
+        "path": "PractitionerRole.notAvailable.id",
+        "short": "ID exclusivo para referência entre elementos.",
+        "definition": "ID exclusivo para referência entre elementos."
+      },
+      {
+        "id": "PractitionerRole.notAvailable.extension",
+        "path": "PractitionerRole.notAvailable.extension",
+        "short": "Conteúdo adicional definido por implementações.",
+        "definition": "Conteúdo adicional definido por implementações."
+      },
+      {
+        "id": "PractitionerRole.notAvailable.modifierExtension",
+        "path": "PractitionerRole.notAvailable.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas.",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas."
+      },
+      {
+        "id": "PractitionerRole.notAvailable.description",
+        "path": "PractitionerRole.notAvailable.description",
+        "short": "Motivo apresentado ao usuário explicando porque o horário não está disponível.",
+        "definition": "Motivo apresentado ao usuário explicando porque o horário não está disponível."
+      },
+      {
+        "id": "PractitionerRole.notAvailable.during",
+        "path": "PractitionerRole.notAvailable.during",
+        "short": "Serviço indisponível a partir desta data.",
+        "definition": "Serviço indisponível a partir desta data."
+      },
+      {
+        "id": "PractitionerRole.availabilityExceptions",
+        "path": "PractitionerRole.availabilityExceptions",
+        "short": "Descrição da disponibilidade das exceções.",
+        "definition": "Descrição da disponibilidade das exceções."
+      },
+      {
+        "id": "PractitionerRole.endpoint",
+        "path": "PractitionerRole.endpoint",
+        "short": "Endpoints que fornecem acesso a serviços operados para o profissional com esta função.",
+        "definition": "Endpoints que fornecem acesso a serviços operados para o profissional com esta função."
+      }
+    ]
+  }
+}

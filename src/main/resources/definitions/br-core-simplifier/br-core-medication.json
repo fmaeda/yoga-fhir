@@ -1,0 +1,177 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-medication",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication",
+  "name": "BRCoreMedication",
+  "title": "br-core-medication",
+  "status": "active",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Medication",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Medication",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Medication.id",
+        "path": "Medication.id",
+        "short": "Referenciamento entre elemento",
+        "definition": "ID exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Medication.meta",
+        "path": "Medication.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados adicionais sobre o recurso"
+      },
+      {
+        "id": "Medication.implicitRules",
+        "path": "Medication.implicitRules",
+        "short": "Um conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Um ou mais códigos que servem para identificar o tipo de recurso"
+      },
+      {
+        "id": "Medication.language",
+        "path": "Medication.language",
+        "short": "Linguagem do recurso",
+        "definition": "A linguagem humana natural do recurso"
+      },
+      {
+        "id": "Medication.text",
+        "path": "Medication.text",
+        "short": "Resumo de texto para o recurso, para interpretação humana",
+        "definition": "Um texto narrativo resumindo as informações do recurso"
+      },
+      {
+        "id": "Medication.contained",
+        "path": "Medication.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos no recurso"
+      },
+      {
+        "id": "Medication.extension",
+        "path": "Medication.extension",
+        "short": "Extensões adicionais",
+        "definition": "Conteúdo adicional definido por implementações",
+        "max": "1"
+      },
+      {
+        "id": "Medication.modifierExtension",
+        "path": "Medication.modifierExtension",
+        "short": "Extensões",
+        "definition": "Extensões que não podem ser ignoradas"
+      },
+      {
+        "id": "Medication.identifier",
+        "path": "Medication.identifier",
+        "short": "Identificador de negócios para este medicamento",
+        "definition": "Identificador de negócios para este medicamento"
+      },
+      {
+        "id": "Medication.code",
+        "path": "Medication.code",
+        "short": "Nome do medicamento",
+        "definition": "Nome e terminologia do medicamento fabricado."
+      },
+      {
+        "id": "Medication.status",
+        "path": "Medication.status",
+        "short": "ativo| inativo| entrado com erro",
+        "definition": "ativo| inativo| entrado com erro"
+      },
+      {
+        "id": "Medication.manufacturer",
+        "path": "Medication.manufacturer",
+        "short": "Organização Fabricante",
+        "definition": "Fabricante do item",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Medication.form",
+        "path": "Medication.form",
+        "short": "Unidade de medida do medicamento",
+        "definition": "Unidade de medida do medicamento prescrito (ex.: comprimido, cápsula, frasco, caixa etc.)."
+      },
+      {
+        "id": "Medication.amount",
+        "path": "Medication.amount",
+        "short": "Quantidade de medicamento",
+        "definition": "Quantidade de medicamento na embalagem"
+      },
+      {
+        "id": "Medication.ingredient",
+        "path": "Medication.ingredient",
+        "short": "Ingrediente ativo ou inativo",
+        "definition": "Ingrediente ativo ou inativo"
+      },
+      {
+        "id": "Medication.ingredient.item[x]",
+        "path": "Medication.ingredient.item[x]",
+        "slicing": {
+          "discriminator":  [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Ingrediente",
+        "definition": "O ingrediente ou conteúdo real Vinculante: Substâncias ativas de medicamentos - IPS (preferencial): Substâncias medicamentosas SNOMED CT"
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemReference",
+        "path": "Medication.ingredient.item[x]",
+        "sliceName": "itemReference",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "http://hl7.org/fhir/StructureDefinition/Substance",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Medication.ingredient.isActive",
+        "path": "Medication.ingredient.isActive",
+        "short": "Ingrediente ativo",
+        "definition": "Indicador de ingrediente ativo"
+      },
+      {
+        "id": "Medication.ingredient.strength",
+        "path": "Medication.ingredient.strength",
+        "short": "Uma proporção de dois valores de Quantidade - um numerador e um denominador",
+        "definition": "Uma proporção de dois valores de Quantidade - um numerador e um denominador"
+      },
+      {
+        "id": "Medication.batch",
+        "path": "Medication.batch",
+        "short": "Detalhes sobre a medicação.",
+        "definition": "Informação sobre lote e validade da medicação."
+      },
+      {
+        "id": "Medication.batch.lotNumber",
+        "path": "Medication.batch.lotNumber",
+        "short": "Lote de medicamento.",
+        "definition": "RN14: Se medicamento serializado/Datamatrix - Elemento lot do XML para grupo IUM."
+      },
+      {
+        "id": "Medication.batch.expirationDate",
+        "path": "Medication.batch.expirationDate",
+        "short": "Data de validade do medicamento.",
+        "definition": "Quando o lote vai expirar"
+      }
+    ]
+  }
+}

@@ -1,0 +1,465 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-procedure",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure",
+  "name": "br-core-procedure",
+  "status": "active",
+  "description": "Este perfil representa as restrições aplicadas ao recurso Procedimento pelo projeto IPS, que especifica uma entrada do Histórico do Procedimento para o resumo internacional do paciente com base no padrão FHIR R4.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Procedure",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Procedure",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Procedure.id",
+        "path": "Procedure.id",
+        "short": "Identificador lógico deste artefato.",
+        "definition": "Identificador lógico deste artefato."
+      },
+      {
+        "id": "Procedure.meta",
+        "path": "Procedure.meta",
+        "short": "Metadados sobre o recurso.",
+        "definition": "Metadados sobre o recurso."
+      },
+      {
+        "id": "Procedure.implicitRules",
+        "path": "Procedure.implicitRules",
+        "short": "Conjunto de regras sob as quais este conteúdo foi criado.",
+        "definition": "Conjunto de regras sob as quais este conteúdo foi criado."
+      },
+      {
+        "id": "Procedure.language",
+        "path": "Procedure.language",
+        "short": "Idioma do conteúdo do recurso.",
+        "definition": "Idioma do conteúdo do recurso."
+      },
+      {
+        "id": "Procedure.text",
+        "path": "Procedure.text",
+        "short": "Resumo do texto do recurso em linguagem natural.",
+        "definition": "Resumo do texto do recurso em linguagem natural."
+      },
+      {
+        "id": "Procedure.contained",
+        "path": "Procedure.contained",
+        "short": "Recursos contidos em linha.",
+        "definition": "Recursos contidos em linha."
+      },
+      {
+        "id": "Procedure.modifierExtension",
+        "path": "Procedure.modifierExtension",
+        "short": "Extensão que não pode ser ignorada.",
+        "definition": "Extensão que não pode ser ignorada."
+      },
+      {
+        "id": "Procedure.identifier",
+        "path": "Procedure.identifier",
+        "short": "Identificadores externos para este item.",
+        "definition": "Identificadores externos para este item."
+      },
+      {
+        "id": "Procedure.instantiatesCanonical",
+        "path": "Procedure.instantiatesCanonical",
+        "short": "Instâncias ou definições do protocolo FHIR.",
+        "definition": "Instâncias ou definições do protocolo FHIR."
+      },
+      {
+        "id": "Procedure.instantiatesUri",
+        "path": "Procedure.instantiatesUri",
+        "short": "Instâncias externas do protocolo ou definições.",
+        "definition": "Instâncias externas do protocolo ou definições."
+      },
+      {
+        "id": "Procedure.basedOn",
+        "path": "Procedure.basedOn",
+        "short": "Uma requisição para o procedimento.",
+        "definition": "Uma requisição para o procedimento.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.partOf",
+        "path": "Procedure.partOf",
+        "short": "Parte do evento referenciado.",
+        "definition": "Parte do evento referenciado.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationadministration"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.status",
+        "path": "Procedure.status",
+        "short": "Código que especifica o estado do procedimento.",
+        "definition": "Um código que especifica o estado do procedimento:preparação | em andamento | não realizado | em espera | paraso | concluído | digitado com erro | desconhecido"
+      },
+      {
+        "id": "Procedure.statusReason",
+        "path": "Procedure.statusReason",
+        "short": "Motivo para o estado atual.",
+        "definition": "Motivo para o estado atual.",
+        "min": 1
+      },
+      {
+        "id": "Procedure.category",
+        "path": "Procedure.category",
+        "short": "Classificação do procedimento.",
+        "definition": "Classificação do procedimento. Exemplo: um código que classifica um procedimento para fins de pesquisa, classificação e exibição."
+      },
+      {
+        "id": "Procedure.code",
+        "path": "Procedure.code",
+        "short": "Um conceito que referencia uma terminologia ou apenas texto.",
+        "definition": "Um conceito que referencia uma terminologia ou apenas texto.",
+        "min": 1
+      },
+      {
+        "id": "Procedure.subject",
+        "path": "Procedure.subject",
+        "short": "Em quem o procedimento foi realizado.",
+        "definition": "Em quem o procedimento foi realizado.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.subject.id",
+        "path": "Procedure.subject.id",
+        "short": "Identificador exclusivo para referência entre elementos.",
+        "definition": "Identificador exclusivo para referência entre elementos."
+      },
+      {
+        "id": "Procedure.subject.extension",
+        "path": "Procedure.subject.extension",
+        "short": "Conteúdo adicional definido por implementações.",
+        "definition": "Conteúdo adicional definido por implementações."
+      },
+      {
+        "id": "Procedure.subject.reference",
+        "path": "Procedure.subject.reference",
+        "short": "Referência literal, URL relativa, interna ou absoluta.",
+        "definition": "Referência literal, URL relativa, interna ou absoluta."
+      },
+      {
+        "id": "Procedure.subject.type",
+        "path": "Procedure.subject.type",
+        "short": "Tipo ao qual a referência se refere (por exemplo, Paciente).",
+        "definition": "Tipo ao qual a referência se refere (por exemplo, Paciente)."
+      },
+      {
+        "id": "Procedure.subject.identifier",
+        "path": "Procedure.subject.identifier",
+        "short": "Referência lógica, quando a referência literal não é conhecida.",
+        "definition": "Referência lógica, quando a referência literal não é conhecida."
+      },
+      {
+        "id": "Procedure.subject.display",
+        "path": "Procedure.subject.display",
+        "short": "Texto alternativo para o recurso.",
+        "definition": "Texto alternativo para o recurso."
+      },
+      {
+        "id": "Procedure.encounter",
+        "path": "Procedure.encounter",
+        "short": "Contato assistencial descrito nesta Composition",
+        "definition": "Contato assistencial descrito nesta Composition",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.performed[x]",
+        "path": "Procedure.performed[x]",
+        "short": "Quando o procedimento foi realizado.",
+        "definition": "Quando o procedimento foi realizado."
+      },
+      {
+        "id": "Procedure.performed[x].id",
+        "path": "Procedure.performed[x].id",
+        "short": "Identificador exclusivo para referência entre elementos.",
+        "definition": "Identificador exclusivo para referência entre elementos."
+      },
+      {
+        "id": "Procedure.recorder",
+        "path": "Procedure.recorder",
+        "short": "Quem registrou o procedimento.",
+        "definition": "Quem registrou o procedimento.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.asserter",
+        "path": "Procedure.asserter",
+        "short": "Pessoa que afirma este procedimento.",
+        "definition": "Pessoa que afirma este procedimento.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.performer",
+        "path": "Procedure.performer",
+        "short": "As pessoas que realizaram o procedimento.",
+        "definition": "As pessoas que realizaram o procedimento.",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Procedure.performer.id",
+        "path": "Procedure.performer.id",
+        "short": "Identificador exclusivo para referência entre elementos.",
+        "definition": "Identificador exclusivo para referência entre elementos."
+      },
+      {
+        "id": "Procedure.performer.extension",
+        "path": "Procedure.performer.extension",
+        "short": "Conteúdo adicional definido por implementações.",
+        "definition": "Conteúdo adicional definido por implementações."
+      },
+      {
+        "id": "Procedure.performer.modifierExtension",
+        "path": "Procedure.performer.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas.",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas."
+      },
+      {
+        "id": "Procedure.performer.function",
+        "path": "Procedure.performer.function",
+        "short": "Tipo de performance.",
+        "definition": "Tipo de performance."
+      },
+      {
+        "id": "Procedure.performer.actor",
+        "path": "Procedure.performer.actor",
+        "short": "Referência do profissional.",
+        "definition": "Referência do profissional.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.performer.onBehalfOf",
+        "path": "Procedure.performer.onBehalfOf",
+        "short": "Organização para a qual o dispositivo ou profissional estava atuando.",
+        "definition": "Organização para a qual o dispositivo ou profissional estava atuando.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.location",
+        "path": "Procedure.location",
+        "short": "Onde aconteceu o procedimento",
+        "definition": "Onde aconteceu o procedimento.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.reasonCode",
+        "path": "Procedure.reasonCode",
+        "short": "Código do motivo do procedimento realizado.",
+        "definition": "Código do motivo do procedimento realizado."
+      },
+      {
+        "id": "Procedure.reasonReference",
+        "path": "Procedure.reasonReference",
+        "short": "A justificativa de que o procedimento foi realizado.",
+        "definition": "A justificativa de que o procedimento foi realizado.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-diagnosticreport",
+              "http://hl7.org/fhir/StructureDefinition/DocumentReference"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.bodySite",
+        "path": "Procedure.bodySite",
+        "short": "Conceito - referência a uma terminologia ou apenas texto.",
+        "definition": "Conceito - referência a uma terminologia ou apenas texto."
+      },
+      {
+        "id": "Procedure.outcome",
+        "path": "Procedure.outcome",
+        "short": "Resultado do procedimento.",
+        "definition": "Resultado do procedimento."
+      },
+      {
+        "id": "Procedure.report",
+        "path": "Procedure.report",
+        "short": "Qualquer relatório resultante do procedimento.",
+        "definition": "Qualquer relatório resultante do procedimento.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-diagnosticreport",
+              "http://hl7.org/fhir/StructureDefinition/DocumentReference",
+              "http://hl7.org/fhir/StructureDefinition/Composition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.complication",
+        "path": "Procedure.complication",
+        "short": "Complicação após o procedimento.",
+        "definition": "Complicação após o procedimento."
+      },
+      {
+        "id": "Procedure.complicationDetail",
+        "path": "Procedure.complicationDetail",
+        "short": "Uma condição que é resultado da complicação do procedimento.",
+        "definition": "Uma condição que é resultado da complicação do procedimento.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.followUp",
+        "path": "Procedure.followUp",
+        "short": "Instruções para acompanhamento.",
+        "definition": "Instruções para acompanhamento."
+      },
+      {
+        "id": "Procedure.note",
+        "path": "Procedure.note",
+        "short": "Informações adicionais sobre o procedimento.",
+        "definition": "Informações adicionais sobre o procedimento."
+      },
+      {
+        "id": "Procedure.focalDevice",
+        "path": "Procedure.focalDevice",
+        "short": "Dispositivo manipulado, implantado ou removido.",
+        "definition": "Dispositivo manipulado, implantado ou removido."
+      },
+      {
+        "id": "Procedure.focalDevice.id",
+        "path": "Procedure.focalDevice.id",
+        "short": "Identificador exclusivo para referência entre elementos.",
+        "definition": "Identificador exclusivo para referência entre elementos."
+      },
+      {
+        "id": "Procedure.focalDevice.extension",
+        "path": "Procedure.focalDevice.extension",
+        "short": "Conteúdo adicional definido por implementações.",
+        "definition": "Conteúdo adicional definido por implementações."
+      },
+      {
+        "id": "Procedure.focalDevice.modifierExtension",
+        "path": "Procedure.focalDevice.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas.",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas."
+      },
+      {
+        "id": "Procedure.focalDevice.action",
+        "path": "Procedure.focalDevice.action",
+        "short": "Tipo de alteração no dispositivo.",
+        "definition": "Tipo de alteração no dispositivo."
+      },
+      {
+        "id": "Procedure.focalDevice.manipulated",
+        "path": "Procedure.focalDevice.manipulated",
+        "short": "Dispositivo que foi alterado.",
+        "definition": "Dispositivo que foi alterado."
+      },
+      {
+        "id": "Procedure.usedReference",
+        "path": "Procedure.usedReference",
+        "short": "Itens usados ​​durante o procedimento.",
+        "definition": "Itens usados ​durante o procedimento.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication",
+              "http://hl7.org/fhir/StructureDefinition/Substance"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.usedCode",
+        "path": "Procedure.usedCode",
+        "short": "Itens codificados usados ​durante o procedimento.",
+        "definition": "Itens codificados usados ​​durante o procedimento."
+      }
+    ]
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-medicationdispense",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationdispense",
+  "name": "BRCoreMedicationDispense",
+  "title": "br-core-medication-dispense",
+  "status": "active",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationDispense",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "MedicationDispense.identifier",
+        "path": "MedicationDispense.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "MedicationDispense.partOf",
+        "path": "MedicationDispense.partOf",
+        "short": "Evento que a dispensação faz parte de",
+        "definition": "Evento que a dispensação faz parte de"
+      },
+      {
+        "id": "MedicationDispense.status",
+        "path": "MedicationDispense.status",
+        "short": "Códigos de status da dispensação de medicamentos",
+        "definition": "preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown"
+      },
+      {
+        "id": "MedicationDispense.statusReason[x]",
+        "path": "MedicationDispense.statusReason[x]",
+        "short": "Por que uma dispensação não foi realizada",
+        "definition": "Por que uma dispensação não foi realizada"
+      },
+      {
+        "id": "MedicationDispense.category",
+        "path": "MedicationDispense.category",
+        "short": "Tipo de dispensação de medicamentos",
+        "definition": "Tipo de dispensação de medicamentos"
+      },
+      {
+        "id": "MedicationDispense.medication[x]",
+        "path": "MedicationDispense.medication[x]",
+        "slicing": {
+          "discriminator":  [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Que medicamento foi fornecido",
+        "definition": "Que medicamento foi fornecido"
+      },
+      {
+        "id": "MedicationDispense.medication[x]:medicationReference",
+        "path": "MedicationDispense.medication[x]",
+        "sliceName": "medicationReference",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.subject",
+        "path": "MedicationDispense.subject",
+        "short": "Para quem é a dispensação",
+        "definition": "Para quem é a dispensação",
+        "min": 1,
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.context",
+        "path": "MedicationDispense.context",
+        "short": "Encounter / Episode associado a este evento",
+        "definition": "Encounter / Episode associado a este evento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.supportingInformation",
+        "path": "MedicationDispense.supportingInformation",
+        "short": "Informações que subsidiam a dispensação do medicamento",
+        "definition": "Informações que subsidiam a dispensação do medicamento"
+      },
+      {
+        "id": "MedicationDispense.performer",
+        "path": "MedicationDispense.performer",
+        "short": "Quem realizou o evento",
+        "definition": "Quem realizou o evento",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.performer.function",
+        "path": "MedicationDispense.performer.function",
+        "short": "Quem realizou a dispensação e o que eles fizeram",
+        "definition": "Quem realizou a dispensação e o que eles fizeram"
+      },
+      {
+        "id": "MedicationDispense.performer.actor",
+        "path": "MedicationDispense.performer.actor",
+        "short": "Indivíduo que estava realizando",
+        "definition": "Indivíduo que estava realizando",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "http://hl7.org/fhir/StructureDefinition/Device"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.location",
+        "path": "MedicationDispense.location",
+        "short": "Onde ocorreu a dispensação",
+        "definition": "Onde ocorreu a dispensação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.authorizingPrescription",
+        "path": "MedicationDispense.authorizingPrescription",
+        "short": "Ordem de medicação que autoriza a dispensação",
+        "definition": "Ordem de medicação que autoriza a dispensação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.type",
+        "path": "MedicationDispense.type",
+        "short": "Preenchimento de teste, preenchimento parcial, preenchimento de emergência, etc.",
+        "definition": "Preenchimento de teste, preenchimento parcial, preenchimento de emergência, etc."
+      },
+      {
+        "id": "MedicationDispense.quantity",
+        "path": "MedicationDispense.quantity",
+        "short": "Quantidade dispensada",
+        "definition": "Quantidade dispensada",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.daysSupply",
+        "path": "MedicationDispense.daysSupply",
+        "short": "Quantidade de medicamento expressa como uma quantidade de tempo",
+        "definition": "Quantidade de medicamento expressa como uma quantidade de tempo"
+      },
+      {
+        "id": "MedicationDispense.whenPrepared",
+        "path": "MedicationDispense.whenPrepared",
+        "short": "Quando o produto foi embalado e revisado",
+        "definition": "Quando o produto foi embalado e revisado"
+      },
+      {
+        "id": "MedicationDispense.whenHandedOver",
+        "path": "MedicationDispense.whenHandedOver",
+        "short": "Quando o produto foi distribuído",
+        "definition": "Quando o produto foi distribuído",
+        "min": 1
+      },
+      {
+        "id": "MedicationDispense.destination",
+        "path": "MedicationDispense.destination",
+        "short": "Para onde o medicamento foi enviado",
+        "definition": "Para onde o medicamento foi enviado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.receiver",
+        "path": "MedicationDispense.receiver",
+        "short": "Quem coletou a medicação",
+        "definition": "Quem coletou a medicação",
+        "min": 1,
+        "max": "1",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.note",
+        "path": "MedicationDispense.note",
+        "short": "Informações sobre a dispensação",
+        "definition": "Informações sobre a dispensação"
+      },
+      {
+        "id": "MedicationDispense.dosageInstruction",
+        "path": "MedicationDispense.dosageInstruction",
+        "short": "Como o medicamento deve ser usado pelo paciente ou administrado pelo cuidador",
+        "definition": "Como o medicamento deve ser usado pelo paciente ou administrado pelo cuidador"
+      },
+      {
+        "id": "MedicationDispense.substitution",
+        "path": "MedicationDispense.substitution",
+        "short": "Se uma substituição foi realizada na dispensação",
+        "definition": "Se uma substituição foi realizada na dispensação"
+      },
+      {
+        "id": "MedicationDispense.substitution.wasSubstituted",
+        "path": "MedicationDispense.substitution.wasSubstituted",
+        "short": "Se uma substituição foi ou não realizada na dispensação",
+        "definition": "Se uma substituição foi ou não realizada na dispensação"
+      },
+      {
+        "id": "MedicationDispense.substitution.type",
+        "path": "MedicationDispense.substitution.type",
+        "short": "Código que indica se um medicamento diferente do prescrito foi dispensado",
+        "definition": "Código que indica se um medicamento diferente do prescrito foi dispensado"
+      },
+      {
+        "id": "MedicationDispense.substitution.reason",
+        "path": "MedicationDispense.substitution.reason",
+        "short": "Por que a substituição foi feita",
+        "definition": "Por que a substituição foi feita"
+      },
+      {
+        "id": "MedicationDispense.substitution.responsibleParty",
+        "path": "MedicationDispense.substitution.responsibleParty",
+        "short": "Quem é responsável pela substituição",
+        "definition": "Quem é responsável pela substituição",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.detectedIssue",
+        "path": "MedicationDispense.detectedIssue",
+        "short": "Problema clínico com ação",
+        "definition": "Problema clínico com ação"
+      },
+      {
+        "id": "MedicationDispense.eventHistory",
+        "path": "MedicationDispense.eventHistory",
+        "short": "Uma lista de eventos relevantes do ciclo de vida",
+        "definition": "Uma lista de eventos relevantes do ciclo de vida"
+      }
+    ]
+  }
+}

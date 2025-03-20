@@ -1,105 +1,50 @@
 package br.com.libertyti.yogafhir.factory;
 
-import br.com.libertyti.yogafhir.model.Sexo;
-import br.com.libertyti.yogafhir.model.IdentidadeGenero;
+import br.com.libertyti.yogafhir.codegen.BRCorePatient;
 import br.com.libertyti.yogafhir.model.Paciente;
-import br.com.libertyti.yogafhir.model.RacaCor;
-import lombok.NoArgsConstructor;
+import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.parser.IParser;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
-import org.hl7.fhir.r4.model.*;
-import org.hl7.fhir.r4.model.codesystems.V3RoleCode;
+import org.hl7.fhir.r4.context.IWorkerContext;
+import org.hl7.fhir.r4.context.SimpleWorkerContext;
+import org.hl7.fhir.r4.model.Address;
+import org.hl7.fhir.r4.model.ContactPoint;
+import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager;
+import org.hl7.fhir.utilities.npm.NpmPackage;
+import org.springframework.util.ResourceUtils;
 
+import java.io.FileInputStream;
 import java.util.List;
+import java.util.Objects;
 
-@NoArgsConstructor
 public class PatientFactory {
 
-    public Patient createPatient(Paciente paciente) {
-        Patient patient = new Patient();
-        patient.addIdentifier(buildCpf(paciente));
-        patient.addIdentifier(buildCns(paciente));
+    private final IWorkerContext workerContext;
 
-        patient.addName(createHumanName(paciente.nome()));
+    public PatientFactory(FhirContext fhirContext) {
+        this.workerContext = this.initWorkerContext(fhirContext);
+    }
+
+    public Patient createPatient(Paciente paciente) {
+        BRCorePatient patient = new BRCorePatient();
+        patient.setCpf(paciente.cpf());
+        patient.setCns(paciente.cns());
+        patient.setName(paciente.nome());
+
         buildEnderecos(patient, paciente.enderecos());
         buildContatos(patient, paciente.contatos());
 
-        patient.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/patient-birthPlace", buildEndereco(paciente.enderecoNascimento())));
-        patient.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/patient-genderIdentity", buildIdentidadeGenero(paciente.genero())));
-        patient.addExtension(new Extension("https://ips.saude.gov.br/fhir/StructureDefinition/raca-br-ips", buildRacaCor(paciente.raca())));
-        patient.addExtension(new Extension("https://ips.saude.gov.br/fhir/StructureDefinition/sexo-nascimento-br-ips", buildSexo(paciente.sexo())));
-        return patient;
+        patient.setLocalNascimento(buildEndereco(paciente.enderecoNascimento()));
+        patient.setSexoNascimento(paciente.sexo());
+        patient.setIdentidadeGenero(paciente.genero());
+        patient.setRaca(paciente.raca());
+        return patient.build(workerContext);
     }
 
-    private Identifier buildCns(Paciente paciente) {
-        return new Identifier()
-                .setUse(Identifier.IdentifierUse.OFFICIAL)
-                .setSystem("https://saude.gov.br/fhir/sid/cns")
-                .setValue(paciente.cns())
-                .setType(
-                        new CodeableConcept()
-                                .addCoding(
-                                        new Coding()
-                                                .setSystem("http://terminology.hl7.org/CodeSystem/v2-0203")
-                                                .setCode("HC")
-                                                .setDisplay("Health Card Number")
-                                )
-                );
-    }
-
-    private Identifier buildCpf(Paciente paciente) {
-        return new Identifier()
-                .setUse(Identifier.IdentifierUse.OFFICIAL)
-                .setSystem("https://saude.gov.br/fhir/sid/cpf")
-                .setValue(paciente.cpf())
-                .setType(
-                        new CodeableConcept()
-                                .addCoding(
-                                        new Coding()
-                                                .setSystem("http://terminology.hl7.org/CodeSystem/v2-0203")
-                                                .setCode("TAX")
-                                                .setDisplay("Tax ID number")
-                                )
-                );
-    }
-
-    private CodeableConcept buildSexo(Sexo sexo) {
-        return new CodeableConcept()
-                .addCoding(new Coding()
-                        .setSystem("http://hl7.org/fhir/administrative-gender")
-                        .setCode(sexo.getCode())
-                        .setDisplay(sexo.getDescription()));
-    }
-
-    private CodeableConcept buildRacaCor(RacaCor raca) {
-        return new CodeableConcept()
-                .addCoding(new Coding()
-                        .setSystem("https://terminologia.saude.gov.br/fhir/CodeSystem/BRRacaCor")
-                        .setCode(raca.getCode())
-                        .setDisplay(raca.getDescription()));
-    }
-
-    private HumanName createHumanName(String name) {
-        var splittedName = StringUtils.split(name, " ");
-        var humanName = new HumanName()
-                .setFamily(splittedName[splittedName.length - 1]);
-
-        if (splittedName.length > 1) {
-            for (int i = 0; i < splittedName.length - 2; i++) {
-                humanName.addGiven(splittedName[i]);
-            }
-        }
-        return humanName;
-    }
-
-    private CodeableConcept buildIdentidadeGenero(IdentidadeGenero genero) {
-        return new CodeableConcept()
-                .addCoding(new Coding()
-                        .setSystem("http://snomed.info/sct")
-                        .setCode(genero.getLoinc())
-                        .setDisplay(genero.getDescription()));
-    }
-
-    private void buildEnderecos(Patient patient, List<Paciente.Endereco> enderecos) {
+    private void buildEnderecos(BRCorePatient patient, List<Paciente.Endereco> enderecos) {
         enderecos.forEach(endereco -> {
             var address = buildEndereco(endereco);
             patient.addAddress(address);
@@ -117,10 +62,10 @@ public class PatientFactory {
                 .setCountry(endereco.pais());
     }
 
-    private void buildContatos(Patient patient, List<Paciente.Contato> contatos) {
+    private void buildContatos(BRCorePatient patient, List<Paciente.Contato> contatos) {
         contatos.forEach(contato -> {
             var contact = buildContato(contato);
-            patient.addContact(contact);
+            patient.getContacts().add(contact);
         });
     }
 
@@ -166,6 +111,42 @@ public class PatientFactory {
             contact.setAddress(buildEndereco(contato.endereco()));
         }
         return contact;
+    }
+
+    @SneakyThrows
+    private IWorkerContext initWorkerContext(FhirContext fhirContext) {
+        FilesystemPackageCacheManager packageManager = new FilesystemPackageCacheManager.Builder().withTestingCacheFolder().build();
+        NpmPackage corePackage = packageManager.loadPackage("hl7.fhir.r4.core", "4.0.1");
+        NpmPackage terminologiaPackage = NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/terminologias.tgz")));
+        NpmPackage rndsPackage = NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/rnds.tgz")));
+        NpmPackage ansPackage = NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/ans.tgz")));
+
+        var wContext = SimpleWorkerContext.fromNothing();
+        wContext.loadFromPackage(corePackage, null);
+        wContext.loadFromPackage(terminologiaPackage, null);
+        wContext.loadFromPackage(ansPackage, null);
+        wContext.loadFromPackage(rndsPackage, null);
+
+        var parser = fhirContext.newJsonParser();
+        loadProfiles(parser, wContext, "/br-core");
+        loadProfiles(parser, wContext, "/br-core-simplifier");
+        loadProfiles(parser, wContext, "/ips-brasil");
+
+        return wContext;
+    }
+
+    @SneakyThrows
+    private void loadProfiles(IParser parser, IWorkerContext workerContext, String folderPath) {
+        var folder = ResourceUtils.getFile("classpath:definitions" + folderPath);
+        for (var file : Objects.requireNonNull(folder.listFiles())) {
+            if (file.getName().contains("StructureDefinition")) {
+                var sd = parser.parseResource(StructureDefinition.class, new FileInputStream(file));
+                workerContext.cacheResource(sd);
+                System.out.println("Loaded: " + sd.getUrl());
+            } else {
+                System.out.println("Skipped " + file.getName());
+            }
+        }
     }
 
 }

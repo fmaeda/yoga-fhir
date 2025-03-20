@@ -11,6 +11,7 @@ import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
 import org.hl7.fhir.r4.model.Composition;
 import org.hl7.fhir.r4.model.MetadataResource;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.profilemodel.gen.PECodeGenerator;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
@@ -64,6 +65,7 @@ public class Teste {
         );
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
+
         Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
 //        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 

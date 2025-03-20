@@ -1,0 +1,52 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-capacidadefuncional",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-capacidadefuncional",
+  "name": "br-core-capacidadefuncional",
+  "status": "active",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Condition",
+  "baseDefinition": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Condition.clinicalStatus",
+        "path": "Condition.clinicalStatus",
+        "min": 1
+      },
+      {
+        "id": "Condition.clinicalStatus.coding.system",
+        "path": "Condition.clinicalStatus.coding.system",
+        "min": 1
+      },
+      {
+        "id": "Condition.clinicalStatus.coding.code",
+        "path": "Condition.clinicalStatus.coding.code",
+        "min": 1
+      },
+      {
+        "id": "Condition.code",
+        "path": "Condition.code",
+        "min": 1
+      },
+      {
+        "id": "Condition.subject.identifier",
+        "path": "Condition.subject.identifier",
+        "min": 1
+      },
+      {
+        "id": "Condition.subject.identifier.system",
+        "path": "Condition.subject.identifier.system",
+        "min": 1
+      },
+      {
+        "id": "Condition.subject.identifier.value",
+        "path": "Condition.subject.identifier.value",
+        "min": 1
+      }
+    ]
+  }
+}

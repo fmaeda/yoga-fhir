@@ -1,0 +1,417 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-encounter",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter",
+  "name": "br-core-encounter",
+  "title": "br-core-encounter",
+  "status": "active",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Encounter",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Encounter",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Encounter.identifier",
+        "path": "Encounter.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "Encounter.status",
+        "path": "Encounter.status",
+        "short": "Estado atual do atendimento.",
+        "definition": "planned | arrived | triaged | in-progress | onleave | finished | cancelled +"
+      },
+      {
+        "id": "Encounter.statusHistory",
+        "path": "Encounter.statusHistory",
+        "short": "Lista de status de atendimentos anteriores",
+        "definition": "Lista de status de atendimentos anteriores"
+      },
+      {
+        "id": "Encounter.statusHistory.status",
+        "path": "Encounter.statusHistory.status",
+        "short": "Status de atendimentos anteriores",
+        "definition": "planned | arrived | triaged | in-progress | onleave | finished | cancelled +"
+      },
+      {
+        "id": "Encounter.statusHistory.period",
+        "path": "Encounter.statusHistory.period",
+        "short": "O tempo em que o episódio estava no status especificado",
+        "definition": "O tempo em que o episódio estava no status especificado"
+      },
+      {
+        "id": "Encounter.class",
+        "path": "Encounter.class",
+        "short": "Classificação do atendimento com o paciente",
+        "definition": "Classificação do atendimento com o paciente"
+      },
+      {
+        "id": "Encounter.classHistory",
+        "path": "Encounter.classHistory",
+        "short": "Lista de classes de atendimentos anteriores",
+        "definition": "Lista de classes de atendimentos anteriores"
+      },
+      {
+        "id": "Encounter.classHistory.class",
+        "path": "Encounter.classHistory.class",
+        "short": "O domínio fornece códigos que qualificam o ActEncounterClass (ENC)",
+        "definition": "inpatient | outpatient | ambulatory | emergency +"
+      },
+      {
+        "id": "Encounter.classHistory.period",
+        "path": "Encounter.classHistory.period",
+        "short": "O tempo em que o episódio estava na classe especificada",
+        "definition": "O tempo em que o episódio estava na classe especificada"
+      },
+      {
+        "id": "Encounter.type",
+        "path": "Encounter.type",
+        "short": "Tipo específico de atendimento",
+        "definition": "Tipo específico de atendimento"
+      },
+      {
+        "id": "Encounter.serviceType",
+        "path": "Encounter.serviceType",
+        "short": "Tipo específico de serviço",
+        "definition": "Tipo específico de serviço"
+      },
+      {
+        "id": "Encounter.priority",
+        "path": "Encounter.priority",
+        "short": "Indica a urgência do atendimento",
+        "definition": "Indica a urgência do atendimento",
+        "min": 1
+      },
+      {
+        "id": "Encounter.subject",
+        "path": "Encounter.subject",
+        "short": "O paciente ou grupo presente no atendimento",
+        "definition": "O paciente ou grupo presente no atendimento",
+        "min": 1,
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/Group"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.episodeOfCare",
+        "path": "Encounter.episodeOfCare",
+        "short": "Episódio(s) de cuidado que este atendimento deve ser registrado contra",
+        "definition": "Episódio(s) de cuidado que este atendimento deve ser registrado contra"
+      },
+      {
+        "id": "Encounter.basedOn",
+        "path": "Encounter.basedOn",
+        "short": "O ServiceRequest que iniciou este atendimento",
+        "definition": "O ServiceRequest que iniciou este atendimento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.participant",
+        "path": "Encounter.participant",
+        "short": "Lista de participantes envolvidos no atendimento",
+        "definition": "Lista de participantes envolvidos no atendimento"
+      },
+      {
+        "id": "Encounter.participant.type",
+        "path": "Encounter.participant.type",
+        "short": "Papel do participante no atendimento",
+        "definition": "Papel do participante no atendimento",
+        "min": 1
+      },
+      {
+        "id": "Encounter.participant.period",
+        "path": "Encounter.participant.period",
+        "short": "Período de tempo durante o atendimento em que o participante participou",
+        "definition": "Período de tempo durante o atendimento em que o participante participou"
+      },
+      {
+        "id": "Encounter.participant.individual",
+        "path": "Encounter.participant.individual",
+        "short": "Pessoas envolvidas no atendimento além do paciente",
+        "definition": "Pessoas envolvidas no atendimento além do paciente",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.appointment",
+        "path": "Encounter.appointment",
+        "short": "A consulta que agendou este atendimento",
+        "definition": "A consulta que agendou este atendimento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-appointment"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.period",
+        "path": "Encounter.period",
+        "short": "O horário de início e término do atendimento",
+        "definition": "O horário de início e término do atendimento",
+        "min": 1
+      },
+      {
+        "id": "Encounter.length",
+        "path": "Encounter.length",
+        "short": "Quantidade de tempo que durou o atendimento (menos tempo ausente)",
+        "definition": "Quantidade de tempo que durou o atendimento (menos tempo ausente)"
+      },
+      {
+        "id": "Encounter.reasonCode",
+        "path": "Encounter.reasonCode",
+        "short": "Motivo codificado pelo qual o atendimento acontece",
+        "definition": "Motivo codificado pelo qual o atendimento acontece"
+      },
+      {
+        "id": "Encounter.reasonReference",
+        "path": "Encounter.reasonReference",
+        "short": "Motivo pelo qual o atendimento acontece (referência)",
+        "definition": "Motivo pelo qual o atendimento acontece (referência)",
+        "max": "1",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-immunizationrecommendation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.diagnosis",
+        "path": "Encounter.diagnosis",
+        "short": "A lista de diagnósticos relevantes para este atendimento",
+        "definition": "A lista de diagnósticos relevantes para este atendimento"
+      },
+      {
+        "id": "Encounter.diagnosis.condition",
+        "path": "Encounter.diagnosis.condition",
+        "short": "O diagnóstico ou procedimento relevante para o atendimento",
+        "definition": "O diagnóstico ou procedimento relevante para o atendimento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.diagnosis.use",
+        "path": "Encounter.diagnosis.use",
+        "short": "Papel que este diagnóstico tem dentro do atendimento (por exemplo, admissão, faturamento, alta…)",
+        "definition": "Papel que este diagnóstico tem dentro do atendimento (por exemplo, admissão, faturamento, alta…)",
+        "min": 1
+      },
+      {
+        "id": "Encounter.diagnosis.rank",
+        "path": "Encounter.diagnosis.rank",
+        "short": "Classificação do diagnóstico (para cada tipo de função)",
+        "definition": "Classificação do diagnóstico (para cada tipo de função)"
+      },
+      {
+        "id": "Encounter.account",
+        "path": "Encounter.account",
+        "short": "O conjunto de contas que podem ser usadas para cobrança deste Atendimento",
+        "definition": "O conjunto de contas que podem ser usadas para cobrança deste Atendimento"
+      },
+      {
+        "id": "Encounter.hospitalization",
+        "path": "Encounter.hospitalization",
+        "short": "Detalhes sobre a admissão em um serviço de saúde",
+        "definition": "Detalhes sobre a admissão em um serviço de saúde"
+      },
+      {
+        "id": "Encounter.hospitalization.preAdmissionIdentifier",
+        "path": "Encounter.hospitalization.preAdmissionIdentifier",
+        "short": "Identificador de pré-admissão",
+        "definition": "Identificador de pré-admissão"
+      },
+      {
+        "id": "Encounter.hospitalization.origin",
+        "path": "Encounter.hospitalization.origin",
+        "short": "O local/organização de onde o paciente veio antes da admissão",
+        "definition": "O local/organização de onde o paciente veio antes da admissão",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.hospitalization.admitSource",
+        "path": "Encounter.hospitalization.admitSource",
+        "short": "De onde o paciente foi admitido (encaminhamento médico, transferência)",
+        "definition": "De onde o paciente foi admitido (encaminhamento médico, transferência)",
+        "min": 1
+      },
+      {
+        "id": "Encounter.hospitalization.reAdmission",
+        "path": "Encounter.hospitalization.reAdmission",
+        "short": "O tipo de readmissão hospitalar que ocorreu (se houver). Se o valor estiver ausente, isso não é identificado como uma readmissão",
+        "definition": "O tipo de readmissão hospitalar que ocorreu (se houver). Se o valor estiver ausente, isso não é identificado como uma readmissão"
+      },
+      {
+        "id": "Encounter.hospitalization.dietPreference",
+        "path": "Encounter.hospitalization.dietPreference",
+        "short": "Preferências alimentares relatadas pelo paciente",
+        "definition": "Preferências alimentares relatadas pelo paciente"
+      },
+      {
+        "id": "Encounter.hospitalization.specialCourtesy",
+        "path": "Encounter.hospitalization.specialCourtesy",
+        "short": "Cortesias especiais (VIP, membro do conselho)",
+        "definition": "Cortesias especiais (VIP, membro do conselho)"
+      },
+      {
+        "id": "Encounter.hospitalization.specialArrangement",
+        "path": "Encounter.hospitalization.specialArrangement",
+        "short": "Cadeira de rodas, tradutor, maca, etc.",
+        "definition": "Cadeira de rodas, tradutor, maca, etc."
+      },
+      {
+        "id": "Encounter.hospitalization.destination",
+        "path": "Encounter.hospitalization.destination",
+        "short": "Local/organização para onde o paciente recebe alta",
+        "definition": "Local/organização para onde o paciente recebe alta",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.hospitalization.dischargeDisposition",
+        "path": "Encounter.hospitalization.dischargeDisposition",
+        "short": "Categoria ou tipo de local após a alta",
+        "definition": "Categoria ou tipo de local após a alta",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://fhir-hm.ans.gov.br/ValueSet-motivo-encerramento.html"
+        }
+      },
+      {
+        "id": "Encounter.location",
+        "path": "Encounter.location",
+        "short": "Lista de locais onde o paciente esteve",
+        "definition": "Lista de locais onde o paciente esteve"
+      },
+      {
+        "id": "Encounter.location.location",
+        "path": "Encounter.location.location",
+        "short": "Local onde o atendimento acontece",
+        "definition": "Local onde o atendimento acontece",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.location.status",
+        "path": "Encounter.location.status",
+        "short": "O status do local.",
+        "definition": "planned | active | reserved | completed",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/R4/valueset-encounter-location-status.html"
+        }
+      },
+      {
+        "id": "Encounter.location.physicalType",
+        "path": "Encounter.location.physicalType",
+        "short": "O tipo físico do local (geralmente o nível na hierarquia do local - quarto, enfermaria, etc.)",
+        "definition": "O tipo físico do local (geralmente o nível na hierarquia do local - quarto, enfermaria, etc.)",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/R4/valueset-location-physical-type.html"
+        }
+      },
+      {
+        "id": "Encounter.location.period",
+        "path": "Encounter.location.period",
+        "short": "Período de tempo durante o qual o paciente esteve presente no local",
+        "definition": "Período de tempo durante o qual o paciente esteve presente no local"
+      },
+      {
+        "id": "Encounter.serviceProvider",
+        "path": "Encounter.serviceProvider",
+        "short": "A organização (instalação) responsável por este encontro",
+        "definition": "A organização (instalação) responsável por este encontro",
+        "min": 1,
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.partOf",
+        "path": "Encounter.partOf",
+        "short": "Outro atendimento do qual este atendimento faz parte",
+        "definition": "Outro atendimento do qual este atendimento faz parte",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ],
+            "extension":  [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy",
+                "valueBoolean": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

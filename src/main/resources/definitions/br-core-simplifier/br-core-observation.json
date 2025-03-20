@@ -1,0 +1,448 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-observation",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+  "name": "br-core-observation",
+  "status": "active",
+  "description": "O recurso [br-core-Observation](https://saude.gov.br/fhir/StructureDefinition/br-core-observation.html) herda do recurso FHIR R4 [observation](https://hl7.org/fhir/R4B/observation.html) e registra medidas e afirmações simples feitas sobre um paciente, dispositivo ou outro assunto.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Observation.id",
+        "path": "Observation.id",
+        "short": "ID do artefato",
+        "definition": "ID lógico deste artefato"
+      },
+      {
+        "id": "Observation.meta",
+        "path": "Observation.meta",
+        "short": "Metadados sobre recurso",
+        "definition": "Metadados sobre recurso"
+      },
+      {
+        "id": "Observation.implicitRules",
+        "path": "Observation.implicitRules",
+        "short": "Um conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Um conjunto de regras sob as quais este conteúdo foi criado"
+      },
+      {
+        "id": "Observation.language",
+        "path": "Observation.language",
+        "short": "Idioma do conteúdo do recurso",
+        "definition": "Idioma do conteúdo do recurso"
+      },
+      {
+        "id": "Observation.text",
+        "path": "Observation.text",
+        "short": "Texto com o resumo do recurso",
+        "definition": "Texto com o resumo do recurso"
+      },
+      {
+        "id": "Observation.contained",
+        "path": "Observation.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos no Recurso"
+      },
+      {
+        "id": "Observation.modifierExtension",
+        "path": "Observation.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas",
+        "definition": "Extensões que não podem ser ignoradas"
+      },
+      {
+        "id": "Observation.identifier",
+        "path": "Observation.identifier",
+        "short": "Identificador do Observation",
+        "definition": "Identificador do Observation",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Observation.basedOn",
+        "path": "Observation.basedOn",
+        "short": "Referência ao pedido ou ao plano de tratamento que gerou este recurso",
+        "definition": "Referência ao pedido ou ao plano de tratamento que gerou este recurso",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan",
+              "http://hl7.org/fhir/StructureDefinition/DeviceRequest",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-immunizationrecommendation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest",
+              "http://hl7.org/fhir/StructureDefinition/NutritionOrder",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.partOf",
+        "path": "Observation.partOf",
+        "short": "Referência ao evento do qual este recurso faz parte",
+        "definition": "Referência ao evento do qual este recurso faz parte"
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "short": "Status atual da observação",
+        "definition": "active | completed | entered-in-error | intended | stopped | on-hold | unknown | not-taken"
+      },
+      {
+        "id": "Observation.category",
+        "path": "Observation.category",
+        "short": "Categoria de alto nível da observação",
+        "definition": "Categoria de alto nível da observação",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "short": "Código da observação",
+        "definition": "Código da observação"
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "short": "De quem ou do que trata a observação",
+        "definition": "De quem ou do que trata a observação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.org/fhir/StructureDefinition/Group"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.subject.id",
+        "path": "Observation.subject.id",
+        "short": "ID exclusivo para referência entre elementos",
+        "definition": "ID exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Observation.subject.extension",
+        "path": "Observation.subject.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Observation.subject.type",
+        "path": "Observation.subject.type",
+        "short": "Tipo de referência (por exemplo, Paciente)",
+        "definition": "Tipo de referência (por exemplo, Paciente)"
+      },
+      {
+        "id": "Observation.subject.identifier",
+        "path": "Observation.subject.identifier",
+        "short": "Referência lógica, quando a referência literal não é conhecida",
+        "definition": "Referência lógica, quando a referência literal não é conhecida"
+      },
+      {
+        "id": "Observation.subject.display",
+        "path": "Observation.subject.display",
+        "short": "Texto alternativo para este rescurso",
+        "definition": "Texto alternativo para este recurso"
+      },
+      {
+        "id": "Observation.focus",
+        "path": "Observation.focus",
+        "short": "Sobre o que é a observação, quando esta não é sobre o sujeito do registro",
+        "definition": "Sobre o que é a observação, quando esta não é sobre o sujeito do registro"
+      },
+      {
+        "id": "Observation.encounter",
+        "path": "Observation.encounter",
+        "short": "Atendimento durante o qual esta observação foi registrada",
+        "definition": "EAtendimento durante o qual esta observação foi registrada",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "slicing": {
+          "discriminator":  [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Tempo ou período de tempo clinicamente relevante para a observação",
+        "definition": "Tempo ou período de tempo clinicamente relevante para a observação",
+        "min": 1
+      },
+      {
+        "id": "Observation.effective[x].extension",
+        "path": "Observation.effective[x].extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Observation.effective[x].extension.id",
+        "path": "Observation.effective[x].extension.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Observation.effective[x].extension.url",
+        "path": "Observation.effective[x].extension.url",
+        "short": "Por quê o valor esperado não está presente"
+      },
+      {
+        "id": "Observation.effective[x]:effectiveDateTime",
+        "path": "Observation.effective[x]",
+        "sliceName": "effectiveDateTime",
+        "min": 0,
+        "max": "0",
+        "type":  [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
+        "id": "Observation.effective[x]:effectivePeriod",
+        "path": "Observation.effective[x]",
+        "sliceName": "effectivePeriod",
+        "min": 1,
+        "max": "1",
+        "type":  [
+          {
+            "code": "Period"
+          }
+        ]
+      },
+      {
+        "id": "Observation.issued",
+        "path": "Observation.issued",
+        "short": "Data/hora em que esta versão foi disponibilizada",
+        "definition": "Data/hora em que esta versão foi disponibilizada",
+        "min": 1
+      },
+      {
+        "id": "Observation.performer",
+        "path": "Observation.performer",
+        "short": "Quem é o responsável pela observação",
+        "definition": "Quem é o responsável pela observação"
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "short": "Resultado da observação",
+        "definition": "Resultado da observação",
+        "min": 1
+      },
+      {
+        "id": "Observation.dataAbsentReason",
+        "path": "Observation.dataAbsentReason",
+        "short": "Por que o resultado do componente está ausente",
+        "definition": "Por que o resultado do componente está ausente"
+      },
+      {
+        "id": "Observation.interpretation",
+        "path": "Observation.interpretation",
+        "short": "Interpretação do resultado do componente",
+        "definition": "Interpretação do resultado do componente",
+        "max": "1"
+      },
+      {
+        "id": "Observation.note",
+        "path": "Observation.note",
+        "short": "Comentários sobre a observação",
+        "definition": "Comentários sobre a observação",
+        "max": "1"
+      },
+      {
+        "id": "Observation.bodySite",
+        "path": "Observation.bodySite",
+        "short": "Parte anatômica alvo da observação",
+        "definition": "PParte anatômica alvo da observação"
+      },
+      {
+        "id": "Observation.method",
+        "path": "Observation.method",
+        "short": "Método de medição",
+        "definition": "Método de medição",
+        "min": 1
+      },
+      {
+        "id": "Observation.specimen",
+        "path": "Observation.specimen",
+        "short": "Amostra utilizada para esta observação",
+        "definition": "Amostra utilizada para esta observação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-specimen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.device",
+        "path": "Observation.device",
+        "short": "Dispositivo de medida da observação",
+        "definition": "Dispositivo utilizado para registrar esta observação"
+      },
+      {
+        "id": "Observation.referenceRange",
+        "path": "Observation.referenceRange",
+        "short": "Valores de referência",
+        "definition": "Valores de referência para auxiliar na interpretação do resultado",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Observation.referenceRange.id",
+        "path": "Observation.referenceRange.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Observation.referenceRange.extension",
+        "path": "Observation.referenceRange.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Observation.referenceRange.modifierExtension",
+        "path": "Observation.referenceRange.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Observation.referenceRange.low",
+        "path": "Observation.referenceRange.low",
+        "short": "Limite inferior do intervalo",
+        "definition": "Limite inferior do intervalo de valores de referência",
+        "min": 1
+      },
+      {
+        "id": "Observation.referenceRange.high",
+        "path": "Observation.referenceRange.high",
+        "short": "Limite superior do intervalo",
+        "definition": "Limite superior do intervalo de valores de referência",
+        "min": 1
+      },
+      {
+        "id": "Observation.referenceRange.type",
+        "path": "Observation.referenceRange.type",
+        "short": "Qualificador do valor de referência",
+        "definition": "Qualificador do valor de referência"
+      },
+      {
+        "id": "Observation.referenceRange.appliesTo",
+        "path": "Observation.referenceRange.appliesTo",
+        "short": "População do intervalo de referência",
+        "definition": "População do intervalo de referência"
+      },
+      {
+        "id": "Observation.referenceRange.age",
+        "path": "Observation.referenceRange.age",
+        "short": "Faixa etária aplicável",
+        "definition": "Faixa etária aplicável, se relevante"
+      },
+      {
+        "id": "Observation.referenceRange.text",
+        "path": "Observation.referenceRange.text",
+        "short": "Intervalo de referência em formato textual",
+        "definition": "Intervalo de referência em formato textual",
+        "min": 1
+      },
+      {
+        "id": "Observation.hasMember",
+        "path": "Observation.hasMember",
+        "short": "Recurso relacionado que pertence a observação",
+        "definition": "Recurso relacionado que pertence a observação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.derivedFrom",
+        "path": "Observation.derivedFrom",
+        "short": "Medições relacionadas a partir das quais a observação é feita",
+        "definition": "Medições relacionadas a partir das quais a observação é feita",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "http://hl7.org/fhir/StructureDefinition/DocumentReference",
+              "http://hl7.org/fhir/StructureDefinition/ImagingStudy",
+              "http://hl7.org/fhir/StructureDefinition/Media",
+              "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "http://hl7.org/fhir/StructureDefinition/MolecularSequence"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.component",
+        "path": "Observation.component",
+        "short": "Resultados do componente",
+        "definition": "Resultados do componente"
+      },
+      {
+        "id": "Observation.component.id",
+        "path": "Observation.component.id",
+        "short": "ID exclusivo para referência entre elementos",
+        "definition": "ID exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Observation.component.extension",
+        "path": "Observation.component.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Observation.component.modifierExtension",
+        "path": "Observation.component.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas"
+      },
+      {
+        "id": "Observation.component.code",
+        "path": "Observation.component.code",
+        "short": "Tipo do componente da observação",
+        "definition": "Tipo do componente da observação"
+      },
+      {
+        "id": "Observation.component.value[x]",
+        "path": "Observation.component.value[x]",
+        "short": "Resultado do componente",
+        "definition": "Resultado do componente"
+      }
+    ]
+  }
+}

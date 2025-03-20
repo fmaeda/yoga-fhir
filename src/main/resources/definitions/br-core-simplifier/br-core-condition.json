@@ -1,0 +1,350 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-condition",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+  "name": "br-core-condition",
+  "status": "active",
+  "description": "Este perfil representa as restrições aplicadas ao recurso FHIR R4 [Condition](http://hl7.org/fhir/R4/condition.html).",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Condition",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Condition",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Condition.id",
+        "path": "Condition.id",
+        "short": "Identificador lógico deste artefato",
+        "definition": "Identificador lógico deste artefato"
+      },
+      {
+        "id": "Condition.meta",
+        "path": "Condition.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "Condition.implicitRules",
+        "path": "Condition.implicitRules",
+        "short": "URI(s) sob as quais este recurso é conhecido",
+        "definition": "Um ou mais códigos que servem para identificar o tipo de recurso"
+      },
+      {
+        "id": "Condition.language",
+        "path": "Condition.language",
+        "short": "Idioma do recurso",
+        "definition": "Idioma do recurso"
+      },
+      {
+        "id": "Condition.text",
+        "path": "Condition.text",
+        "short": "Texto de 72 caracteres para resumo",
+        "definition": "Um texto resumindo as informações do recurso"
+      },
+      {
+        "id": "Condition.contained",
+        "path": "Condition.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos no recurso"
+      },
+      {
+        "id": "Condition.extension",
+        "path": "Condition.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Condition.modifierExtension",
+        "path": "Condition.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas"
+      },
+      {
+        "id": "Condition.identifier",
+        "path": "Condition.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "Condition.clinicalStatus",
+        "path": "Condition.clinicalStatus",
+        "short": "O status clínico da condição ou do diagnóstico",
+        "definition": "O status clínico da condição ou do diagnóstico",
+        "constraint":  [
+          {
+            "key": "br-core-condition-con-3",
+            "severity": "error",
+            "human": "condition.clinicalStatus DEVE estar presente se condition.verificationStatus não for 'entered-in-error' e a categoria for problem-list-item",
+            "expression": "(condition.verificationStatus.where(code != 'entered-in-error').exists() and condition.category.where(code = 'problem-list-item').exists()) implies condition.clinicalStatus.exists()",
+            "xpath": "not(exists(f:verificationStatus[f:code/@value='entered-in-error']) and exists(f:category[f:code/@value='problem-list-item'])) or exists(f:clinicalStatus)",
+            "source": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+          },
+          {
+            "key": "br-core-condition-con-4",
+            "severity": "error",
+            "human": "Se condition for 'abated', clinicalStatus deve ser 'inactive', 'resolved' ou 'remission' ",
+            "expression": "(abatement.exists()) implies (condition.clinicalStatus.exists() and condition.clinicalStatus.coding.where(code in ('inactive', 'resolved', 'remission')).exists())",
+            "xpath": "not(exists(f:abatement)) or (exists(f:clinicalStatus) and exists(f:clinicalStatus/f:coding[f:code/@value=('inactive', 'resolved', 'remission')]))",
+            "source": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+          },
+          {
+            "key": "br-core-condition-con-5",
+            "severity": "error",
+            "human": "Condition.clinicalStatus NÃO DEVE estar presente se verificationStatus for 'entered-in-error' ",
+            "expression": "(condition.verificationStatus.coding.where(code = 'entered-in-error').exists()) implies condition.clinicalStatus.empty()",
+            "xpath": "not(exists(f:verificationStatus/f:coding[f:code/@value='entered-in-error'])) or not(exists(f:clinicalStatus))",
+            "source": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+          }
+        ]
+      },
+      {
+        "id": "Condition.verificationStatus",
+        "path": "Condition.verificationStatus",
+        "short": "O status de verificação para apoiar ou recusar o status clínico da condição ou do diagnóstico",
+        "definition": "unconfirmed | provisional | differential | confirmed | refuted | entered-in-error"
+      },
+      {
+        "id": "Condition.category",
+        "path": "Condition.category",
+        "short": "Categoria da condição",
+        "definition": "Categoria da condição",
+        "max": "1",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://www.saude.gov.br/fhir/r4/CodeSystem/BRCategoriaDiagnostico"
+        }
+      },
+      {
+        "id": "Condition.severity",
+        "path": "Condition.severity",
+        "short": "Severidade da condição",
+        "definition": "Severidade da condição"
+      },
+      {
+        "id": "Condition.code",
+        "path": "Condition.code",
+        "short": "Suspeita Diagnóstica",
+        "definition": "Identifica a suspeita diagnóstica com relação à condição de saúde avaliada."
+      },
+      {
+        "id": "Condition.bodySite",
+        "path": "Condition.bodySite",
+        "short": "Local anatômico da condição, se relevante",
+        "definition": "Local anatômico da condição, se relevante"
+      },
+      {
+        "id": "Condition.subject",
+        "path": "Condition.subject",
+        "short": "Indivíduo com a Condição de Saúde avaliada",
+        "definition": "Referencia os dados sobre o indivíduo cuja a condição de saúde está sendo avaliada.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Condition.subject.id",
+        "path": "Condition.subject.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Condition.subject.extension",
+        "path": "Condition.subject.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Condition.subject.reference",
+        "path": "Condition.subject.reference",
+        "short": "Referência literal. URL relativa, interna ou externa",
+        "definition": "Referência literal. URL relativa, interna ou externa"
+      },
+      {
+        "id": "Condition.subject.type",
+        "path": "Condition.subject.type",
+        "short": "Tipo de recurso ao qual a referência é feita",
+        "definition": "Tipo de recurso ao qual a referência é feita"
+      },
+      {
+        "id": "Condition.subject.identifier",
+        "path": "Condition.subject.identifier",
+        "short": "Referência lógica, quando a referência literal não é conhecida",
+        "definition": "Referência lógica, quando a referência literal não é conhecida"
+      },
+      {
+        "id": "Condition.subject.display",
+        "path": "Condition.subject.display",
+        "short": "Texto alternativo para o recurso",
+        "definition": "Texto alternativo para o recurso"
+      },
+      {
+        "id": "Condition.encounter",
+        "path": "Condition.encounter",
+        "short": "Referência ao atendimento no qual a condição foi diagnosticada",
+        "definition": "Referência ao atendimento no qual a condição foi diagnosticada",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Condition.onset[x]",
+        "path": "Condition.onset[x]",
+        "short": "Data ou idade estimada ou real do começo dos sintomas",
+        "definition": "Data ou idade estimada ou real do começo dos sintomas"
+      },
+      {
+        "id": "Condition.abatement[x]",
+        "path": "Condition.abatement[x]",
+        "short": "Data ou idade estimada ou real em que o diagnóstico foi resolvido ou entrou em remissão",
+        "definition": "Data ou idade estimada ou real em que o diagnóstico foi resolvido ou entrou em remissão"
+      },
+      {
+        "id": "Condition.recordedDate",
+        "path": "Condition.recordedDate",
+        "short": "Data na qual o registro foi registrado pela primeira vez",
+        "definition": "Data na qual o registro foi registrado pela primeira vez"
+      },
+      {
+        "id": "Condition.recorder",
+        "path": "Condition.recorder",
+        "short": "Quem registrou a condição",
+        "definition": "Quem registrou a condição",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Condition.asserter",
+        "path": "Condition.asserter",
+        "short": "Pessoa que afirma a condição",
+        "definition": "Pessoa que afirma a condição",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Condition.stage",
+        "path": "Condition.stage",
+        "short": "Estágio/grau da condição, geralmente avaliado formalmente",
+        "definition": "Estágio/grau da condição, geralmente avaliado formalmente",
+        "min": 1
+      },
+      {
+        "id": "Condition.stage.id",
+        "path": "Condition.stage.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Condition.stage.extension",
+        "path": "Condition.stage.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Condition.stage.modifierExtension",
+        "path": "Condition.stage.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas"
+      },
+      {
+        "id": "Condition.stage.summary",
+        "path": "Condition.stage.summary",
+        "short": "Sumário simples (específico à condição)",
+        "definition": "Códigos descrevendo estágios da condição (por exemplo, estágios de câncer)"
+      },
+      {
+        "id": "Condition.stage.assessment",
+        "path": "Condition.stage.assessment",
+        "short": "Registro formal da avaliação",
+        "definition": "Referência aos dados de diagnóstico de laboratório clínico relacionados à suspeita diagnóstica.",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "http://hl7.org/fhir/StructureDefinition/ClinicalImpression",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-diagnosticreport",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Condition.stage.type",
+        "path": "Condition.stage.type",
+        "short": "Tipo do estadiamento",
+        "definition": "Códigos que descrevem  o tipo do estadiamento (por exemplo, clínico ou patológico)"
+      },
+      {
+        "id": "Condition.evidence",
+        "path": "Condition.evidence",
+        "short": "Evidências de apoio ao diagnóstico",
+        "definition": "Evidências de apoio ao diagnóstico"
+      },
+      {
+        "id": "Condition.evidence.id",
+        "path": "Condition.evidence.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Condition.evidence.extension",
+        "path": "Condition.evidence.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Condition.evidence.modifierExtension",
+        "path": "Condition.evidence.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas"
+      },
+      {
+        "id": "Condition.evidence.code",
+        "path": "Condition.evidence.code",
+        "short": "Manifestação/sintoma",
+        "definition": "Códigos que descrevem a manifestação ou sintomas de uma condição"
+      },
+      {
+        "id": "Condition.evidence.detail",
+        "path": "Condition.evidence.detail",
+        "short": "Referência à informações de apoio",
+        "definition": "Referência à informações de apoio"
+      },
+      {
+        "id": "Condition.note",
+        "path": "Condition.note",
+        "short": "Informações adicionais sobre a condição",
+        "definition": "Informações adicionais sobre a condição"
+      }
+    ]
+  }
+}

@@ -1,0 +1,470 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-vitalsigns",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-vitalsigns",
+  "name": "br-core-vitalsigns",
+  "status": "active",
+  "description": "Este perfil é baseado no perfil [VitalSigns](http://hl7.org/fhir/R4/observation-vitalsigns.html) e define restrições adicionais no recurso Observation para representar Observation de sinais vitais. Ele especifica quais elementos principais, extensões, vocabulários e conjuntos de valores **DEVEM** estar presentes no recurso e restringe como os elementos são usados. ",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/vitalsigns",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Observation.id",
+        "path": "Observation.id",
+        "short": "Identificador lógico deste artefato",
+        "definition": "Identificador lógico deste artefato"
+      },
+      {
+        "id": "Observation.meta",
+        "path": "Observation.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "Observation.implicitRules",
+        "path": "Observation.implicitRules",
+        "short": "URI(s) sob as quais este recurso é conhecido",
+        "definition": "Um ou mais códigos que servem para identificar o tipo de recurso"
+      },
+      {
+        "id": "Observation.language",
+        "path": "Observation.language",
+        "short": "Linguagem do recurso",
+        "definition": "A linguagem humana natural do recurso"
+      },
+      {
+        "id": "Observation.text",
+        "path": "Observation.text",
+        "short": "Texto narrativo, 72 caracteres para resumo",
+        "definition": "Um texto narrativo resumindo as informações do recurso"
+      },
+      {
+        "id": "Observation.contained",
+        "path": "Observation.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos no recurso"
+      },
+      {
+        "id": "Observation.extension",
+        "path": "Observation.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "Observation.modifierExtension",
+        "path": "Observation.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas"
+      },
+      {
+        "id": "Observation.identifier",
+        "path": "Observation.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "Observation.basedOn",
+        "path": "Observation.basedOn",
+        "short": "Referência ao pedido ou ao plano de tratamento que gerou este recurso",
+        "definition": "Referência ao pedido ou ao plano de tratamento que gerou este recurso",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan",
+              "http://hl7.org/fhir/StructureDefinition/DeviceRequest",
+              "http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest",
+              "http://hl7.org/fhir/StructureDefinition/NutritionOrder",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.partOf",
+        "path": "Observation.partOf",
+        "short": "Referência ao evento do qual este recurso faz parte",
+        "definition": "Referência ao evento do qual este recurso faz parte",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationadministration",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationdispense",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationstatement",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-immunization",
+              "http://hl7.org/fhir/StructureDefinition/ImagingStudy"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "short": "Status atual da observação",
+        "definition": "active | completed | entered-in-error | intended | stopped | on-hold | unknown | not-taken"
+      },
+      {
+        "id": "Observation.category",
+        "path": "Observation.category",
+        "short": "Categoria de alto nível da observação",
+        "definition": "Categoria de alto nível da observação"
+      },
+      {
+        "id": "Observation.category:VSCat",
+        "path": "Observation.category",
+        "sliceName": "VSCat",
+        "short": "Classificação do tipo de observação",
+        "definition": "Classificação do tipo de observação"
+      },
+      {
+        "id": "Observation.category:VSCat.id",
+        "path": "Observation.category.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Observation.category:VSCat.extension",
+        "path": "Observation.category.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Observation.category:VSCat.coding",
+        "path": "Observation.category.coding",
+        "short": "Código definido por uma terminologia",
+        "definition": "Código definido por uma terminologia"
+      },
+      {
+        "id": "Observation.category:VSCat.coding.id",
+        "path": "Observation.category.coding.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "Observation.category:VSCat.coding.extension",
+        "path": "Observation.category.coding.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Observation.category:VSCat.coding.system",
+        "path": "Observation.category.coding.system",
+        "short": "Identidade do sistema de terminologia",
+        "definition": "Identidade do sistema de terminologia"
+      },
+      {
+        "id": "Observation.category:VSCat.coding.version",
+        "path": "Observation.category.coding.version",
+        "short": "Versão do sistema, se relevante",
+        "definition": "Versão do sistema, se relevante"
+      },
+      {
+        "id": "Observation.category:VSCat.coding.code",
+        "path": "Observation.category.coding.code",
+        "short": "Símbolo na sintaxe definida pelo sistema",
+        "definition": "Símbolo na sintaxe definida pelo sistema"
+      },
+      {
+        "id": "Observation.category:VSCat.coding.display",
+        "path": "Observation.category.coding.display",
+        "short": "Representação definida pelo sistema",
+        "definition": "Representação definida pelo sistema"
+      },
+      {
+        "id": "Observation.category:VSCat.coding.userSelected",
+        "path": "Observation.category.coding.userSelected",
+        "short": "Se a codificação foi escolhida diretamente pelo usuário",
+        "definition": "Se a codificação foi escolhida diretamente pelo usuário"
+      },
+      {
+        "id": "Observation.category:VSCat.text",
+        "path": "Observation.category.text",
+        "short": "Representação em texto simples do conceito",
+        "definition": "Representação em texto simples do conceito"
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "short": "Códigos dos resultados de sinais vitais do C-CDA",
+        "definition": "Códigos dos resultados de sinais vitais do C-CDA"
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "short": "De quem ou do que trata a observação",
+        "definition": "De quem ou do que trata a observação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.focus",
+        "path": "Observation.focus",
+        "short": "Sobre o que é a observação, quando não é sobre o subject do registro",
+        "definition": "Sobre o que é a observação, quando não é sobre o subject do registro"
+      },
+      {
+        "id": "Observation.encounter",
+        "path": "Observation.encounter",
+        "short": "Atendimento no qual a observação foi feita",
+        "definition": "Atendimento no qual a observação foi feita",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "short": "Tempo ou período de tempo clinicamente relevante para os sinais vitais",
+        "definition": "Tempo ou período de tempo clinicamente relevante para os sinais vitais"
+      },
+      {
+        "id": "Observation.issued",
+        "path": "Observation.issued",
+        "short": "Data ou hora em que esta versão da observação ficou disponível",
+        "definition": "Data ou hora em que esta versão da observação ficou disponível",
+        "min": 1
+      },
+      {
+        "id": "Observation.performer",
+        "path": "Observation.performer",
+        "short": "O responsável pela observação",
+        "definition": "O responsável pela observação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "short": "O resultado do exame em si",
+        "definition": "O resultado do exame em si",
+        "min": 1
+      },
+      {
+        "id": "Observation.dataAbsentReason",
+        "path": "Observation.dataAbsentReason",
+        "short": "Por que o resultado não está disponível",
+        "definition": "Por que o resultado não está disponível"
+      },
+      {
+        "id": "Observation.interpretation",
+        "path": "Observation.interpretation",
+        "short": "Interpretação da observação",
+        "definition": "Interpretação da observação. Por exemplo: valor alto, baixo, normal"
+      },
+      {
+        "id": "Observation.note",
+        "path": "Observation.note",
+        "short": "Comentários sobre a observação",
+        "definition": "Comentários sobre a observação"
+      },
+      {
+        "id": "Observation.bodySite",
+        "path": "Observation.bodySite",
+        "short": "Parte do corpo examinada",
+        "definition": "Parte do corpo examinada"
+      },
+      {
+        "id": "Observation.method",
+        "path": "Observation.method",
+        "short": "Método usado para examinar",
+        "definition": "Método usado para examinar"
+      },
+      {
+        "id": "Observation.specimen",
+        "path": "Observation.specimen",
+        "short": "Amostra examinada na observação",
+        "definition": "Amostra examinada na observação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-specimen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.device",
+        "path": "Observation.device",
+        "short": "Dispositivo (de medida)",
+        "definition": "Dispositivo (de medida)"
+      },
+      {
+        "id": "Observation.referenceRange",
+        "path": "Observation.referenceRange",
+        "short": "Fornece um guia para interpretação",
+        "definition": "Fornece um guia para interpretação"
+      },
+      {
+        "id": "Observation.referenceRange.id",
+        "path": "Observation.referenceRange.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Observation.referenceRange.extension",
+        "path": "Observation.referenceRange.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Observation.referenceRange.modifierExtension",
+        "path": "Observation.referenceRange.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas"
+      },
+      {
+        "id": "Observation.referenceRange.low",
+        "path": "Observation.referenceRange.low",
+        "short": "Limite inferior do intervalo",
+        "definition": "Limite inferior do intervalo de valores de referência"
+      },
+      {
+        "id": "Observation.referenceRange.high",
+        "path": "Observation.referenceRange.high",
+        "short": "Limite superior do intervalo",
+        "definition": "Limite superior do intervalo de valores de referência"
+      },
+      {
+        "id": "Observation.referenceRange.type",
+        "path": "Observation.referenceRange.type",
+        "short": "Qualificador do valor de referência",
+        "definition": "Qualificador do valor de referência"
+      },
+      {
+        "id": "Observation.referenceRange.appliesTo",
+        "path": "Observation.referenceRange.appliesTo",
+        "short": "População do intervalo de referência",
+        "definition": "População do intervalo de referência"
+      },
+      {
+        "id": "Observation.referenceRange.age",
+        "path": "Observation.referenceRange.age",
+        "short": "Faixa etária aplicável",
+        "definition": "Faixa etária aplicável, se relevante"
+      },
+      {
+        "id": "Observation.referenceRange.text",
+        "path": "Observation.referenceRange.text",
+        "short": "Intervalo de referência em formato textual",
+        "definition": "Intervalo de referência em formato textual"
+      },
+      {
+        "id": "Observation.hasMember",
+        "path": "Observation.hasMember",
+        "short": "Recurso relacionado que pertence ao grupo da Observação",
+        "definition": "Recurso relacionado que pertence ao grupo da Observação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+              "http://hl7.org/fhir/StructureDefinition/MolecularSequence"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.derivedFrom",
+        "path": "Observation.derivedFrom",
+        "short": "Medições relacionadas a partir das quais a observação é feita",
+        "definition": "Medições relacionadas a partir das quais a observação é feita",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "http://hl7.org/fhir/StructureDefinition/DocumentReference",
+              "http://hl7.org/fhir/StructureDefinition/ImagingStudy",
+              "http://hl7.org/fhir/StructureDefinition/Media",
+              "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-vitalsigns",
+              "http://hl7.org/fhir/StructureDefinition/MolecularSequence"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.component",
+        "path": "Observation.component",
+        "short": "Resultados do componente",
+        "definition": "Resultados do componente"
+      },
+      {
+        "id": "Observation.component.id",
+        "path": "Observation.component.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "Observation.component.extension",
+        "path": "Observation.component.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "Observation.component.modifierExtension",
+        "path": "Observation.component.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas"
+      },
+      {
+        "id": "Observation.component.code",
+        "path": "Observation.component.code",
+        "short": "Tipo de observação de componente"
+      },
+      {
+        "id": "Observation.component.value[x]",
+        "path": "Observation.component.value[x]",
+        "short": "O valor do resultado em si"
+      },
+      {
+        "id": "Observation.component.dataAbsentReason",
+        "path": "Observation.component.dataAbsentReason",
+        "short": "Por que o resultado do componente está faltando",
+        "definition": "Por que o resultado do componente está faltando"
+      },
+      {
+        "id": "Observation.component.interpretation",
+        "path": "Observation.component.interpretation",
+        "short": "Interpretação da observação",
+        "definition": "Interpretação da observação. Por exemplo: valor elevado"
+      },
+      {
+        "id": "Observation.component.referenceRange",
+        "path": "Observation.component.referenceRange",
+        "short": "Valores de referência",
+        "definition": "Valores de referência para auxiliar na interpretação do resultado"
+      }
+    ]
+  }
+}

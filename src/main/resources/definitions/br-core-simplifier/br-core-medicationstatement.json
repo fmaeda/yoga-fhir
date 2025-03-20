@@ -1,0 +1,457 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-medicationstatement",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationstatement",
+  "name": "br-core-medicationstatement",
+  "title": "br-core-medicationstatement",
+  "status": "active",
+  "description": "Contém os dados relacionados à medicação tomada por um paciente",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationStatement",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationStatement",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "MedicationStatement.id",
+        "path": "MedicationStatement.id",
+        "short": "Identificador lógico deste artefato",
+        "definition": "Identificador lógico deste artefato"
+      },
+      {
+        "id": "MedicationStatement.meta",
+        "path": "MedicationStatement.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "MedicationStatement.implicitRules",
+        "path": "MedicationStatement.implicitRules",
+        "short": "URI(s) sob as quais este recurso é conhecido",
+        "definition": "Um ou mais códigos que servem para identificar o tipo de recurso"
+      },
+      {
+        "id": "MedicationStatement.language",
+        "path": "MedicationStatement.language",
+        "short": "Linguagem do recurso",
+        "definition": "A linguagem humana natural do recurso"
+      },
+      {
+        "id": "MedicationStatement.text",
+        "path": "MedicationStatement.text",
+        "short": "Texto narrativo, 72 caracteres para resumo",
+        "definition": "Um texto narrativo resumindo as informações do recurso"
+      },
+      {
+        "id": "MedicationStatement.contained",
+        "path": "MedicationStatement.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos no recurso"
+      },
+      {
+        "id": "MedicationStatement.extension",
+        "path": "MedicationStatement.extension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões adicionais que não fazem parte do modelo base"
+      },
+      {
+        "id": "MedicationStatement.modifierExtension",
+        "path": "MedicationStatement.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas"
+      },
+      {
+        "id": "MedicationStatement.identifier",
+        "path": "MedicationStatement.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "MedicationStatement.basedOn",
+        "path": "MedicationStatement.basedOn",
+        "short": "Referência ao pedido ou ao plano de tratamento que gerou este recurso",
+        "definition": "Referência ao pedido ou ao plano de tratamento que gerou este recurso",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.partOf",
+        "path": "MedicationStatement.partOf",
+        "short": "Referência ao evento do qual este recurso faz parte",
+        "definition": "Referência ao evento do qual este recurso faz parte",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationadministration",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationdispense",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationstatement",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.status",
+        "path": "MedicationStatement.status",
+        "short": "Status atual do recurso",
+        "definition": "active | completed | entered-in-error | intended | stopped | on-hold | unknown | not-taken"
+      },
+      {
+        "id": "MedicationStatement.statusReason",
+        "path": "MedicationStatement.statusReason",
+        "short": "Motivo do status atual",
+        "definition": "Motivo do status atual"
+      },
+      {
+        "id": "MedicationStatement.category",
+        "path": "MedicationStatement.category",
+        "short": "Tipo de uso de medicamento",
+        "definition": "Um conceito codificado identificando onde se espera que o medicamento incluído neste recurso seja administrado"
+      },
+      {
+        "id": "MedicationStatement.medication[x]",
+        "path": "MedicationStatement.medication[x]",
+        "slicing": {
+          "discriminator":  [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Qual medicamento foi tomado",
+        "definition": "Qual medicamento foi tomado"
+      },
+      {
+        "id": "MedicationStatement.medication[x]:medicationReference",
+        "path": "MedicationStatement.medication[x]",
+        "sliceName": "medicationReference",
+        "min": 0,
+        "max": "1",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.subject",
+        "path": "MedicationStatement.subject",
+        "short": "Quem toma ou tomou o medicamento",
+        "definition": "Quem toma ou tomou o medicamento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.subject.id",
+        "path": "MedicationStatement.subject.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "MedicationStatement.subject.extension",
+        "path": "MedicationStatement.subject.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "MedicationStatement.subject.reference",
+        "path": "MedicationStatement.subject.reference",
+        "short": "Referência literal. URL relativa, interna ou externa",
+        "definition": "Referência literal. URL relativa, interna ou externa"
+      },
+      {
+        "id": "MedicationStatement.subject.type",
+        "path": "MedicationStatement.subject.type",
+        "short": "Tipo de recurso ao qual a referência é feita",
+        "definition": "Tipo de recurso ao qual a referência é feita"
+      },
+      {
+        "id": "MedicationStatement.subject.identifier",
+        "path": "MedicationStatement.subject.identifier",
+        "short": "Referência lógica, quando a referência literal não é conhecida",
+        "definition": "Referência lógica, quando a referência literal não é conhecida"
+      },
+      {
+        "id": "MedicationStatement.subject.display",
+        "path": "MedicationStatement.subject.display",
+        "short": "Texto alternativo para o recurso",
+        "definition": "Texto alternativo para o recurso"
+      },
+      {
+        "id": "MedicationStatement.context",
+        "path": "MedicationStatement.context",
+        "short": "Recurso Encounter ou Episode associado a este recurso",
+        "definition": "Recurso Encounter ou Episode associado a este recurso",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter",
+              "http://hl7.org/fhir/StructureDefinition/EpisodeOfCare"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.effective[x]",
+        "path": "MedicationStatement.effective[x]",
+        "slicing": {
+          "discriminator":  [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Data ou intervalo na qual o medicamento foi ou será tomado",
+        "definition": "Data ou intervalo na qual o medicamento foi ou será tomado"
+      },
+      {
+        "id": "MedicationStatement.effective[x].id",
+        "path": "MedicationStatement.effective[x].id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "MedicationStatement.effective[x]:effectiveDateTime",
+        "path": "MedicationStatement.effective[x]",
+        "sliceName": "effectiveDateTime",
+        "min": 0,
+        "max": "1",
+        "type":  [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.effective[x]:effectivePeriod",
+        "path": "MedicationStatement.effective[x]",
+        "sliceName": "effectivePeriod",
+        "min": 0,
+        "max": "1",
+        "type":  [
+          {
+            "code": "Period"
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.dateAsserted",
+        "path": "MedicationStatement.dateAsserted",
+        "short": "Quando a declaração de medicação foi estabelecida",
+        "definition": "Quando a declaração de medicação foi estabelecida"
+      },
+      {
+        "id": "MedicationStatement.informationSource",
+        "path": "MedicationStatement.informationSource",
+        "short": "Referência à pessoa ou organização que forneceu as informações sobre esta administração de medicamento",
+        "definition": "Referência à pessoa ou organização que forneceu as informações sobre esta administração de medicamento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.derivedFrom",
+        "path": "MedicationStatement.derivedFrom",
+        "short": "Referência a um recurso com informações de suporte adicionais",
+        "definition": "Referência a um recurso com informações de suporte adicionais"
+      },
+      {
+        "id": "MedicationStatement.reasonCode",
+        "path": "MedicationStatement.reasonCode",
+        "short": "Razão pela qual o medicamento está sendo ou foi tomado",
+        "definition": "Razão pela qual o medicamento está sendo ou foi tomado"
+      },
+      {
+        "id": "MedicationStatement.reasonReference",
+        "path": "MedicationStatement.reasonReference",
+        "short": "Condição ou observação que apoia a tomada deste medicamento",
+        "definition": "Condição ou observação que apoia a tomada deste medicamento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-diagnosticreport"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationStatement.note",
+        "path": "MedicationStatement.note",
+        "short": "Informações adicionais sobre essa declaração",
+        "definition": "Informações adicionais sobre essa declaração"
+      },
+      {
+        "id": "MedicationStatement.dosage",
+        "path": "MedicationStatement.dosage",
+        "short": "Detalhes sobre a administração do medicamento",
+        "definition": "Detalhes sobre a administração do medicamento"
+      },
+      {
+        "id": "MedicationStatement.dosage.id",
+        "path": "MedicationStatement.dosage.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "MedicationStatement.dosage.extension",
+        "path": "MedicationStatement.dosage.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "MedicationStatement.dosage.modifierExtension",
+        "path": "MedicationStatement.dosage.modifierExtension",
+        "short": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas",
+        "definition": "Extensões adicionais que não podem ser ignoradas, mesmo que não reconhecidas"
+      },
+      {
+        "id": "MedicationStatement.dosage.sequence",
+        "path": "MedicationStatement.dosage.sequence",
+        "short": "A ordem das instruções de dosagem",
+        "definition": "A ordem das instruções de dosagem"
+      },
+      {
+        "id": "MedicationStatement.dosage.text",
+        "path": "MedicationStatement.dosage.text",
+        "short": "Instruções de dosagem em texto livre",
+        "definition": "Instruções de dosagem em texto livre"
+      },
+      {
+        "id": "MedicationStatement.dosage.additionalInstruction",
+        "path": "MedicationStatement.dosage.additionalInstruction",
+        "short": "Informações auxiliares ou advertências ao paciente",
+        "definition": "Informações auxiliares ou advertências ao paciente"
+      },
+      {
+        "id": "MedicationStatement.dosage.patientInstruction",
+        "path": "MedicationStatement.dosage.patientInstruction",
+        "short": "Instruções orientadas ao paciente ou consumidor",
+        "definition": "Instruções orientadas ao paciente ou consumidor"
+      },
+      {
+        "id": "MedicationStatement.dosage.timing",
+        "path": "MedicationStatement.dosage.timing",
+        "short": "Quando o medicamento deve ser administrado",
+        "definition": "Quando o medicamento deve ser administrado"
+      },
+      {
+        "id": "MedicationStatement.dosage.asNeeded[x]",
+        "path": "MedicationStatement.dosage.asNeeded[x]",
+        "short": "Tomar \"conforme necessário\" (para x)",
+        "definition": "Tomar \"conforme necessário\" (para x)"
+      },
+      {
+        "id": "MedicationStatement.dosage.site",
+        "path": "MedicationStatement.dosage.site",
+        "short": "Local no corpo onde deve ser administrado o medicamento",
+        "definition": "Local no corpo onde deve ser administrado o medicamento"
+      },
+      {
+        "id": "MedicationStatement.dosage.route",
+        "path": "MedicationStatement.dosage.route",
+        "short": "Rota de administração",
+        "definition": "Rota de administração"
+      },
+      {
+        "id": "MedicationStatement.dosage.method",
+        "path": "MedicationStatement.dosage.method",
+        "short": "Método de administração",
+        "definition": "Método de administração"
+      },
+      {
+        "id": "MedicationStatement.dosage.doseAndRate",
+        "path": "MedicationStatement.dosage.doseAndRate",
+        "short": "Quantidade de medicamento administrado",
+        "definition": "Quantidade de medicamento administrado"
+      },
+      {
+        "id": "MedicationStatement.dosage.doseAndRate.id",
+        "path": "MedicationStatement.dosage.doseAndRate.id",
+        "short": "Identificador único para referenciação cruzada",
+        "definition": "Identificador único para referenciação cruzada"
+      },
+      {
+        "id": "MedicationStatement.dosage.doseAndRate.extension",
+        "path": "MedicationStatement.dosage.doseAndRate.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "MedicationStatement.dosage.doseAndRate.type",
+        "path": "MedicationStatement.dosage.doseAndRate.type",
+        "short": "O tipo de dose especificado",
+        "definition": "O tipo de dose especificado"
+      },
+      {
+        "id": "MedicationStatement.dosage.doseAndRate.dose[x]",
+        "path": "MedicationStatement.dosage.doseAndRate.dose[x]",
+        "short": "Quantidade de medicamento por dose",
+        "definition": "Quantidade de medicamento por dose"
+      },
+      {
+        "id": "MedicationStatement.dosage.doseAndRate.rate[x]",
+        "path": "MedicationStatement.dosage.doseAndRate.rate[x]",
+        "short": "Quantidade de medicamento por unidade de tempo",
+        "definition": "Quantidade de medicamento por unidade de tempo"
+      },
+      {
+        "id": "MedicationStatement.dosage.maxDosePerPeriod",
+        "path": "MedicationStatement.dosage.maxDosePerPeriod",
+        "short": "Limite máximo de medicamento por unidade de tempo",
+        "definition": "Limite máximo de medicamento por unidade de tempo"
+      },
+      {
+        "id": "MedicationStatement.dosage.maxDosePerAdministration",
+        "path": "MedicationStatement.dosage.maxDosePerAdministration",
+        "short": "Limite máximo de medicamento por administração",
+        "definition": "Limite máximo de medicamento por administração"
+      },
+      {
+        "id": "MedicationStatement.dosage.maxDosePerLifetime",
+        "path": "MedicationStatement.dosage.maxDosePerLifetime",
+        "short": "Limite máximo de medicamento por tempo de vida do paciente",
+        "definition": "Limite máximo de medicamento por tempo de vida do paciente"
+      }
+    ]
+  }
+}

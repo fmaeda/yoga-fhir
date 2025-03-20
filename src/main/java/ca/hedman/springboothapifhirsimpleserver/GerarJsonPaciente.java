@@ -15,7 +15,9 @@ import java.util.List;
 public class GerarJsonPaciente {
 
     public static void main(String[] args) {
-        var pacienteFactory = new PatientFactory();
+        FhirContext ctx = FhirContext.forR4();
+        var pacienteFactory = new PatientFactory(ctx);
+
         Patient patient = pacienteFactory.createPatient(new Paciente(
                 "12345678909",
                 "123456789",
@@ -38,7 +40,6 @@ public class GerarJsonPaciente {
                 ))
         ));
 
-        FhirContext ctx = FhirContext.forR4();
         var parser = ctx.newJsonParser();
         String encoded = parser.setPrettyPrint(true).encodeResourceToString(patient);
         System.out.println("Encoded: " + encoded);

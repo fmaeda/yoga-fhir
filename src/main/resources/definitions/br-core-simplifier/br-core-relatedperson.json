@@ -1,0 +1,157 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-relatedperson",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+  "name": "br-core-relatedperson",
+  "status": "active",
+  "description": "O recurso [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html) contém as informações sobre uma pessoa envolvida no cuidado de um paciente, mas que não é alvo de cuidados de saúde nem tem responsabilidade formal no processo de cuidado. \n\nA pessoa representada pelo recurso [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html) normalmente tem um relacionamento profissional pessoal ou não específico de cuidado em saúde com o paciente. O recurso [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html) é usado principalmente para atribuição de informações, já que geralmente é uma fonte de informações sobre o paciente. Para manter informações sobre pessoas para fins de contato para um paciente, use um elemento br-core-patien.contact. Alguns indivíduos podem ser representados simultaneamente como  um patient.contact e [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html).\n\nExemplos de pessoas que podem ser um [br-core-relatedperson](https://saude.gov.br/fhir/StructureDefinition/br-core-relatedperson.html):\n-	Esposa ou marido de um paciente\n-	Parentes ou amigos de um paciente\n-	Um vizinho que leva um paciente para o hospital\n-	O dono ou treinador de um cavalo\n-	Um advogado ou tutor do paciente\n-	Um cão-guia\n",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "RelatedPerson",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "RelatedPerson.id",
+        "path": "RelatedPerson.id",
+        "short": "ID lógico deste artefato",
+        "definition": "ID lógico deste artefato"
+      },
+      {
+        "id": "RelatedPerson.meta",
+        "path": "RelatedPerson.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "RelatedPerson.implicitRules",
+        "path": "RelatedPerson.implicitRules",
+        "short": "Um conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Um conjunto de regras sob as quais este conteúdo foi criado"
+      },
+      {
+        "id": "RelatedPerson.language",
+        "path": "RelatedPerson.language",
+        "short": "Idioma do conteúdo do recurso",
+        "definition": "Idioma do conteúdo do recurso"
+      },
+      {
+        "id": "RelatedPerson.text",
+        "path": "RelatedPerson.text",
+        "short": "Resumo do texto do recurso, para interpretação humana",
+        "definition": "Resumo do texto do recurso, para interpretação humana"
+      },
+      {
+        "id": "RelatedPerson.contained",
+        "path": "RelatedPerson.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos"
+      },
+      {
+        "id": "RelatedPerson.extension",
+        "path": "RelatedPerson.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "RelatedPerson.modifierExtension",
+        "path": "RelatedPerson.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas",
+        "definition": "Extensões que não podem ser ignoradas"
+      },
+      {
+        "id": "RelatedPerson.identifier",
+        "path": "RelatedPerson.identifier",
+        "short": "Identificador Externo",
+        "definition": "Identificador Externo"
+      },
+      {
+        "id": "RelatedPerson.active",
+        "path": "RelatedPerson.active",
+        "short": "Se o registro desta pessoa relacionada está em uso ativo",
+        "definition": "Se o registro desta pessoa relacionada está em uso ativo"
+      },
+      {
+        "id": "RelatedPerson.patient",
+        "path": "RelatedPerson.patient",
+        "short": "O paciente com quem essa pessoa está relacionada",
+        "definition": "O paciente com quem essa pessoa está relacionada",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RelatedPerson.relationship",
+        "path": "RelatedPerson.relationship",
+        "short": "A natureza do relacionamento",
+        "definition": "A natureza do relacionamento"
+      },
+      {
+        "id": "RelatedPerson.name",
+        "path": "RelatedPerson.name",
+        "short": "Um nome associado à pessoa",
+        "definition": "Um nome associado à pessoa"
+      },
+      {
+        "id": "RelatedPerson.telecom",
+        "path": "RelatedPerson.telecom",
+        "short": "Um detalhe de contato da pessoa",
+        "definition": "Um detalhe de contato da pessoa"
+      },
+      {
+        "id": "RelatedPerson.gender",
+        "path": "RelatedPerson.gender",
+        "short": "masculino | feminino | outro | desconhecido",
+        "definition": "masculino | feminino | outro | desconhecido"
+      },
+      {
+        "id": "RelatedPerson.birthDate",
+        "path": "RelatedPerson.birthDate",
+        "short": "A data em que a pessoa relacionada nasceu",
+        "definition": "A data em que a pessoa relacionada nasceu"
+      },
+      {
+        "id": "RelatedPerson.address",
+        "path": "RelatedPerson.address",
+        "short": "Endereço onde a pessoa relacionada pode ser contatada ou visitada",
+        "definition": "Endereço onde a pessoa relacionada pode ser contatada ou visitada"
+      },
+      {
+        "id": "RelatedPerson.photo",
+        "path": "RelatedPerson.photo",
+        "short": "Imagem da pessoa",
+        "definition": "Imagem da pessoa"
+      },
+      {
+        "id": "RelatedPerson.period",
+        "path": "RelatedPerson.period",
+        "short": "Período de tempo em que esta relação é considerada válida",
+        "definition": "Período de tempo em que esta relação é considerada válida"
+      },
+      {
+        "id": "RelatedPerson.communication",
+        "path": "RelatedPerson.communication",
+        "short": "Uma linguagem que pode ser usada para se comunicar sobre a saúde do paciente",
+        "definition": "Uma linguagem que pode ser usada para se comunicar sobre a saúde do paciente"
+      },
+      {
+        "id": "RelatedPerson.communication.language",
+        "path": "RelatedPerson.communication.language",
+        "short": "A linguagem que pode ser usada para se comunicar com o paciente sobre sua saúde",
+        "definition": "A linguagem que pode ser usada para se comunicar com o paciente sobre sua saúde"
+      },
+      {
+        "id": "RelatedPerson.communication.preferred",
+        "path": "RelatedPerson.communication.preferred",
+        "definition": "Language preference indicator"
+      }
+    ]
+  }
+}

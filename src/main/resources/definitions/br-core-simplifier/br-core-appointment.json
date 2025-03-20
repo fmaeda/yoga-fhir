@@ -1,0 +1,264 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-appointment",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-appointment",
+  "name": "br-core-appointment",
+  "status": "active",
+  "description": "Uma reserva de um evento de saúde entre paciente(s), profissional(es), pessoa(s) relacionada(s) e/ou dispositivo(s) para uma data/hora específica. Isso pode resultar em um ou mais Encontro(s)",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Appointment",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Appointment",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Appointment.id",
+        "path": "Appointment.id",
+        "short": "Identificador lógico deste artefato.",
+        "definition": "Identificador lógico deste artefato."
+      },
+      {
+        "id": "Appointment.meta",
+        "path": "Appointment.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "Appointment.implicitRules",
+        "path": "Appointment.implicitRules",
+        "short": "Conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Conjunto de regras sob as quais este conteúdo foi criado"
+      },
+      {
+        "id": "Appointment.language",
+        "path": "Appointment.language",
+        "short": "Idioma do conteúdo do recurso",
+        "definition": "Idioma do conteúdo do recurso"
+      },
+      {
+        "id": "Appointment.text",
+        "path": "Appointment.text",
+        "short": "Resumo do texto do recurso em linguagem natural",
+        "definition": "Resumo do texto do recurso em linguagem natural"
+      },
+      {
+        "id": "Appointment.contained",
+        "path": "Appointment.contained",
+        "short": "Recursos contidos em linha",
+        "definition": "Recursos contidos em linha"
+      },
+      {
+        "id": "Appointment.modifierExtension",
+        "path": "Appointment.modifierExtension",
+        "short": "Extensão que não pode ser ignorada",
+        "definition": "Extensão que não pode ser ignorada"
+      },
+      {
+        "id": "Appointment.status",
+        "path": "Appointment.status",
+        "definition": "proposed | pending | booked | arrived | fulfilled | cancelled | noshow | entered-in-error | checked-in | waitlist"
+      },
+      {
+        "id": "Appointment.cancelationReason",
+        "path": "Appointment.cancelationReason",
+        "short": "O motivo codificado para o cancelamento do compromisso",
+        "definition": "O motivo codificado para o cancelamento do compromisso"
+      },
+      {
+        "id": "Appointment.serviceCategory",
+        "path": "Appointment.serviceCategory",
+        "short": "Uma ampla categorização do serviço que será realizado durante esta consulta",
+        "definition": "Uma ampla categorização do serviço que será realizado durante esta consulta",
+        "min": 1,
+        "max": "1",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://simplifier.net/redenacionaldedadosemsaude/valueset-brmodalidadeassistencialmira"
+        }
+      },
+      {
+        "id": "Appointment.serviceType",
+        "path": "Appointment.serviceType",
+        "short": "O serviço específico que será realizado durante esta consulta",
+        "definition": "O serviço específico que será realizado durante esta consulta",
+        "min": 1,
+        "max": "1",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://simplifier.net/redenacionaldedadosemsaude/valueset-brprocedimentosnacionais-1.0"
+        }
+      },
+      {
+        "id": "Appointment.specialty",
+        "path": "Appointment.specialty",
+        "short": "A especialidade do médico que seria necessário para realizar o serviço solicitado nesta consulta",
+        "definition": "A especialidade do médico que seria necessário para realizar o serviço solicitado nesta consulta",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Appointment.appointmentType",
+        "path": "Appointment.appointmentType",
+        "short": "O estilo de consulta ou paciente que foi agendado no slot (não o tipo de serviço)",
+        "definition": "O estilo de consulta ou paciente que foi agendado no slot (não o tipo de serviço)",
+        "min": 1
+      },
+      {
+        "id": "Appointment.reasonCode",
+        "path": "Appointment.reasonCode",
+        "short": "Razão codificada pela qual este compromisso está agendado",
+        "definition": "Razão codificada pela qual este compromisso está agendado"
+      },
+      {
+        "id": "Appointment.reasonReference",
+        "path": "Appointment.reasonReference",
+        "short": "Razão pela qual a nomeação deve ocorrer (recurso)",
+        "definition": "Razão pela qual a nomeação deve ocorrer (recurso)",
+        "min": 1,
+        "max": "1",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-immunizationrecommendation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Appointment.priority",
+        "path": "Appointment.priority",
+        "short": "Usado para tomar decisões informadas se for necessário redefinir prioridades",
+        "definition": "Usado para tomar decisões informadas se for necessário redefinir prioridades"
+      },
+      {
+        "id": "Appointment.description",
+        "path": "Appointment.description",
+        "short": "Exibido em uma linha de assunto em uma solicitação de reunião ou lista de compromissos",
+        "definition": "Exibido em uma linha de assunto em uma solicitação de reunião ou lista de compromissos"
+      },
+      {
+        "id": "Appointment.supportingInformation",
+        "path": "Appointment.supportingInformation",
+        "short": "Informações adicionais para apoiar a nomeação",
+        "definition": "Informações adicionais para apoiar a nomeação"
+      },
+      {
+        "id": "Appointment.start",
+        "path": "Appointment.start",
+        "short": "Quando a consulta será realizada",
+        "definition": "Quando a consulta será realizada"
+      },
+      {
+        "id": "Appointment.end",
+        "path": "Appointment.end",
+        "short": "Quando a nomeação está para terminar",
+        "definition": "Quando a nomeação está para terminar"
+      },
+      {
+        "id": "Appointment.minutesDuration",
+        "path": "Appointment.minutesDuration",
+        "short": "Pode ser menor que início/fim (por exemplo, estimativa)",
+        "definition": "Pode ser menor que início/fim (por exemplo, estimativa)"
+      },
+      {
+        "id": "Appointment.slot",
+        "path": "Appointment.slot",
+        "short": "As vagas que esta nomeação está preenchendo",
+        "definition": "As vagas que esta nomeação está preenchendo"
+      },
+      {
+        "id": "Appointment.created",
+        "path": "Appointment.created",
+        "short": "A data em que este compromisso foi criado inicialmente",
+        "definition": "A data em que este compromisso foi criado inicialmente"
+      },
+      {
+        "id": "Appointment.comment",
+        "path": "Appointment.comment",
+        "short": "Comentários adicionais",
+        "definition": "Comentários adicionais"
+      },
+      {
+        "id": "Appointment.patientInstruction",
+        "path": "Appointment.patientInstruction",
+        "short": "Informações e instruções detalhadas para o paciente",
+        "definition": "Informações e instruções detalhadas para o paciente"
+      },
+      {
+        "id": "Appointment.basedOn",
+        "path": "Appointment.basedOn",
+        "short": "A solicitação de serviço que esta consulta é alocada para avaliar",
+        "definition": "A solicitação de serviço que esta consulta é alocada para avaliar",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Appointment.participant",
+        "path": "Appointment.participant",
+        "short": "Participantes envolvidos na nomeação",
+        "definition": "Participantes envolvidos na nomeação"
+      },
+      {
+        "id": "Appointment.participant.type",
+        "path": "Appointment.participant.type",
+        "short": "Papel do participante na nomeação",
+        "definition": "Papel do participante na nomeação",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://simplifier.net/redenacionaldedadosemsaude/valueset-brtipoparticipante"
+        }
+      },
+      {
+        "id": "Appointment.participant.actor",
+        "path": "Appointment.participant.actor",
+        "short": "Pessoa, local/serviço de saúde ou dispositivo",
+        "definition": "Pessoa, local/serviço de saúde ou dispositivo"
+      },
+      {
+        "id": "Appointment.participant.actor.identifier.system",
+        "path": "Appointment.participant.actor.identifier.system",
+        "short": "",
+        "definition": ""
+      },
+      {
+        "id": "Appointment.participant.actor.identifier.value",
+        "path": "Appointment.participant.actor.identifier.value",
+        "short": "",
+        "definition": ""
+      },
+      {
+        "id": "Appointment.participant.required",
+        "path": "Appointment.participant.required",
+        "definition": "required | optional | information-only"
+      },
+      {
+        "id": "Appointment.participant.status",
+        "path": "Appointment.participant.status",
+        "definition": "accepted | declined | tentative | needs-action"
+      },
+      {
+        "id": "Appointment.participant.period",
+        "path": "Appointment.participant.period",
+        "short": "Período de participação do ator",
+        "definition": "Período de participação do ator"
+      },
+      {
+        "id": "Appointment.requestedPeriod",
+        "path": "Appointment.requestedPeriod",
+        "short": "Possíveis intervalos de data/hora solicitados para alocar o compromisso dentro",
+        "definition": "Possíveis intervalos de data/hora solicitados para alocar o compromisso dentro"
+      }
+    ]
+  }
+}

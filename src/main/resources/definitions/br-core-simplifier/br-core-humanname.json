@@ -1,0 +1,22 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-humanname",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-humanname",
+  "name": "br-core-humanname",
+  "status": "active",
+  "description": "Este perfil ",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "type": "HumanName",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/HumanName",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "HumanName",
+        "path": "HumanName"
+      }
+    ]
+  }
+}

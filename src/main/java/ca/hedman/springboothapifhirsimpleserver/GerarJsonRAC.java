@@ -15,7 +15,8 @@ import java.util.List;
 public class GerarJsonRAC {
 
     public static void main(String[] args) {
-        var pacienteFactory = new PatientFactory();
+        var fhirContext = FhirContext.forR4();
+
         var patient = new Paciente(
                 "12345678909",
                 "123456789",
@@ -38,10 +39,10 @@ public class GerarJsonRAC {
                         )
                 ));
 
-        RacBundleFactory factory = new RacBundleFactory();
+        RacBundleFactory factory = new RacBundleFactory(fhirContext);
         Bundle racBundle = factory.createRacBundle(patient);
 
-        IParser jsonParser = FhirContext.forR4().newJsonParser();
+        IParser jsonParser = fhirContext.newJsonParser();
         String jsonOutput = jsonParser.setPrettyPrint(true).encodeResourceToString(racBundle);
         System.out.println(jsonOutput);
 

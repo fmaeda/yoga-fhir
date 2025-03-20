@@ -1,0 +1,78 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-povo-itinerante",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-povoitinerante",
+  "name": "br-core-povo-itinerante",
+  "title": "Extensão de povo itinerante do Core do Brasil",
+  "status": "active",
+  "date": "2024-07-24T12:41:10+00:00",
+  "publisher": "Ministério da Saúde do Brasil",
+  "contact":  [
+    {
+      "name": "Ministério da Saúde do Brasil",
+      "telecom":  [
+        {
+          "system": "url",
+          "value": "https://gov.br/saude"
+        }
+      ]
+    }
+  ],
+  "description": "Este perfil de extensão representa um povo itinerante com a qual uma pessoa se associa",
+  "jurisdiction":  [
+    {
+      "coding":  [
+        {
+          "code": "BR",
+          "system": "urn:iso:std:iso:3166"
+        }
+      ]
+    }
+  ],
+  "copyright": "CC-01",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context":  [
+    {
+      "type": "element",
+      "expression": "Patient"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Extensão de povo itinerante",
+        "definition": "Um povo itinerante com a qual uma pessoa associa"
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://br-core.saude.gov.br/StructureDefinition/br-core-povo-itinerante"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "short": "povo itinerante",
+        "type":  [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "description": "povo itinerante"
+        }
+      }
+    ]
+  }
+}

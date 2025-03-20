@@ -1,0 +1,240 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-medicationadministration",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationadministration",
+  "name": "br-core-medicationadministration",
+  "title": "br-core-medication",
+  "status": "active",
+  "description": "Este perfil representa a medicação administrada",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationAdministration",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "MedicationAdministration.identifier",
+        "path": "MedicationAdministration.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "MedicationAdministration.instantiates",
+        "path": "MedicationAdministration.instantiates",
+        "short": "Instancia protocolo ou definição",
+        "definition": "Instancia protocolo ou definição"
+      },
+      {
+        "id": "MedicationAdministration.partOf",
+        "path": "MedicationAdministration.partOf",
+        "short": "Parte do evento referenciado",
+        "definition": "Parte do evento referenciado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationadministration",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationAdministration.status",
+        "path": "MedicationAdministration.status",
+        "short": "Códigos de status de administração de medicamentos",
+        "definition": "in-progress | not-done | on-hold | completed | entered-in-error | stopped | unknown"
+      },
+      {
+        "id": "MedicationAdministration.statusReason",
+        "path": "MedicationAdministration.statusReason",
+        "short": "Motivo da administração não realizada",
+        "definition": "Motivo da administração não realizada"
+      },
+      {
+        "id": "MedicationAdministration.category",
+        "path": "MedicationAdministration.category",
+        "short": "Tipo de uso de medicamentos",
+        "definition": "Tipo de uso de medicamentos"
+      },
+      {
+        "id": "MedicationAdministration.medication[x]",
+        "path": "MedicationAdministration.medication[x]",
+        "short": "O que foi administrado",
+        "definition": "O que foi administrado"
+      },
+      {
+        "id": "MedicationAdministration.subject",
+        "path": "MedicationAdministration.subject",
+        "short": "Quem recebeu a medicação",
+        "definition": "Quem recebeu a medicação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationAdministration.context",
+        "path": "MedicationAdministration.context",
+        "short": "Encontro ou Episódio de Cuidado administrado como parte de",
+        "definition": "Encontro ou Episódio de Cuidado administrado como parte de",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationAdministration.supportingInformation",
+        "path": "MedicationAdministration.supportingInformation",
+        "short": "Informações adicionais para suporte à administração",
+        "definition": "Informações adicionais para suporte à administração"
+      },
+      {
+        "id": "MedicationAdministration.effective[x]",
+        "path": "MedicationAdministration.effective[x]",
+        "short": "Hora de início e término da administração",
+        "definition": "Hora de início e término da administração"
+      },
+      {
+        "id": "MedicationAdministration.performer",
+        "path": "MedicationAdministration.performer",
+        "short": "Quem realizou a administração da medicação e o que eles fizeram",
+        "definition": "Quem realizou a administração da medicação e o que eles fizeram"
+      },
+      {
+        "id": "MedicationAdministration.performer.function",
+        "path": "MedicationAdministration.performer.function",
+        "short": "Tipo de desempenho",
+        "definition": "Tipo de desempenho",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "https://www.hl7.org/fhir/R4/valueset-med-admin-perform-function.html"
+        }
+      },
+      {
+        "id": "MedicationAdministration.performer.actor",
+        "path": "MedicationAdministration.performer.actor",
+        "short": "Quem realizou a administração do medicamento",
+        "definition": "Quem realizou a administração do medicamento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "http://hl7.org/fhir/StructureDefinition/Device"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationAdministration.reasonCode",
+        "path": "MedicationAdministration.reasonCode",
+        "short": "Motivo da administração realizada",
+        "definition": "Motivo da administração realizada"
+      },
+      {
+        "id": "MedicationAdministration.reasonReference",
+        "path": "MedicationAdministration.reasonReference",
+        "short": "Condição ou observação que respalda o motivo pelo qual o medicamento foi administrado",
+        "definition": "Condição ou observação que respalda o motivo pelo qual o medicamento foi administrado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-diagnosticreport"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationAdministration.request",
+        "path": "MedicationAdministration.request",
+        "short": "Solicitação pela qual a administração foi performada",
+        "definition": "Solicitação pela qual a administração foi performada",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationAdministration.device",
+        "path": "MedicationAdministration.device",
+        "short": "Dispositivo usado para administrar",
+        "definition": "Dispositivo usado para administrar"
+      },
+      {
+        "id": "MedicationAdministration.note",
+        "path": "MedicationAdministration.note",
+        "short": "Informações sobre a administração",
+        "definition": "Informações sobre a administração"
+      },
+      {
+        "id": "MedicationAdministration.dosage",
+        "path": "MedicationAdministration.dosage",
+        "short": "Detalhes de como a medicação foi administrada",
+        "definition": "Detalhes de como a medicação foi administrada"
+      },
+      {
+        "id": "MedicationAdministration.dosage.text",
+        "path": "MedicationAdministration.dosage.text",
+        "short": "Instruções de dosagem em texto livre, por exemplo, SIG",
+        "definition": "Instruções de dosagem em texto livre, por exemplo, SIG"
+      },
+      {
+        "id": "MedicationAdministration.dosage.site",
+        "path": "MedicationAdministration.dosage.site",
+        "short": "Local do corpo administrado em",
+        "definition": "Local do corpo administrado em"
+      },
+      {
+        "id": "MedicationAdministration.dosage.route",
+        "path": "MedicationAdministration.dosage.route",
+        "short": "Caminho da substância para o corpo",
+        "definition": "Caminho da substância para o corpo"
+      },
+      {
+        "id": "MedicationAdministration.dosage.method",
+        "path": "MedicationAdministration.dosage.method",
+        "short": "Como a medicação foi administrada",
+        "definition": "Como a medicação foi administrada"
+      },
+      {
+        "id": "MedicationAdministration.dosage.dose",
+        "path": "MedicationAdministration.dosage.dose",
+        "short": "Quantidade de medicação por dose",
+        "definition": "Quantidade de medicação por dose"
+      },
+      {
+        "id": "MedicationAdministration.dosage.rate[x]",
+        "path": "MedicationAdministration.dosage.rate[x]",
+        "short": "Quantidade de dose por unidade de tempo",
+        "definition": "Quantidade de dose por unidade de tempo"
+      },
+      {
+        "id": "MedicationAdministration.eventHistory",
+        "path": "MedicationAdministration.eventHistory",
+        "short": "Uma lista de eventos de interesse no ciclo de vida",
+        "definition": "Uma lista de eventos de interesse no ciclo de vida"
+      }
+    ]
+  }
+}

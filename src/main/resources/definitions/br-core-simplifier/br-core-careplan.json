@@ -1,0 +1,390 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-careplan",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan",
+  "name": "br-core-careplan",
+  "status": "active",
+  "description": "Descreve a intenção de como um ou mais profissionais pretendem prestar cuidados a um determinado paciente, grupo ou comunidade por um período de tempo, possivelmente limitado ao cuidado de uma condição específica ou conjunto de condições.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "CarePlan",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/CarePlan",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "CarePlan.identifier",
+        "path": "CarePlan.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "CarePlan.instantiatesCanonical",
+        "path": "CarePlan.instantiatesCanonical",
+        "short": "Instancia o protocolo ou definição FHIR",
+        "definition": "Instancia o protocolo ou definição FHIR"
+      },
+      {
+        "id": "CarePlan.instantiatesUri",
+        "path": "CarePlan.instantiatesUri",
+        "short": "Instancia protocolo externo ou definição",
+        "definition": "Instancia protocolo externo ou definição"
+      },
+      {
+        "id": "CarePlan.basedOn",
+        "path": "CarePlan.basedOn",
+        "short": "Cumpre o plano de cuidado",
+        "definition": "Cumpre o plano de cuidado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan"
+            ],
+            "extension":  [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy",
+                "valueBoolean": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CarePlan.replaces",
+        "path": "CarePlan.replaces",
+        "short": "Plano de cuidado substituído por este plano de cuidado",
+        "definition": "Plano de cuidado substituído por este plano de cuidado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan"
+            ],
+            "extension":  [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy",
+                "valueBoolean": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CarePlan.partOf",
+        "path": "CarePlan.partOf",
+        "short": "Parte do plano de cuidado referenciado",
+        "definition": "Parte do plano de cuidado referenciado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan"
+            ],
+            "extension":  [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy",
+                "valueBoolean": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CarePlan.status",
+        "path": "CarePlan.status",
+        "short": "O status desse plano de cuidado",
+        "definition": "draft | active | on-hold | revoked | completed | entered-in-error | unknown"
+      },
+      {
+        "id": "CarePlan.intent",
+        "path": "CarePlan.intent",
+        "short": "Propósito do plano de cuidado definido",
+        "definition": "proposal | plan | order | option"
+      },
+      {
+        "id": "CarePlan.category",
+        "path": "CarePlan.category",
+        "short": "Tipo de plano de cuidado",
+        "definition": "Tipo de plano de cuidado",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "CarePlan.title",
+        "path": "CarePlan.title",
+        "short": "Nome casual para o plano de cuidado",
+        "definition": "Nome casual para o plano de cuidado"
+      },
+      {
+        "id": "CarePlan.description",
+        "path": "CarePlan.description",
+        "short": "Resumo da natureza do plano de cuidado",
+        "definition": "Resumo da natureza do plano de cuidado",
+        "min": 1
+      },
+      {
+        "id": "CarePlan.subject",
+        "path": "CarePlan.subject",
+        "short": "Paciente cujo o plano de cuidado referencia",
+        "definition": "Paciente cujo o plano de cuidado referencia",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CarePlan.encounter",
+        "path": "CarePlan.encounter",
+        "short": "Atendimento no qual o plano de cuidado foi definido",
+        "definition": "Atendimento no qual o plano de cuidado foi definido",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CarePlan.period",
+        "path": "CarePlan.period",
+        "short": "O período de tempo que o plano de cuidado abrange",
+        "definition": "O período de tempo que o plano de cuidado abrange"
+      },
+      {
+        "id": "CarePlan.created",
+        "path": "CarePlan.created",
+        "short": "Data em que o registro foi gravado pela primeira vez",
+        "definition": "Data em que o registro foi gravado pela primeira vez"
+      },
+      {
+        "id": "CarePlan.author",
+        "path": "CarePlan.author",
+        "short": "Quem é o responsável pela definição do plano de cuidado",
+        "definition": "Quem é o responsável pela definição do plano de cuidado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CarePlan.contributor",
+        "path": "CarePlan.contributor",
+        "short": "Quem forneceu o conteúdo do plano de cuidados",
+        "definition": "Quem forneceu o conteúdo do plano de cuidados",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CarePlan.careTeam",
+        "path": "CarePlan.careTeam",
+        "short": "Quem está envolvido no plano de cuidado",
+        "definition": "Quem está envolvido no plano de cuidado"
+      },
+      {
+        "id": "CarePlan.addresses",
+        "path": "CarePlan.addresses",
+        "short": "Problemas de saúde que este plano aborda",
+        "definition": "Problemas de saúde que este plano aborda",
+        "max": "1",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CarePlan.supportingInfo",
+        "path": "CarePlan.supportingInfo",
+        "short": "Informações consideradas como parte do plano de cuidado",
+        "definition": "Informações consideradas como parte do plano de cuidado"
+      },
+      {
+        "id": "CarePlan.goal",
+        "path": "CarePlan.goal",
+        "short": "Resultado desejado do plano de cuidado",
+        "definition": "Resultado desejado do plano de cuidado"
+      },
+      {
+        "id": "CarePlan.activity",
+        "path": "CarePlan.activity",
+        "short": "Ação a ocorrer como parte do plano de cuidado",
+        "definition": "Ação a ocorrer como parte do plano de cuidado",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "CarePlan.activity.outcomeCodeableConcept",
+        "path": "CarePlan.activity.outcomeCodeableConcept",
+        "short": "Resultados da atividade",
+        "definition": "Resultados da atividade"
+      },
+      {
+        "id": "CarePlan.activity.outcomeReference",
+        "path": "CarePlan.activity.outcomeReference",
+        "definition": "Appointment, Encounter, Procedure, etc."
+      },
+      {
+        "id": "CarePlan.activity.progress",
+        "path": "CarePlan.activity.progress",
+        "short": "Comentários sobre o status/progresso da atividade",
+        "definition": "Comentários sobre o status/progresso da atividade"
+      },
+      {
+        "id": "CarePlan.activity.reference",
+        "path": "CarePlan.activity.reference",
+        "short": "Detalhes da atividade definidos em recurso específico",
+        "definition": "Detalhes da atividade definidos em recurso específico"
+      },
+      {
+        "id": "CarePlan.activity.detail",
+        "path": "CarePlan.activity.detail",
+        "short": "Definição da atividade em conformidade",
+        "definition": "Definição da atividade em conformidade",
+        "min": 1
+      },
+      {
+        "id": "CarePlan.activity.detail.kind",
+        "path": "CarePlan.activity.detail.kind",
+        "short": "Tipos de recursos definidos como parte do FHIR que podem ser representados como definições em conformidade de uma atividade do plano de cuidados",
+        "definition": "Appointment | CommunicationRequest | DeviceRequest | MedicationRequest | NutritionOrder | Task | ServiceRequest | VisionPrescription"
+      },
+      {
+        "id": "CarePlan.activity.detail.instantiatesCanonical",
+        "path": "CarePlan.activity.detail.instantiatesCanonical",
+        "short": "Instancia o protocolo ou definição FHIR",
+        "definition": "Instancia o protocolo ou definição FHIR"
+      },
+      {
+        "id": "CarePlan.activity.detail.instantiatesUri",
+        "path": "CarePlan.activity.detail.instantiatesUri",
+        "short": "Instancia protocolo externo ou definição",
+        "definition": "Instancia protocolo externo ou definição"
+      },
+      {
+        "id": "CarePlan.activity.detail.code",
+        "path": "CarePlan.activity.detail.code",
+        "short": "Tipo de atividade detalhada",
+        "definition": "Tipo de atividade detalhada"
+      },
+      {
+        "id": "CarePlan.activity.detail.reasonCode",
+        "path": "CarePlan.activity.detail.reasonCode",
+        "short": "Por que a atividade deve ser feita ou por que a atividade foi proibida",
+        "definition": "Por que a atividade deve ser feita ou por que a atividade foi proibida"
+      },
+      {
+        "id": "CarePlan.activity.detail.reasonReference",
+        "path": "CarePlan.activity.detail.reasonReference",
+        "short": "Por que a atividade é necessária",
+        "definition": "Por que a atividade é necessária"
+      },
+      {
+        "id": "CarePlan.activity.detail.goal",
+        "path": "CarePlan.activity.detail.goal",
+        "short": "Objetivos com os quais esta atividade se relaciona",
+        "definition": "Objetivos com os quais esta atividade se relaciona"
+      },
+      {
+        "id": "CarePlan.activity.detail.status",
+        "path": "CarePlan.activity.detail.status",
+        "short": "Códigos que refletem o estado atual de uma atividade do plano de cuidados dentro de seu ciclo de vida geral.",
+        "definition": "not-started | scheduled | in-progress | on-hold | completed | cancelled | stopped | unknown | entered-in-error"
+      },
+      {
+        "id": "CarePlan.activity.detail.statusReason",
+        "path": "CarePlan.activity.detail.statusReason",
+        "short": "Motivo do status atual",
+        "definition": "Motivo do status atual"
+      },
+      {
+        "id": "CarePlan.activity.detail.doNotPerform",
+        "path": "CarePlan.activity.detail.doNotPerform",
+        "short": "Se for verdade, a atividade está proibindo a ação",
+        "definition": "Se for verdade, a atividade está proibindo a ação"
+      },
+      {
+        "id": "CarePlan.activity.detail.scheduled[x]",
+        "path": "CarePlan.activity.detail.scheduled[x]",
+        "short": "Quando a atividade deve ocorrer",
+        "definition": "Quando a atividade deve ocorrer",
+        "min": 1
+      },
+      {
+        "id": "CarePlan.activity.detail.location",
+        "path": "CarePlan.activity.detail.location",
+        "short": "Onde a atividade deve ocorrer",
+        "definition": "Onde a atividade deve ocorrer"
+      },
+      {
+        "id": "CarePlan.activity.detail.performer",
+        "path": "CarePlan.activity.detail.performer",
+        "short": "Quem será responsável pela atividade",
+        "definition": "Quem será responsável pela atividade"
+      },
+      {
+        "id": "CarePlan.activity.detail.product[x]",
+        "path": "CarePlan.activity.detail.product[x]",
+        "short": "O que deve ser administrado/fornecido",
+        "definition": "O que deve ser administrado/fornecido"
+      },
+      {
+        "id": "CarePlan.activity.detail.dailyAmount",
+        "path": "CarePlan.activity.detail.dailyAmount",
+        "short": "Como consumir/dia?",
+        "definition": "Como consumir/dia?"
+      },
+      {
+        "id": "CarePlan.activity.detail.quantity",
+        "path": "CarePlan.activity.detail.quantity",
+        "short": "Quanto administrar/fornecer/consumir",
+        "definition": "Quanto administrar/fornecer/consumir"
+      },
+      {
+        "id": "CarePlan.activity.detail.description",
+        "path": "CarePlan.activity.detail.description",
+        "short": "Informações extras descrevendo a atividade a ser realizada",
+        "definition": "Informações extras descrevendo a atividade a ser realizada",
+        "min": 1
+      },
+      {
+        "id": "CarePlan.note",
+        "path": "CarePlan.note",
+        "short": "Comentários sobre o plano de cuidados",
+        "definition": "Comentários sobre o plano de cuidados"
+      }
+    ]
+  }
+}

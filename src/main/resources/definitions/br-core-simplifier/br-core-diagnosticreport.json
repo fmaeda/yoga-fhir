@@ -1,0 +1,203 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-diagnosticreport",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-diagnosticreport",
+  "name": "br-core-diagnosticreport",
+  "status": "active",
+  "description": "Este perfil ",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DiagnosticReport",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "DiagnosticReport.identifier",
+        "path": "DiagnosticReport.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "DiagnosticReport.basedOn",
+        "path": "DiagnosticReport.basedOn",
+        "short": "O que foi solicitado",
+        "definition": "O que foi solicitado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan",
+              "http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest",
+              "http://hl7.org/fhir/StructureDefinition/NutritionOrder",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.status",
+        "path": "DiagnosticReport.status",
+        "short": "O status do relatório de diagnóstico.",
+        "definition": "registered | partial | preliminary | final +"
+      },
+      {
+        "id": "DiagnosticReport.category",
+        "path": "DiagnosticReport.category",
+        "short": "Categoria do serviço",
+        "definition": "Categoria do serviço"
+      },
+      {
+        "id": "DiagnosticReport.code",
+        "path": "DiagnosticReport.code",
+        "short": "Nome/Código para este relatório de diagnóstico",
+        "definition": "Nome/Código para este relatório de diagnóstico"
+      },
+      {
+        "id": "DiagnosticReport.subject",
+        "path": "DiagnosticReport.subject",
+        "short": "O indivíduo do relatório - geralmente, mas nem sempre, o paciente",
+        "definition": "O indivíduo do relatório - geralmente, mas nem sempre, o paciente",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.encounter",
+        "path": "DiagnosticReport.encounter",
+        "short": "Evento de assistência médica quando o teste foi solicitado",
+        "definition": "Evento de assistência médica quando o teste foi solicitado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.effective[x]",
+        "path": "DiagnosticReport.effective[x]",
+        "short": "Tempo/período de tempo clinicamente relevante para o relatório",
+        "definition": "Tempo/período de tempo clinicamente relevante para o relatório"
+      },
+      {
+        "id": "DiagnosticReport.issued",
+        "path": "DiagnosticReport.issued",
+        "short": "Data e hora em que esta versão foi feita",
+        "definition": "Data e hora em que esta versão foi feita"
+      },
+      {
+        "id": "DiagnosticReport.performer",
+        "path": "DiagnosticReport.performer",
+        "short": "Serviço de Diagnóstico Responsável",
+        "definition": "Serviço de Diagnóstico Responsável",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.resultsInterpreter",
+        "path": "DiagnosticReport.resultsInterpreter",
+        "short": "Intérprete de resultado primário",
+        "definition": "Intérprete de resultado primário",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.specimen",
+        "path": "DiagnosticReport.specimen",
+        "short": "Amostras nas quais este relatório se baseia",
+        "definition": "Amostras nas quais este relatório se baseia",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-specimen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.result",
+        "path": "DiagnosticReport.result",
+        "definition": "Observations",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.imagingStudy",
+        "path": "DiagnosticReport.imagingStudy",
+        "short": "Referência a todos os detalhes da imagem associada ao relatório de diagnóstico",
+        "definition": "Referência a todos os detalhes da imagem associada ao relatório de diagnóstico"
+      },
+      {
+        "id": "DiagnosticReport.media",
+        "path": "DiagnosticReport.media",
+        "short": "Imagens principais associadas a este relatório",
+        "definition": "Imagens principais associadas a este relatório"
+      },
+      {
+        "id": "DiagnosticReport.media.comment",
+        "path": "DiagnosticReport.media.comment",
+        "short": "Comentário sobre a imagem (por exemplo, explicação)",
+        "definition": "Comentário sobre a imagem (por exemplo, explicação)"
+      },
+      {
+        "id": "DiagnosticReport.media.link",
+        "path": "DiagnosticReport.media.link",
+        "short": "Referência à fonte da imagem",
+        "definition": "Referência à fonte da imagem"
+      },
+      {
+        "id": "DiagnosticReport.conclusion",
+        "path": "DiagnosticReport.conclusion",
+        "short": "Conclusão clínica (interpretação) dos resultados dos testes",
+        "definition": "Conclusão clínica (interpretação) dos resultados dos testes"
+      },
+      {
+        "id": "DiagnosticReport.conclusionCode",
+        "path": "DiagnosticReport.conclusionCode",
+        "short": "Códigos para a conclusão clínica dos resultados dos testes",
+        "definition": "Códigos para a conclusão clínica dos resultados dos testes"
+      },
+      {
+        "id": "DiagnosticReport.presentedForm",
+        "path": "DiagnosticReport.presentedForm",
+        "short": "Relatório completo conforme emitido",
+        "definition": "Relatório completo conforme emitido"
+      }
+    ]
+  }
+}

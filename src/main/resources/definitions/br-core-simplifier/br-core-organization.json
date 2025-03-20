@@ -1,0 +1,617 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-organization",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+  "name": "BRCoreOrganization",
+  "status": "active",
+  "description": "Este perfil representa um agrupamento formal ou informal reconhecido de pessoas ou organizações com o propósito de alcançar alguma forma de ação coletiva. Inclui empresas, instituições, corporações, departamentos, grupos comunitários, grupos de práticas de saúde, planos de saúde, empresas fabricantes de produtos medicinais, entre outros.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Organization.id",
+        "path": "Organization.id",
+        "short": "ID lógico deste artefato",
+        "definition": "ID lógico deste artefato"
+      },
+      {
+        "id": "Organization.meta",
+        "path": "Organization.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "Organization.implicitRules",
+        "path": "Organization.implicitRules",
+        "short": "Conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Conjunto de regras sob as quais este conteúdo foi criado"
+      },
+      {
+        "id": "Organization.language",
+        "path": "Organization.language",
+        "short": "Linguagem do recurso",
+        "definition": "A linguagem humana natural do recurso"
+      },
+      {
+        "id": "Organization.text",
+        "path": "Organization.text",
+        "short": "Texto narrativo",
+        "definition": "Um texto narrativo resumindo as informações do recurso"
+      },
+      {
+        "id": "Organization.contained",
+        "path": "Organization.contained",
+        "short": "Recursos contidos",
+        "definition": "Recursos contidos no recurso"
+      },
+      {
+        "id": "Organization.extension",
+        "path": "Organization.extension",
+        "short": "Extenções adicionais",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "Organization.modifierExtension",
+        "path": "Organization.modifierExtension",
+        "short": "Extensões adicionais",
+        "definition": "Extensões que não podem ser ignoradas"
+      },
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "slicing": {
+          "discriminator":  [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "description": "Identificadores nacionais do estabelecimento",
+          "rules": "open"
+        },
+        "short": "Nome da organização nacional",
+        "definition": "Identifica esta organização em vários sistemas",
+        "min": 1
+      },
+      {
+        "id": "Organization.identifier:cnes",
+        "path": "Organization.identifier",
+        "sliceName": "cnes",
+        "short": "Identificador do estabelecimento",
+        "definition": "Identificador do estabelecimento",
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:cnes.id",
+        "path": "Organization.identifier.id",
+        "short": "Id lógico do identificador do estabelecimento",
+        "definition": "Id lógico do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.extension",
+        "path": "Organization.identifier.extension",
+        "short": "Extensões do identificador do estabelecimento",
+        "definition": "Extensões incluídas no identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.use",
+        "path": "Organization.identifier.use",
+        "short": "Uso do identificador do estabelecimento",
+        "definition": "usual: identificador usual do estabelecimento. official: identificador oficial do estabelecimento. temp: identificador temporário do estabelecimento. secondary: identificador secundário do estabelecimento.",
+        "fixedCode": "official"
+      },
+      {
+        "id": "Organization.identifier:cnes.type",
+        "path": "Organization.identifier.type",
+        "short": "Tipo do identificador do estabelecimento",
+        "definition": "Código que representa o tipo do identificador do estabelecimento",
+        "binding": {
+          "strength": "required",
+          "description": "Tipo do identificador do estabelecimento"
+        }
+      },
+      {
+        "id": "Organization.identifier:cnes.type.id",
+        "path": "Organization.identifier.type.id",
+        "short": "Id lógico do tipo do identificador do estabelecimento",
+        "definition": "Id lógico do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.extension",
+        "path": "Organization.identifier.type.extension",
+        "short": "Extensões do tipo do identificador do estabelecimento",
+        "definition": "Extensões incluídas no tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.coding",
+        "path": "Organization.identifier.type.coding",
+        "short": "Codificação do tipo do identificador do estabelecimento",
+        "definition": "Codificação que representa o tipo do identificador do estabelecimento",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.coding.id",
+        "path": "Organization.identifier.type.coding.id",
+        "short": "Id lógico da codificação do tipo do identificador do estabelecimento",
+        "definition": "Id lógico da codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.coding.extension",
+        "path": "Organization.identifier.type.coding.extension",
+        "short": "Extensões da codificação do tipo do identificador do estabelecimento",
+        "definition": "Extensões incluídas na codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.coding.system",
+        "path": "Organization.identifier.type.coding.system",
+        "short": "Sistema da codificação do tipo do identificador do estabelecimento",
+        "definition": "Sistema que identifica a codificação do tipo do identificador do estabelecimento",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.coding.version",
+        "path": "Organization.identifier.type.coding.version",
+        "short": "Versão da codificação do tipo do identificador do estabelecimento",
+        "definition": "Versão da codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.coding.code",
+        "path": "Organization.identifier.type.coding.code",
+        "short": "Código da codificação do tipo do identificador do estabelecimento",
+        "definition": "Código que representa a codificação do tipo do identificador do estabelecimento",
+        "min": 1,
+        "fixedCode": "PPN"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.coding.display",
+        "path": "Organization.identifier.type.coding.display",
+        "short": "Texto da codificação do tipo do identificador do estabelecimento",
+        "definition": "Texto que representa a codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.coding.userSelected",
+        "path": "Organization.identifier.type.coding.userSelected",
+        "short": "Seleção do usuário da codificação do tipo do identificador do estabelecimento",
+        "definition": "Indica se a codificação do tipo do identificador do estabelecimento foi selecionada pelo usuário"
+      },
+      {
+        "id": "Organization.identifier:cnes.type.text",
+        "path": "Organization.identifier.type.text",
+        "short": "Texto do tipo do identificador do estabelecimento",
+        "definition": "Texto que representa o tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnes.system",
+        "path": "Organization.identifier.system",
+        "short": "Sistema do identificador do estabelecimento",
+        "definition": "Sistema que identifica o tipo do identificador do estabelecimento",
+        "min": 1,
+        "fixedUri": "https://saude.gov.br/sid/cnes"
+      },
+      {
+        "id": "Organization.identifier:cnes.value",
+        "path": "Organization.identifier.value",
+        "short": "Valor do identificador do estabelecimento",
+        "definition": "Valor do identificador do estabelecimento",
+        "min": 1
+      },
+      {
+        "id": "Organization.identifier:cnes.period",
+        "path": "Organization.identifier.period",
+        "short": "Período de uso do identificador do estabelecimento",
+        "definition": "Período de tempo durante o qual o identificador do estabelecimento foi utilizado"
+      },
+      {
+        "id": "Organization.identifier:cnes.assigner",
+        "path": "Organization.identifier.assigner",
+        "short": "Entidade que atribuiu o identificador do estabelecimento",
+        "definition": "Entidade que atribuiu o identificador do estabelecimento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Organization.identifier:cnes.assigner.display",
+        "path": "Organization.identifier.assigner.display",
+        "short": "Nome da entidade que atribuiu o identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf",
+        "path": "Organization.identifier",
+        "sliceName": "cpf",
+        "short": "Identificador do estabelecimento",
+        "definition": "Identificador do estabelecimento",
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:cpf.id",
+        "path": "Organization.identifier.id",
+        "short": "Id lógico do identificador do estabelecimento",
+        "definition": "Id lógico do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.extension",
+        "path": "Organization.identifier.extension",
+        "short": "Extensões do identificador do estabelecimento",
+        "definition": "Extensões incluídas no identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.use",
+        "path": "Organization.identifier.use",
+        "short": "Uso do identificador do estabelecimento",
+        "definition": "usual: identificador usual do estabelecimento. official: identificador oficial do estabelecimento. temp: identificador temporário do estabelecimento. secondary: identificador secundário do estabelecimento.",
+        "fixedCode": "official"
+      },
+      {
+        "id": "Organization.identifier:cpf.type",
+        "path": "Organization.identifier.type",
+        "short": "Tipo do identificador do estabelecimento",
+        "definition": "Código que representa o tipo do identificador do estabelecimento",
+        "binding": {
+          "strength": "required",
+          "description": "Tipo do identificador do estabelecimento"
+        }
+      },
+      {
+        "id": "Organization.identifier:cpf.type.id",
+        "path": "Organization.identifier.type.id",
+        "short": "Id lógico do tipo do identificador do estabelecimento",
+        "definition": "Id lógico do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.extension",
+        "path": "Organization.identifier.type.extension",
+        "short": "Extensões do tipo do identificador do estabelecimento",
+        "definition": "Extensões incluídas no tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.coding",
+        "path": "Organization.identifier.type.coding",
+        "short": "Codificação do tipo do identificador do estabelecimento",
+        "definition": "Codificação que representa o tipo do identificador do estabelecimento",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.coding.id",
+        "path": "Organization.identifier.type.coding.id",
+        "short": "Id lógico da codificação do tipo do identificador do estabelecimento",
+        "definition": "Id lógico da codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.coding.extension",
+        "path": "Organization.identifier.type.coding.extension",
+        "short": "Extensões da codificação do tipo do identificador do estabelecimento",
+        "definition": "Extensões incluídas na codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.coding.system",
+        "path": "Organization.identifier.type.coding.system",
+        "short": "Sistema da codificação do tipo do identificador do estabelecimento",
+        "definition": "Sistema que identifica a codificação do tipo do identificador do estabelecimento",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.coding.version",
+        "path": "Organization.identifier.type.coding.version",
+        "short": "Versão da codificação do tipo do identificador do estabelecimento",
+        "definition": "Versão da codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.coding.code",
+        "path": "Organization.identifier.type.coding.code",
+        "short": "Código da codificação do tipo do identificador do estabelecimento",
+        "definition": "Código que representa a codificação do tipo do identificador do estabelecimento",
+        "min": 1
+      },
+      {
+        "id": "Organization.identifier:cpf.type.coding.display",
+        "path": "Organization.identifier.type.coding.display",
+        "short": "Texto da codificação do tipo do identificador do estabelecimento",
+        "definition": "Texto que representa a codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.coding.userSelected",
+        "path": "Organization.identifier.type.coding.userSelected",
+        "short": "Seleção do usuário da codificação do tipo do identificador do estabelecimento",
+        "definition": "Indica se a codificação do tipo do identificador do estabelecimento foi selecionada pelo usuário"
+      },
+      {
+        "id": "Organization.identifier:cpf.type.text",
+        "path": "Organization.identifier.type.text",
+        "short": "Texto do tipo do identificador do estabelecimento",
+        "definition": "Texto que representa o tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cpf.system",
+        "path": "Organization.identifier.system",
+        "short": "Sistema do identificador do estabelecimento",
+        "definition": "Sistema que identifica o tipo do identificador do estabelecimento",
+        "min": 1,
+        "fixedUri": "https://saude.gov.br/sid/cpf"
+      },
+      {
+        "id": "Organization.identifier:cpf.value",
+        "path": "Organization.identifier.value",
+        "short": "Valor do identificador do estabelecimento",
+        "definition": "Valor do identificador do estabelecimento",
+        "min": 1
+      },
+      {
+        "id": "Organization.identifier:cpf.period",
+        "path": "Organization.identifier.period",
+        "short": "Período de uso do identificador do estabelecimento",
+        "definition": "Período de tempo durante o qual o identificador do estabelecimento foi utilizado"
+      },
+      {
+        "id": "Organization.identifier:cpf.assigner",
+        "path": "Organization.identifier.assigner",
+        "short": "Entidade que atribuiu o identificador do estabelecimento",
+        "definition": "Entidade que atribuiu o identificador do estabelecimento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Organization.identifier:cpf.assigner.display",
+        "path": "Organization.identifier.assigner.display",
+        "short": "Nome da entidade que atribuiu o identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj",
+        "path": "Organization.identifier",
+        "sliceName": "cnpj",
+        "short": "Identificador do estabelecimento",
+        "definition": "Identificador do estabelecimento",
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:cnpj.id",
+        "path": "Organization.identifier.id",
+        "short": "Id lógico do identificador do estabelecimento",
+        "definition": "Id lógico do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.extension",
+        "path": "Organization.identifier.extension",
+        "short": "Extensões do identificador do estabelecimento",
+        "definition": "Extensões incluídas no identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.use",
+        "path": "Organization.identifier.use",
+        "short": "Uso do identificador do estabelecimento",
+        "definition": "usual: identificador usual do estabelecimento. official: identificador oficial do estabelecimento. temp: identificador temporário do estabelecimento. secondary: identificador secundário do estabelecimento.",
+        "fixedCode": "official"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type",
+        "path": "Organization.identifier.type",
+        "short": "Tipo do identificador do estabelecimento",
+        "definition": "Código que representa o tipo do identificador do estabelecimento",
+        "binding": {
+          "strength": "required",
+          "description": "Tipo do identificador do estabelecimento"
+        }
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.id",
+        "path": "Organization.identifier.type.id",
+        "short": "Id lógico do tipo do identificador do estabelecimento",
+        "definition": "Id lógico do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.extension",
+        "path": "Organization.identifier.type.extension",
+        "short": "Extensões do tipo do identificador do estabelecimento",
+        "definition": "Extensões incluídas no tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.coding",
+        "path": "Organization.identifier.type.coding",
+        "short": "Codificação do tipo do identificador do estabelecimento",
+        "definition": "Codificação que representa o tipo do identificador do estabelecimento",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.coding.id",
+        "path": "Organization.identifier.type.coding.id",
+        "short": "Id lógico da codificação do tipo do identificador do estabelecimento",
+        "definition": "Id lógico da codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.coding.extension",
+        "path": "Organization.identifier.type.coding.extension",
+        "short": "Extensões da codificação do tipo do identificador do estabelecimento",
+        "definition": "Extensões incluídas na codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.coding.system",
+        "path": "Organization.identifier.type.coding.system",
+        "short": "Sistema da codificação do tipo do identificador do estabelecimento",
+        "definition": "Sistema que identifica a codificação do tipo do identificador do estabelecimento",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v2-0203"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.coding.version",
+        "path": "Organization.identifier.type.coding.version",
+        "short": "Versão da codificação do tipo do identificador do estabelecimento",
+        "definition": "Versão da codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.coding.code",
+        "path": "Organization.identifier.type.coding.code",
+        "short": "Código da codificação do tipo do identificador do estabelecimento",
+        "definition": "Código que representa a codificação do tipo do identificador do estabelecimento",
+        "min": 1
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.coding.display",
+        "path": "Organization.identifier.type.coding.display",
+        "short": "Texto da codificação do tipo do identificador do estabelecimento",
+        "definition": "Texto que representa a codificação do tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.coding.userSelected",
+        "path": "Organization.identifier.type.coding.userSelected",
+        "short": "Seleção do usuário da codificação do tipo do identificador do estabelecimento",
+        "definition": "Indica se a codificação do tipo do identificador do estabelecimento foi selecionada pelo usuário"
+      },
+      {
+        "id": "Organization.identifier:cnpj.type.text",
+        "path": "Organization.identifier.type.text",
+        "short": "Texto do tipo do identificador do estabelecimento",
+        "definition": "Texto que representa o tipo do identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.identifier:cnpj.system",
+        "path": "Organization.identifier.system",
+        "short": "Sistema do identificador do estabelecimento",
+        "definition": "Sistema que identifica o tipo do identificador do estabelecimento",
+        "min": 1,
+        "fixedUri": "https://saude.gov.br/sid/cnpj"
+      },
+      {
+        "id": "Organization.identifier:cnpj.value",
+        "path": "Organization.identifier.value",
+        "short": "Valor do identificador do estabelecimento",
+        "definition": "Valor do identificador do estabelecimento",
+        "min": 1
+      },
+      {
+        "id": "Organization.identifier:cnpj.period",
+        "path": "Organization.identifier.period",
+        "short": "Período de uso do identificador do estabelecimento",
+        "definition": "Período de tempo durante o qual o identificador do estabelecimento foi utilizado"
+      },
+      {
+        "id": "Organization.identifier:cnpj.assigner",
+        "path": "Organization.identifier.assigner",
+        "short": "Entidade que atribuiu o identificador do estabelecimento",
+        "definition": "Entidade que atribuiu o identificador do estabelecimento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Organization.identifier:cnpj.assigner.display",
+        "path": "Organization.identifier.assigner.display",
+        "short": "Nome da entidade que atribuiu o identificador do estabelecimento"
+      },
+      {
+        "id": "Organization.active",
+        "path": "Organization.active",
+        "short": "Estabelecimento de Saúde ainda está em ativo.",
+        "definition": "Se o Estabelecimento de Saúde ainda está em ativo."
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "short": "Tipo do Estabelecimento de saúde",
+        "definition": "Classificação do Estabelecimento de Saúde de acordo com um conjunto de dimensões.",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "short": "Nome usado para a organização",
+        "definition": "Nome do Estabelecimento de saúde"
+      },
+      {
+        "id": "Organization.alias",
+        "path": "Organization.alias",
+        "short": "Nome Empresarial",
+        "definition": "Firma ou denominação adotada para o exercício da instituição/entidade/órgão/empresa."
+      },
+      {
+        "id": "Organization.telecom",
+        "path": "Organization.telecom",
+        "short": "Meio de contato",
+        "definition": "Informações do(s) meio(s) de contato com o Estabelecimento de Saúde."
+      },
+      {
+        "id": "Organization.address",
+        "path": "Organization.address",
+        "short": "Dados de Endereçamento",
+        "definition": "Dados do endereço onde o Estabelecimento de Saúde é localizado."
+      },
+      {
+        "id": "Organization.partOf",
+        "path": "Organization.partOf",
+        "short": "CPF/CNPJ do Estabelecimento/Mantenedora",
+        "definition": "Pessoa Física (CPF) ou Jurídica (CNPJ) proprietária do Estabelecimento de Saúde.",
+        "min": 1,
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Organization.contact",
+        "path": "Organization.contact",
+        "short": "Contato",
+        "definition": "Contato para a organização para uma determinada finalidade"
+      },
+      {
+        "id": "Organization.contact.purpose",
+        "path": "Organization.contact.purpose",
+        "short": "Tipo de Contato",
+        "definition": "O tipo de contato Vinculação: ContactEntityType ( extensible ): A finalidade para a qual você entraria em contato com uma parte de contato."
+      },
+      {
+        "id": "Organization.contact.name",
+        "path": "Organization.contact.name",
+        "short": "Nome Associado ao contato",
+        "definition": "Um nome associado ao contato"
+      },
+      {
+        "id": "Organization.contact.telecom",
+        "path": "Organization.contact.telecom",
+        "short": "Meio de Contato",
+        "definition": "Contato, Informação de Contato, Telefone, E-Mail, Correio Eletrônico, Celular, Recado"
+      },
+      {
+        "id": "Organization.contact.address",
+        "path": "Organization.contact.address",
+        "short": "Endereço para contato",
+        "definition": "Dados do endereço para contato."
+      },
+      {
+        "id": "Organization.endpoint",
+        "path": "Organization.endpoint",
+        "short": "APIs que disponibilizam acesso aos serviços da organização",
+        "definition": "APIs que disponibilizam acesso aos serviços da organização"
+      }
+    ]
+  }
+}

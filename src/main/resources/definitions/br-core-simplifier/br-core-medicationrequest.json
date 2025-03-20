@@ -1,0 +1,707 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-medicationrequest",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest",
+  "name": "BRCoreMedicationRequest",
+  "title": "br-core-medicationrequest",
+  "status": "active",
+  "description": "Este perfil restringe a representação de uma requisição de medicamento relacionada ao paciente",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationRequest",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "MedicationRequest.id",
+        "path": "MedicationRequest.id",
+        "short": "Identificador lógico deste artefato",
+        "definition": "Identificador lógico deste artefato"
+      },
+      {
+        "id": "MedicationRequest.meta",
+        "path": "MedicationRequest.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados sobre o recurso"
+      },
+      {
+        "id": "MedicationRequest.implicitRules",
+        "path": "MedicationRequest.implicitRules",
+        "short": "Conjunto de regras sob as quais este conteúdo foi criado",
+        "definition": "Conjunto de regras sob as quais este conteúdo foi criado"
+      },
+      {
+        "id": "MedicationRequest.language",
+        "path": "MedicationRequest.language",
+        "short": "Idioma do conteúdo do recurso",
+        "definition": "Idioma do conteúdo do recurso"
+      },
+      {
+        "id": "MedicationRequest.text",
+        "path": "MedicationRequest.text",
+        "short": "Resumo do texto do recurso em linguagem natural",
+        "definition": "Resumo do texto do recurso em linguagem natural"
+      },
+      {
+        "id": "MedicationRequest.contained",
+        "path": "MedicationRequest.contained",
+        "short": "Recursos contidos neste artefato",
+        "definition": "Recursos contidos neste artefato"
+      },
+      {
+        "id": "MedicationRequest.extension",
+        "path": "MedicationRequest.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "MedicationRequest.modifierExtension",
+        "path": "MedicationRequest.modifierExtension",
+        "short": "Extensão que não pode ser ignorada",
+        "definition": "Extensão que não pode ser ignorada"
+      },
+      {
+        "id": "MedicationRequest.identifier",
+        "path": "MedicationRequest.identifier",
+        "short": "Identificadores externos para este pedido",
+        "definition": "Identificadores externos para este pedido"
+      },
+      {
+        "id": "MedicationRequest.status",
+        "path": "MedicationRequest.status",
+        "short": "Status atual da requisição",
+        "definition": "Status atual da requisição de medicamento: ativa,  em espera, cancelada, concluída, registrada por engano, interrompida, rascunho, desconhecido"
+      },
+      {
+        "id": "MedicationRequest.statusReason",
+        "path": "MedicationRequest.statusReason",
+        "short": "Motivo do status atual",
+        "definition": "Motivo do status atual"
+      },
+      {
+        "id": "MedicationRequest.intent",
+        "path": "MedicationRequest.intent",
+        "short": "O tipo de requisição de medicamento.",
+        "definition": "Tipo de requisição de medicamento: prescrição, prescrição original, prescrição automática, reposição, refill, planejada, opcional (a critério médico), instância específica da prescrição"
+      },
+      {
+        "id": "MedicationRequest.category",
+        "path": "MedicationRequest.category",
+        "short": "Tipo de uso do medicamento",
+        "definition": "Código que identifica a categoria de uso do medicamento requisitado"
+      },
+      {
+        "id": "MedicationRequest.priority",
+        "path": "MedicationRequest.priority",
+        "short": "Identifica o grau de prioridade da requisição de medicamentos",
+        "definition": "Identifica o grau de prioridade da requisição de medicamentos: rotina | urgente | o mais rápido possível | emergência"
+      },
+      {
+        "id": "MedicationRequest.doNotPerform",
+        "path": "MedicationRequest.doNotPerform",
+        "short": "Verdadeiro se a requisição for de proibição de execução",
+        "definition": "Verdadeiro se a requisição for de proibição de execução"
+      },
+      {
+        "id": "MedicationRequest.reported[x]",
+        "path": "MedicationRequest.reported[x]",
+        "slicing": {
+          "discriminator":  [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Informado em vez de registro primário",
+        "definition": "Informado em vez de registro primário"
+      },
+      {
+        "id": "MedicationRequest.reported[x]:reportedReference",
+        "path": "MedicationRequest.reported[x]",
+        "sliceName": "reportedReference",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.medication[x]",
+        "path": "MedicationRequest.medication[x]",
+        "slicing": {
+          "discriminator":  [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "short": "Medicamento prescrito",
+        "definition": "Medicamento prescrito"
+      },
+      {
+        "id": "MedicationRequest.medication[x]:medicationReference",
+        "path": "MedicationRequest.medication[x]",
+        "sliceName": "medicationReference",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.subject",
+        "path": "MedicationRequest.subject",
+        "short": "A quem ou a que grupo se destina a requisição de medicamento",
+        "definition": "A quem ou a que grupo se destina a requisição de medicamento",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.subject.id",
+        "path": "MedicationRequest.subject.id",
+        "short": "Identificador único para referência entre elementos",
+        "definition": "Identificador único para referência entre elementos"
+      },
+      {
+        "id": "MedicationRequest.subject.extension",
+        "path": "MedicationRequest.subject.extension",
+        "short": "Extensões adicionais que não fazem parte do modelo de dados básico",
+        "definition": "Extensões adicionais que não fazem parte do modelo de dados básico"
+      },
+      {
+        "id": "MedicationRequest.subject.reference",
+        "path": "MedicationRequest.subject.reference",
+        "short": "Referência literal. URL relativa, interna ou externa",
+        "definition": "Referência literal. URL relativa, interna ou externa"
+      },
+      {
+        "id": "MedicationRequest.subject.type",
+        "path": "MedicationRequest.subject.type",
+        "short": "Tipo de recurso ao qual a referência é feita",
+        "definition": "Tipo de recurso ao qual a referência é feita"
+      },
+      {
+        "id": "MedicationRequest.subject.identifier",
+        "path": "MedicationRequest.subject.identifier",
+        "short": "Referência lógica, quando a referência literal não é conhecida",
+        "definition": "Referência lógica, quando a referência literal não é conhecida"
+      },
+      {
+        "id": "MedicationRequest.subject.display",
+        "path": "MedicationRequest.subject.display",
+        "short": "Alternativa de texto para o recurso",
+        "definition": "Alternativa de texto para o recurso"
+      },
+      {
+        "id": "MedicationRequest.encounter",
+        "path": "MedicationRequest.encounter",
+        "short": "Contato assistencial criado como parte do encontro/admissão/estadia",
+        "definition": "Contato assistencial criado como parte do encontro/admissão/estadia",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.supportingInformation",
+        "path": "MedicationRequest.supportingInformation",
+        "short": "Informações para apoiar a requisição do medicamento",
+        "definition": "Informações para apoiar a requisição do medicamento"
+      },
+      {
+        "id": "MedicationRequest.authoredOn",
+        "path": "MedicationRequest.authoredOn",
+        "short": "Quando a requisição foi criada",
+        "definition": "Quando a requisição foi criada",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.requester",
+        "path": "MedicationRequest.requester",
+        "short": "Quem ou o que solicitou a requisição",
+        "definition": "Quem ou o que solicitou a requisição",
+        "min": 1,
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "http://hl7.org/fhir/StructureDefinition/Device"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.performer",
+        "path": "MedicationRequest.performer",
+        "short": "Prescritor indicado para a administração",
+        "definition": "Prescritor indicado para a administração",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.performerType",
+        "path": "MedicationRequest.performerType",
+        "short": "Especialidade do prescritor para a administração do medicamento",
+        "definition": "Especialidade do prescritor para a administração do medicamento"
+      },
+      {
+        "id": "MedicationRequest.recorder",
+        "path": "MedicationRequest.recorder",
+        "short": "Pessoa que registrou a requisição",
+        "definition": "Pessoa que registrou a requisição",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.reasonCode",
+        "path": "MedicationRequest.reasonCode",
+        "short": "Motivo ou indicação para solicitar ou não o medicamento",
+        "definition": "Motivo ou indicação para solicitar ou não o medicamento. Conceito codificado que indica o motivo pelo qual o medicamento foi solicitado ou não"
+      },
+      {
+        "id": "MedicationRequest.reasonReference",
+        "path": "MedicationRequest.reasonReference",
+        "short": "Condição ou observação que apoia o motivo pelo qual a prescrição está sendo escrita",
+        "definition": "Condição ou observação que apoia o motivo pelo qual a prescrição está sendo escrita",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.instantiatesCanonical",
+        "path": "MedicationRequest.instantiatesCanonical",
+        "short": "Instancia do protocolo ou definição FHIR",
+        "definition": "Instancia do protocolo ou definição FHIR"
+      },
+      {
+        "id": "MedicationRequest.instantiatesUri",
+        "path": "MedicationRequest.instantiatesUri",
+        "short": "URI da instancia do  protocolo ou a definição FHIR externa",
+        "definition": "URI da instancia do protocolo ou a definição externa"
+      },
+      {
+        "id": "MedicationRequest.basedOn",
+        "path": "MedicationRequest.basedOn",
+        "short": "o quê a requisição atende",
+        "definition": "o quê a requisição atende",
+        "max": "1",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-immunizationrecommendation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.groupIdentifier",
+        "path": "MedicationRequest.groupIdentifier",
+        "short": "requisição composta da qual esta requisição faz parte",
+        "definition": "requisição composta da qual esta requisição faz parte"
+      },
+      {
+        "id": "MedicationRequest.courseOfTherapyType",
+        "path": "MedicationRequest.courseOfTherapyType",
+        "short": "Identifica o padrão de administração de medicamentos",
+        "definition": "Identifica o padrão de administração de medicamentos"
+      },
+      {
+        "id": "MedicationRequest.insurance",
+        "path": "MedicationRequest.insurance",
+        "short": "Cobertura de planos/seguros de saúde associada",
+        "definition": "Cobertura de planos/seguros de saúde associada"
+      },
+      {
+        "id": "MedicationRequest.note",
+        "path": "MedicationRequest.note",
+        "short": "Informações sobre a requisição",
+        "definition": "Informações sobre a requisição"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction",
+        "path": "MedicationRequest.dosageInstruction",
+        "short": "Como o medicamento deve ser usado",
+        "definition": "Como o medicamento deve ser usado"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.id",
+        "path": "MedicationRequest.dosageInstruction.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.extension",
+        "path": "MedicationRequest.dosageInstruction.extension",
+        "short": "Conteúdo adicional definido pelas implementações",
+        "definition": "Conteúdo adicional definido pelas implementações"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.modifierExtension",
+        "path": "MedicationRequest.dosageInstruction.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.sequence",
+        "path": "MedicationRequest.dosageInstruction.sequence",
+        "short": "Ordem na requisição",
+        "definition": "Ordem na requisição"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.text",
+        "path": "MedicationRequest.dosageInstruction.text",
+        "short": "Instruções de dosagem em texto livre, por exemplo, SIG",
+        "definition": "Instruções de dosagem em texto livre, por exemplo, SIG"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.additionalInstruction",
+        "path": "MedicationRequest.dosageInstruction.additionalInstruction",
+        "short": "Instruções suplementares ou advertências ao paciente.",
+        "definition": "Instruções suplementares ou advertências ao paciente - por exemplo: 'com as refeições', 'pode ​​causar sonolência'"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.patientInstruction",
+        "path": "MedicationRequest.dosageInstruction.patientInstruction",
+        "short": "Instruções orientadas ao paciente ou ao consumidor",
+        "definition": "Instruções orientadas ao paciente ou ao consumidor"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.timing",
+        "path": "MedicationRequest.dosageInstruction.timing",
+        "short": "Quando a medicamento deve ser administrado",
+        "definition": "Quando a medicamento deve ser administrado"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.timing.repeat",
+        "path": "MedicationRequest.dosageInstruction.timing.repeat",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.asNeeded[x]",
+        "path": "MedicationRequest.dosageInstruction.asNeeded[x]",
+        "short": "Uso - se necessário",
+        "definition": "Conceito codificado que identifica a pré-condição que deve ser atendida ou avaliada antes de consumir ou administrar uma dose de medicamento."
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.site",
+        "path": "MedicationRequest.dosageInstruction.site",
+        "short": "Local anatômico de administração do medicamento",
+        "definition": "Local anatômico de administração do medicamento"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route",
+        "path": "MedicationRequest.dosageInstruction.route",
+        "short": "Via de admiminstração do medicamento",
+        "definition": "Conceito - referência a uma terminologia ou apenas texto que representa a via de administração do medicamento"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.method",
+        "path": "MedicationRequest.dosageInstruction.method",
+        "short": "Técnica para a administração do medicamento",
+        "definition": "Técnica para a administração do medicamento"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate",
+        "short": "Quantidade administrada do medicamento",
+        "definition": "Quantidade administrada do medicamento"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate.id",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate.extension",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate.extension",
+        "short": "Conteúdo adicional definido pelas implementações",
+        "definition": "Conteúdo adicional definido pelas implementações"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate.type",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate.type",
+        "short": "O tipo de dose ou taxa de administração especificada",
+        "definition": "O tipo de dose ou taxa de administração especificada"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate.dose[x]",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate.dose[x]",
+        "short": "Quantidade de medicamento por dose",
+        "definition": "Quantidade de medicamento por dose",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate.rate[x]",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate.rate[x]",
+        "short": "Quantidade de medicamento por unidade de tempo",
+        "definition": "Quantidade de medicamento por unidade de tempo"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.maxDosePerPeriod",
+        "path": "MedicationRequest.dosageInstruction.maxDosePerPeriod",
+        "short": "Quantidade máxima de medicamento por unidade de tempo",
+        "definition": "Quantidade máxima de medicamento por unidade de tempo"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.maxDosePerAdministration",
+        "path": "MedicationRequest.dosageInstruction.maxDosePerAdministration",
+        "short": "Quantidade máxima de medicamento por administração",
+        "definition": "Quantidade máxima de medicamento por administração"
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.maxDosePerLifetime",
+        "path": "MedicationRequest.dosageInstruction.maxDosePerLifetime",
+        "short": "Quantidade máxima de medicamento por toda a vida do paciente",
+        "definition": "Quantidade máxima de medicamento por toda a vida do paciente"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest",
+        "path": "MedicationRequest.dispenseRequest",
+        "short": "Autorização de fornecimento de medicamentos",
+        "definition": "Autorização de fornecimento de medicamentos"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.id",
+        "path": "MedicationRequest.dispenseRequest.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.extension",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.modifierExtension",
+        "path": "MedicationRequest.dispenseRequest.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.initialFill",
+        "path": "MedicationRequest.dispenseRequest.initialFill",
+        "short": "Preenchimento dos primeiros detalhes da autorização de fornecimento de medicamentos",
+        "definition": "Preenchimento dos primeiros detalhes da autorização de fornecimento de medicamentos"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.initialFill.id",
+        "path": "MedicationRequest.dispenseRequest.initialFill.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.initialFill.extension",
+        "path": "MedicationRequest.dispenseRequest.initialFill.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.initialFill.modifierExtension",
+        "path": "MedicationRequest.dispenseRequest.initialFill.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.initialFill.quantity",
+        "path": "MedicationRequest.dispenseRequest.initialFill.quantity",
+        "short": "Quantidade inicial de fornecimento autorizada",
+        "definition": "Quantidade inicial de fornecimento autorizada"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.initialFill.duration",
+        "path": "MedicationRequest.dispenseRequest.initialFill.duration",
+        "short": "Duração da primeira autorização de fornecimento de medicamentos",
+        "definition": "Duração da primeira autorização de fornecimento de medicamentos"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.dispenseInterval",
+        "path": "MedicationRequest.dispenseRequest.dispenseInterval",
+        "short": "Período mínimo de tempo entre dispensações de medicamentos autorizado",
+        "definition": "Período mínimo de tempo entre dispensações de medicamentos autorizado"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.validityPeriod",
+        "path": "MedicationRequest.dispenseRequest.validityPeriod",
+        "short": "Validade da autorização de fornecimento de medicamentos",
+        "definition": "validade da autorização de fornecimento de medicamentos",
+        "min": 1
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.validityPeriod.id",
+        "path": "MedicationRequest.dispenseRequest.validityPeriod.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.validityPeriod.start",
+        "path": "MedicationRequest.dispenseRequest.validityPeriod.start",
+        "short": "Data/Hora do início da validade da autorização(intervalo fechado)",
+        "definition": "Data/Hora de início da validade da autorização (intervalo fechado)"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.validityPeriod.end",
+        "path": "MedicationRequest.dispenseRequest.validityPeriod.end",
+        "short": "Data/Hora do final da validade da autorização(intervalo fechado)",
+        "definition": "Data/Hora do final da validade da autorização(intervalo fechado), se não for contínuo"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed",
+        "path": "MedicationRequest.dispenseRequest.numberOfRepeatsAllowed",
+        "short": "Número de refills autorizados",
+        "definition": "Número de refills autorizados"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.quantity",
+        "path": "MedicationRequest.dispenseRequest.quantity",
+        "short": "Quantidade de medicamento a ser fornecido por dispensação",
+        "definition": "Quantidade de medicamento a ser fornecido por dispensação"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.expectedSupplyDuration",
+        "path": "MedicationRequest.dispenseRequest.expectedSupplyDuration",
+        "short": "Número de dias de fornecimento de medicamentos por dispensação",
+        "definition": "Número de dias de fornecimento de medicamentos por dispensação"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.performer",
+        "path": "MedicationRequest.dispenseRequest.performer",
+        "short": "Organização preferencial para a dispensação",
+        "definition": "Organização preferencial para a dispensação",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.substitution",
+        "path": "MedicationRequest.substitution",
+        "short": "Restrições à substituição de medicamentos",
+        "definition": "Restrições à substituição de medicamentos"
+      },
+      {
+        "id": "MedicationRequest.substitution.id",
+        "path": "MedicationRequest.substitution.id",
+        "short": "Identificador exclusivo para referência entre elementos",
+        "definition": "Identificador exclusivo para referência entre elementos"
+      },
+      {
+        "id": "MedicationRequest.substitution.extension",
+        "path": "MedicationRequest.substitution.extension",
+        "short": "Conteúdo adicional definido por implementações",
+        "definition": "Conteúdo adicional definido por implementações"
+      },
+      {
+        "id": "MedicationRequest.substitution.modifierExtension",
+        "path": "MedicationRequest.substitution.modifierExtension",
+        "short": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas",
+        "definition": "Extensões que não podem ser ignoradas mesmo que não sejam reconhecidas"
+      },
+      {
+        "id": "MedicationRequest.substitution.allowed[x]",
+        "path": "MedicationRequest.substitution.allowed[x]",
+        "short": "Informa se a substituição de medicamentos é ou não permitida",
+        "definition": "Informa se a substituição de medicamentos é ou não permitida"
+      },
+      {
+        "id": "MedicationRequest.substitution.reason",
+        "path": "MedicationRequest.substitution.reason",
+        "short": "Porque (ou não) a substituição foi feita",
+        "definition": "Um conceito codificado que descreve a razão pela qual um medicamento diferente deve (ou não) ser substituído daquele que foi prescrito."
+      },
+      {
+        "id": "MedicationRequest.priorPrescription",
+        "path": "MedicationRequest.priorPrescription",
+        "short": "Requisição anterior que está sendo substituída",
+        "definition": "Requisição anterior que está sendo substituída",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.detectedIssue",
+        "path": "MedicationRequest.detectedIssue",
+        "short": "Condição Clínica detectada",
+        "definition": "Condição Clínica detectada"
+      },
+      {
+        "id": "MedicationRequest.eventHistory",
+        "path": "MedicationRequest.eventHistory",
+        "short": "Uma lista de eventos de interesse na linha do tempo",
+        "definition": "Uma lista de eventos de interesse na linha do tempo"
+      }
+    ]
+  }
+}

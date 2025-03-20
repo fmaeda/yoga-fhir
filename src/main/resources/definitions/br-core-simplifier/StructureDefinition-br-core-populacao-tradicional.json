@@ -1,0 +1,83 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-populacao-tradicional",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-populacaotradicional",
+  "version": "1.0",
+  "name": "br-core-populacao-tradicional",
+  "title": "Extensão de populacao tradicional do Core do Brasil",
+  "status": "active",
+  "date": "2024-11-19T13:41:10+00:00",
+  "publisher": "Ministério da Saúde do Brasil",
+  "contact":  [
+    {
+      "name": "Ministério da Saúde do Brasil",
+      "telecom":  [
+        {
+          "system": "url",
+          "value": "https://gov.br/saude"
+        }
+      ]
+    }
+  ],
+  "description": "Este perfil de extensão representa um populacao tradicional com a qual uma pessoa se associa",
+  "jurisdiction":  [
+    {
+      "coding":  [
+        {
+          "code": "BR",
+          "system": "urn:iso:std:iso:3166"
+        }
+      ]
+    }
+  ],
+  "purpose": "Elemento que deve ser utilizado para representar uma população tradicional do paciente",
+  "copyright": "CC-01",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context":  [
+    {
+      "type": "element",
+      "expression": "Patient"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Extensão população tradicional",
+        "definition": "Conceitos que definem a população tradicional do paciente",
+        "max": "1"
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-populacao-tradicional"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type":  [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-populacao-tradicional",
+          "description": "População tradicional"
+        }
+      }
+    ]
+  }
+}

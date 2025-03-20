@@ -1,0 +1,132 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-immunizationrecommendation",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-immunizationrecommendation",
+  "name": "br-core-immunizationrecommendation",
+  "status": "active",
+  "description": "Este perfil ",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ImmunizationRecommendation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "ImmunizationRecommendation.identifier",
+        "path": "ImmunizationRecommendation.identifier",
+        "short": "Identificadores externos para este recurso",
+        "definition": "Identificadores externos para este recurso"
+      },
+      {
+        "id": "ImmunizationRecommendation.patient",
+        "path": "ImmunizationRecommendation.patient",
+        "short": "Para quem é esse perfil",
+        "definition": "Para quem é esse perfil"
+      },
+      {
+        "id": "ImmunizationRecommendation.date",
+        "path": "ImmunizationRecommendation.date",
+        "short": "Data em que a recomendação foi criada",
+        "definition": "Data em que a recomendação foi criada"
+      },
+      {
+        "id": "ImmunizationRecommendation.authority",
+        "path": "ImmunizationRecommendation.authority",
+        "short": "Quem é responsável pelo protocolo",
+        "definition": "Quem é responsável pelo protocolo"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation",
+        "path": "ImmunizationRecommendation.recommendation",
+        "short": "Recomendações para administração de vacinas",
+        "definition": "Recomendações para administração de vacinas"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.vaccineCode",
+        "path": "ImmunizationRecommendation.recommendation.vaccineCode",
+        "short": "A recomendação da vacina ou do grupo de vacina se aplica a",
+        "definition": "A recomendação da vacina ou do grupo de vacina se aplica a"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.targetDisease",
+        "path": "ImmunizationRecommendation.recommendation.targetDisease",
+        "short": "Doença contra a qual se deve imunizar",
+        "definition": "Doença contra a qual se deve imunizar"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.contraindicatedVaccineCode",
+        "path": "ImmunizationRecommendation.recommendation.contraindicatedVaccineCode",
+        "short": "Vacina que é contraindicada para cumprir a recomendação",
+        "definition": "Vacina que é contraindicada para cumprir a recomendação"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.forecastStatus",
+        "path": "ImmunizationRecommendation.recommendation.forecastStatus",
+        "short": "Status de recomendação da vacina",
+        "definition": "Status de recomendação da vacina"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.forecastReason",
+        "path": "ImmunizationRecommendation.recommendation.forecastReason",
+        "short": "Motivo do status de administração da vacina",
+        "definition": "Motivo do status de administração da vacina"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.dateCriterion",
+        "path": "ImmunizationRecommendation.recommendation.dateCriterion",
+        "short": "Datas que regem a imunização proposta",
+        "definition": "Datas que regem a imunização proposta"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.dateCriterion.code",
+        "path": "ImmunizationRecommendation.recommendation.dateCriterion.code",
+        "short": "Tipo de data",
+        "definition": "Tipo de data"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.dateCriterion.value",
+        "path": "ImmunizationRecommendation.recommendation.dateCriterion.value",
+        "short": "Data recomendada",
+        "definition": "Data recomendada"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.description",
+        "path": "ImmunizationRecommendation.recommendation.description",
+        "short": "Detalhes do protocolo",
+        "definition": "Detalhes do protocolo"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.series",
+        "path": "ImmunizationRecommendation.recommendation.series",
+        "short": "Nome da série de vacinação",
+        "definition": "Nome da série de vacinação"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.doseNumber[x]",
+        "path": "ImmunizationRecommendation.recommendation.doseNumber[x]",
+        "short": "Número de dose recomendado dentro da série",
+        "definition": "Número de dose recomendado dentro da série"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.seriesDoses[x]",
+        "path": "ImmunizationRecommendation.recommendation.seriesDoses[x]",
+        "short": "Número recomendado de doses para imunidade",
+        "definition": "Número recomendado de doses para imunidade"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.supportingImmunization",
+        "path": "ImmunizationRecommendation.recommendation.supportingImmunization",
+        "short": "Imunizações anteriores que apoiam a recomendação",
+        "definition": "Imunizações anteriores que apoiam a recomendação"
+      },
+      {
+        "id": "ImmunizationRecommendation.recommendation.supportingPatientInformation",
+        "path": "ImmunizationRecommendation.recommendation.supportingPatientInformation",
+        "short": "Observações do paciente que apoiam a recomendação",
+        "definition": "Observações do paciente que apoiam a recomendação"
+      }
+    ]
+  }
+}

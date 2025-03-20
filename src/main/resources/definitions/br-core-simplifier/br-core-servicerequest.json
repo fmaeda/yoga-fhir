@@ -1,0 +1,307 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "br-core-servicerequest",
+  "url": "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest",
+  "name": "br-core-servicerequest",
+  "status": "active",
+  "description": "Este perfil ",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ServiceRequest",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/ServiceRequest",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "ServiceRequest.id",
+        "path": "ServiceRequest.id",
+        "short": "ID lógico deste artefato",
+        "definition": "ID lógico deste artefato"
+      },
+      {
+        "id": "ServiceRequest.meta",
+        "path": "ServiceRequest.meta",
+        "short": "Metadados sobre o recurso",
+        "definition": "Metadados adicionais sobre o recurso"
+      },
+      {
+        "id": "ServiceRequest.language",
+        "path": "ServiceRequest.language",
+        "short": "Linguagem do recurso",
+        "definition": "A linguagem humana natural do recurso"
+      },
+      {
+        "id": "ServiceRequest.text",
+        "path": "ServiceRequest.text",
+        "short": "Resumo de texto para o recurso, para interpretação humana",
+        "definition": "Um texto narrativo resumindo as informações do recurso"
+      },
+      {
+        "id": "ServiceRequest.identifier",
+        "path": "ServiceRequest.identifier",
+        "short": "ID lógico deste artefato",
+        "definition": "ID lógico deste artefato"
+      },
+      {
+        "id": "ServiceRequest.instantiatesCanonical",
+        "path": "ServiceRequest.instantiatesCanonical",
+        "short": "Instancia o protocolo ou definição FHIR",
+        "definition": "Instancia o protocolo ou definição FHIR"
+      },
+      {
+        "id": "ServiceRequest.instantiatesUri",
+        "path": "ServiceRequest.instantiatesUri",
+        "short": "Instancia protocolo externo ou definição",
+        "definition": "Instancia protocolo externo ou definição"
+      },
+      {
+        "id": "ServiceRequest.basedOn",
+        "path": "ServiceRequest.basedOn",
+        "short": "Que pedido atende",
+        "definition": "Que pedido atende",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-careplan",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-servicerequest",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-medicationrequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.replaces",
+        "path": "ServiceRequest.replaces",
+        "short": "Qual solicitação substitui",
+        "definition": "Qual solicitação substitui"
+      },
+      {
+        "id": "ServiceRequest.requisition",
+        "path": "ServiceRequest.requisition",
+        "short": "ID de solicitação composta",
+        "definition": "ID de solicitação composta"
+      },
+      {
+        "id": "ServiceRequest.status",
+        "path": "ServiceRequest.status",
+        "short": "Códigos que identificam o estágio do ciclo de vida de uma solicitação.",
+        "definition": "draft | active | on-hold | revoked | completed | entered-in-error | unknown"
+      },
+      {
+        "id": "ServiceRequest.intent",
+        "path": "ServiceRequest.intent",
+        "short": "Códigos que indicam o grau de autoridade/intencionalidade associado a uma solicitação.",
+        "definition": "proposal | plan | directive | order | original-order | reflex-order | filler-order | instance-order | option"
+      },
+      {
+        "id": "ServiceRequest.category",
+        "path": "ServiceRequest.category",
+        "short": "Códigos que indicam o grau de autoridade/intencionalidade associado a uma solicitação.",
+        "definition": "Códigos que indicam o grau de autoridade/intencionalidade associado a uma solicitação."
+      },
+      {
+        "id": "ServiceRequest.priority",
+        "path": "ServiceRequest.priority",
+        "short": "A prioridade clínica de uma ordem diagnóstica.",
+        "definition": "routine | urgent | asap | stat"
+      },
+      {
+        "id": "ServiceRequest.doNotPerform",
+        "path": "ServiceRequest.doNotPerform",
+        "short": "Verdadeiro se o serviço/procedimento não deve ser executado",
+        "definition": "Verdadeiro se o serviço/procedimento não deve ser executado"
+      },
+      {
+        "id": "ServiceRequest.code",
+        "path": "ServiceRequest.code",
+        "definition": "What is being requested/ordered"
+      },
+      {
+        "id": "ServiceRequest.orderDetail",
+        "path": "ServiceRequest.orderDetail",
+        "short": "Informações adicionais sobre o pedido",
+        "definition": "Informações adicionais sobre o pedido"
+      },
+      {
+        "id": "ServiceRequest.quantity[x]",
+        "path": "ServiceRequest.quantity[x]",
+        "short": "Valor do serviço",
+        "definition": "Valor do serviço"
+      },
+      {
+        "id": "ServiceRequest.subject",
+        "path": "ServiceRequest.subject",
+        "short": "Indivíduo ou entidade para a qual o serviço é solicitado",
+        "definition": "Indivíduo ou entidade para a qual o serviço é solicitado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/Group",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location",
+              "http://hl7.org/fhir/StructureDefinition/Device"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.encounter",
+        "path": "ServiceRequest.encounter",
+        "short": "Encontro em que a solicitação foi criada",
+        "definition": "Encontro em que a solicitação foi criada"
+      },
+      {
+        "id": "ServiceRequest.occurrence[x]",
+        "path": "ServiceRequest.occurrence[x]",
+        "short": "Quando o serviço deve ocorrer",
+        "definition": "Quando o serviço deve ocorrer"
+      },
+      {
+        "id": "ServiceRequest.asNeeded[x]",
+        "path": "ServiceRequest.asNeeded[x]",
+        "short": "Pré-condições para o serviço",
+        "definition": "Pré-condições para o serviço"
+      },
+      {
+        "id": "ServiceRequest.authoredOn",
+        "path": "ServiceRequest.authoredOn",
+        "short": "Data de solicitação assinada",
+        "definition": "Data de solicitação assinada"
+      },
+      {
+        "id": "ServiceRequest.requester",
+        "path": "ServiceRequest.requester",
+        "short": "Quem/o que está solicitando o serviço",
+        "definition": "Quem/o que está solicitando o serviço",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.performerType",
+        "path": "ServiceRequest.performerType",
+        "short": "Papel do performador",
+        "definition": "Papel do performador"
+      },
+      {
+        "id": "ServiceRequest.performer",
+        "path": "ServiceRequest.performer",
+        "short": "Performador solicitado",
+        "definition": "Performador solicitado",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitionerrole",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-healthcareservice",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-relatedperson"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.locationCode",
+        "path": "ServiceRequest.locationCode",
+        "short": "Localização solicitada",
+        "definition": "Localização solicitada"
+      },
+      {
+        "id": "ServiceRequest.locationReference",
+        "path": "ServiceRequest.locationReference",
+        "short": "Localização solicitada",
+        "definition": "Localização solicitada",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.reasonCode",
+        "path": "ServiceRequest.reasonCode",
+        "short": "Explicação/Justificativa para procedimento ou serviço",
+        "definition": "Explicação/Justificativa para procedimento ou serviço"
+      },
+      {
+        "id": "ServiceRequest.reasonReference",
+        "path": "ServiceRequest.reasonReference",
+        "short": "Explicação/Justificativa para serviço ou assistência",
+        "definition": "Explicação/Justificativa para serviço ou assistência",
+        "type":  [
+          {
+            "code": "Reference",
+            "targetProfile":  [
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-observation",
+              "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-diagnosticreport",
+              "http://hl7.org/fhir/StructureDefinition/DocumentReference"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.insurance",
+        "path": "ServiceRequest.insurance",
+        "short": "Cobertura de seguro associada",
+        "definition": "Cobertura de seguro associada"
+      },
+      {
+        "id": "ServiceRequest.supportingInfo",
+        "path": "ServiceRequest.supportingInfo",
+        "short": "Informações clínicas adicionais",
+        "definition": "Informações clínicas adicionais"
+      },
+      {
+        "id": "ServiceRequest.specimen",
+        "path": "ServiceRequest.specimen",
+        "short": "Amostras de Procedimentos",
+        "definition": "Amostras de Procedimentos"
+      },
+      {
+        "id": "ServiceRequest.bodySite",
+        "path": "ServiceRequest.bodySite",
+        "short": "Localização no corpo",
+        "definition": "Localização no corpo"
+      },
+      {
+        "id": "ServiceRequest.note",
+        "path": "ServiceRequest.note",
+        "short": "Comentários",
+        "definition": "Comentários"
+      },
+      {
+        "id": "ServiceRequest.patientInstruction",
+        "path": "ServiceRequest.patientInstruction",
+        "short": "Instruções orientadas para o paciente ou consumidor",
+        "definition": "Instruções orientadas para o paciente ou consumidor"
+      },
+      {
+        "id": "ServiceRequest.relevantHistory",
+        "path": "ServiceRequest.relevantHistory",
+        "short": "Solicitar proveniência",
+        "definition": "Solicitar proveniência"
+      }
+    ]
+  }
+}
