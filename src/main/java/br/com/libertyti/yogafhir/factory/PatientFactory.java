@@ -3,7 +3,6 @@ package br.com.libertyti.yogafhir.factory;
 import br.com.libertyti.yogafhir.codegen.BRCorePatient;
 import br.com.libertyti.yogafhir.model.Paciente;
 import ca.uhn.fhir.context.FhirContext;
-import ca.uhn.fhir.parser.IParser;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.hl7.fhir.r4.context.IWorkerContext;
@@ -11,14 +10,12 @@ import org.hl7.fhir.r4.context.SimpleWorkerContext;
 import org.hl7.fhir.r4.model.Address;
 import org.hl7.fhir.r4.model.ContactPoint;
 import org.hl7.fhir.r4.model.Patient;
-import org.hl7.fhir.r4.model.StructureDefinition;
 import org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager;
 import org.hl7.fhir.utilities.npm.NpmPackage;
 import org.springframework.util.ResourceUtils;
 
 import java.io.FileInputStream;
 import java.util.List;
-import java.util.Objects;
 
 public class PatientFactory {
 
@@ -116,37 +113,14 @@ public class PatientFactory {
     @SneakyThrows
     private IWorkerContext initWorkerContext(FhirContext fhirContext) {
         FilesystemPackageCacheManager packageManager = new FilesystemPackageCacheManager.Builder().withTestingCacheFolder().build();
-        NpmPackage corePackage = packageManager.loadPackage("hl7.fhir.r4.core", "4.0.1");
-        NpmPackage terminologiaPackage = NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/terminologias.tgz")));
-        NpmPackage rndsPackage = NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/rnds.tgz")));
-        NpmPackage ansPackage = NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/ans.tgz")));
 
         var wContext = SimpleWorkerContext.fromNothing();
-        wContext.loadFromPackage(corePackage, null);
-        wContext.loadFromPackage(terminologiaPackage, null);
-        wContext.loadFromPackage(ansPackage, null);
-        wContext.loadFromPackage(rndsPackage, null);
-
-        var parser = fhirContext.newJsonParser();
-        loadProfiles(parser, wContext, "/br-core");
-        loadProfiles(parser, wContext, "/br-core-simplifier");
-        loadProfiles(parser, wContext, "/ips-brasil");
-
+        wContext.loadFromPackage(packageManager.loadPackage("hl7.fhir.r4.core", "4.0.1"), null);
+        wContext.loadFromPackage(NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/brcore.tgz"))), null);
+        wContext.loadFromPackage(NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/ips.tgz"))), null);
+        wContext.loadFromPackage(NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/terminologias.tgz"))), null);
+        wContext.loadFromPackage(NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/ans.tgz"))), null);
+        wContext.loadFromPackage(NpmPackage.fromPackage(new FileInputStream(ResourceUtils.getFile("classpath:definitions/rnds.tgz"))), null);
         return wContext;
     }
-
-    @SneakyThrows
-    private void loadProfiles(IParser parser, IWorkerContext workerContext, String folderPath) {
-        var folder = ResourceUtils.getFile("classpath:definitions" + folderPath);
-        for (var file : Objects.requireNonNull(folder.listFiles())) {
-            if (file.getName().contains("StructureDefinition")) {
-                var sd = parser.parseResource(StructureDefinition.class, new FileInputStream(file));
-                workerContext.cacheResource(sd);
-                System.out.println("Loaded: " + sd.getUrl());
-            } else {
-                System.out.println("Skipped " + file.getName());
-            }
-        }
-    }
-
 }
