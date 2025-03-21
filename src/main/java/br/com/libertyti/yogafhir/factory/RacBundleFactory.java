@@ -276,6 +276,7 @@ public class RacBundleFactory {
 
         var diagnostico = rac.atendimento().diagnosticos().get(0);
         condition.setId(diagnostico.condicao().id());
+        condition.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"));
         CodeableConcept code = new CodeableConcept();
         code.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10", diagnostico.condicao().cid().codigo(), diagnostico.condicao().cid().descricao()));
         condition.setCode(code);
