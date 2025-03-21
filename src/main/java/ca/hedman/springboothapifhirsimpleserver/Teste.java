@@ -8,10 +8,7 @@ import ca.uhn.fhir.validation.ResultSeverityEnum;
 import lombok.SneakyThrows;
 import org.hl7.fhir.common.hapi.validation.support.*;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
-import org.hl7.fhir.r4.model.Bundle;
-import org.hl7.fhir.r4.model.Composition;
-import org.hl7.fhir.r4.model.MetadataResource;
-import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.model.*;
 import org.hl7.fhir.r4.profilemodel.gen.PECodeGenerator;
 import org.springframework.util.ResourceUtils;
 
@@ -53,9 +50,15 @@ public class Teste {
         var validator = ctx.newValidator();
         var instanceValidator = new FhirInstanceValidator(ctx);
         var valSupport = new PrePopulatedValidationSupport(ctx);
-        addJSONDefinitions(valSupport, ctx);
+//        addJSONDefinitions(valSupport, ctx);
+
         var npmPackageSupport = new NpmPackageValidationSupport(ctx);
+        npmPackageSupport.loadPackageFromClasspath("classpath:definitions/ans.tgz");
+        npmPackageSupport.loadPackageFromClasspath("classpath:definitions/brcore.tgz");
+        npmPackageSupport.loadPackageFromClasspath("classpath:definitions/ips.tgz");
+        npmPackageSupport.loadPackageFromClasspath("classpath:definitions/rnds.tgz");
         npmPackageSupport.loadPackageFromClasspath("classpath:definitions/terminologias.tgz");
+
         var supportChain = new ValidationSupportChain(
                 new DefaultProfileValidationSupport(ctx),
                 valSupport,
@@ -67,8 +70,8 @@ public class Teste {
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
 
-        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
-//        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
+//        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
+        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
         var validationRes = validator.validateWithResult(parsedJson);
         final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
@@ -82,47 +85,47 @@ public class Teste {
         System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size());
     }
 
-    private static void addJSONDefinitions(PrePopulatedValidationSupport valSupport, FhirContext ctx) {
-        var jsonParser = ctx.newJsonParser();
-        var xmlParser = ctx.newXmlParser();
-
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-allergyintolerance.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-capacidadefuncional.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-careplan.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-careteam.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-composition.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-condition.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-diagnosticreport.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-encounter.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-healthcareservice.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-immunization.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-location.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medication.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medicationadministration.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medicationdispense.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medicationrequest.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medicationstatement.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observation.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationalcoholuse.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationbreastfeedingstatus.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationpregnancyedd.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationpregnancyoutcome.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationpregnancystatus.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationtobaccouse.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-organization.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-patient.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-practitioner.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-practitionerrole.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-procedure.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-registroatendimentoclinico.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-relatedperson.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-servicerequest.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-specimen.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-sumarioalta.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-vitalsigns.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-raca-br-ips.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-sexo-nascimento-br-ips.json", StructureDefinition.class));
-//        valSupport.addCodeSystem(parseStructureDefinition(xmlParser, "loinc/loinc.xml", CodeSystem.class));
-    }
+//    private static void addJSONDefinitions(PrePopulatedValidationSupport valSupport, FhirContext ctx) {
+//        var jsonParser = ctx.newJsonParser();
+//        var xmlParser = ctx.newXmlParser();
+//
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-allergyintolerance.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-capacidadefuncional.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-careplan.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-careteam.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-composition.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-condition.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-diagnosticreport.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-encounter.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-healthcareservice.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-immunization.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-location.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medication.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medicationadministration.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medicationdispense.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medicationrequest.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-medicationstatement.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observation.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationalcoholuse.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationbreastfeedingstatus.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationpregnancyedd.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationpregnancyoutcome.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationpregnancystatus.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-observationtobaccouse.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-organization.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-patient.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-practitioner.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-practitionerrole.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-procedure.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-registroatendimentoclinico.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-relatedperson.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-servicerequest.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-specimen.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-sumarioalta.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-vitalsigns.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-raca-br-ips.json", StructureDefinition.class));
+//        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-sexo-nascimento-br-ips.json", StructureDefinition.class));
+////        valSupport.addCodeSystem(parseStructureDefinition(xmlParser, "loinc/loinc.xml", CodeSystem.class));
+//    }
 
 }
