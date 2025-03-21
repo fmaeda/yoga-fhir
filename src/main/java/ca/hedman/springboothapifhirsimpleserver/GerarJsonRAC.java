@@ -1,23 +1,28 @@
 package ca.hedman.springboothapifhirsimpleserver;
 
-import br.com.libertyti.yogafhir.factory.PatientFactory;
 import br.com.libertyti.yogafhir.factory.RacBundleFactory;
-import br.com.libertyti.yogafhir.model.IdentidadeGenero;
-import br.com.libertyti.yogafhir.model.Paciente;
-import br.com.libertyti.yogafhir.model.RacaCor;
-import br.com.libertyti.yogafhir.model.Sexo;
+import br.com.libertyti.yogafhir.model.*;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.SneakyThrows;
 import org.hl7.fhir.r4.model.Bundle;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class GerarJsonRAC {
 
+    @SneakyThrows
     public static void main(String[] args) {
-        var fhirContext = FhirContext.forR4();
+        FhirContext fhirContext = FhirContext.forR4();
 
-        var patient = new Paciente(
+        var paciente = new Paciente(
+                "Paciente/207790-6543",
                 "12345678909",
                 "123456789",
                 "Fabiano Shidaka Maeda",
@@ -39,12 +44,53 @@ public class GerarJsonRAC {
                         )
                 ));
 
+        var profissional = new Profissional("Profissional/207790-888", "Robledo", "91092901209", new ValueObject("225125", "Médico Clínico"), new Profissional.Conselho("123456", "CRM", "SP"));
+        var cid = new ValueObject("R06.0", "Dispnéia");
+        var evidencia = new RegistroAtendimentoClinico.Condicao.Evidencia(List.of(cid), "ObservacaoClinica/207790-2256");
+        var informacoesAdicionais = new RegistroAtendimentoClinico.Condicao.InformacoesAdicionais(profissional.id(), "Texto Adicional", LocalDateTime.now());
+        var condicao = new RegistroAtendimentoClinico.Condicao("Condicao/207790-2258", new RegistroAtendimentoClinico.CID("S42", "FRATURA DO OMBRO E DO BRACO", ""), new ValueObject("active", "Active"),
+                new ValueObject("confirmed", "Confirmed"), List.of(new ValueObject("01", "Principal")),
+                new ValueObject("6736007", "Moderate (severity modifier) (qualifier value)"), List.of(new ValueObject("80891009", "Heart structure (body structure)"))
+                , "2024-12-19", LocalDateTime.now(), paciente.id(), profissional.id(),
+                List.of(evidencia),
+                informacoesAdicionais);
+        var localDeAtendimento = new RegistroAtendimentoClinico.Local("Local/207790-335587", "Local de Atendimento");
+        var organizacao = new RegistroAtendimentoClinico.Organizacao("Organizacao/207790-33540", "Hospital Sírio-Libanês", "2079127");
+        var diagnostico = new RegistroAtendimentoClinico.Atendimento.Diagnostico(condicao,
+                new ValueObject("CC", "Chief Complaint"), 1);
+        var participante = new RegistroAtendimentoClinico.Atendimento.Participante(List.of(new ValueObject("ADM", "admitter")), profissional.id());
+        var atendimento = new RegistroAtendimentoClinico.Atendimento("Atendimento/207790-75108", "final", LocalDateTime.now().toString(), LocalDateTime.now().plusHours(1).toString(), new ValueObject("AMB", "Ambulatory"), new ValueObject("R", "Routine"),
+                List.of(new ValueObject("02", "AMBULATORIAL")), new ValueObject("116", "SERVICO DE ATENCAO CARDIOVASCULAR CARDIOLOGIA"),
+                paciente.id(), List.of(participante),
+                new RegistroAtendimentoClinico.Periodo(LocalDateTime.now(), LocalDateTime.now().plusHours(1)),
+                List.of(new RegistroAtendimentoClinico.CID("S42", "FRATURA DO OMBRO E DO BRACO", "")), List.of(diagnostico),
+                localDeAtendimento, organizacao, List.of(new ValueObject("0211060127", "MAPEAMENTO DE RETINA")), List.of(new RegistroAtendimentoClinico.Atendimento.Alergia("Alergia", new ValueObject("A100", "Amendoim"), "Urticária", "Alta", "Alta", LocalDateTime.now(), new ValueObject("active", "Active"), new ValueObject("confirmed", "Confirmed"))));
+        var registroAtendimentoClinico = new RegistroAtendimentoClinico(
+                "1",
+                "final",
+                "Registro de Atendimento Clínico",
+                LocalDateTime.now(),
+                new ValueObject("60591-5", "Patient summary Document"),
+                List.of(new ValueObject("11488-4", "Consult note")),
+                paciente,
+                atendimento,
+                profissional,
+                List.of(new RegistroAtendimentoClinico.Secoes("Seção 1", new ValueObject("tipoSecao1", "Tipo de Seção"), List.of("referencia1", "referencia2")))
+        );
+        System.out.println(new ObjectMapper().registerModule(new JavaTimeModule()).configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false).writeValueAsString(registroAtendimentoClinico));
+
         RacBundleFactory factory = new RacBundleFactory(fhirContext);
-        Bundle racBundle = factory.createRacBundle(patient);
+        Bundle racBundle = factory.createRacBundle(registroAtendimentoClinico);
 
         IParser jsonParser = fhirContext.newJsonParser();
         String jsonOutput = jsonParser.setPrettyPrint(true).encodeResourceToString(racBundle);
-        System.out.println(jsonOutput);
+        try (FileWriter file = new FileWriter("src/main/resources/rac-output.json")) {
+            file.write(jsonOutput);
+            System.out.println("JSON output written to rac-output.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 //        Composition composition = new Composition();

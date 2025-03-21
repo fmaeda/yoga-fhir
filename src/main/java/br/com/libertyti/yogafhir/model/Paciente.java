@@ -6,6 +6,7 @@ import java.util.List;
 
 @JsonSerialize
 public record Paciente(
+        String id,
         String cpf,
         String cns,
         String nome,
@@ -13,7 +14,6 @@ public record Paciente(
         RacaCor raca,
         IdentidadeGenero genero,
         Endereco enderecoNascimento,
-
         List<Endereco> enderecos,
         List<Contato> contatos
 ) {

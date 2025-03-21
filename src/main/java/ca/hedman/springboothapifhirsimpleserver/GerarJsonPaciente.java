@@ -11,14 +11,18 @@ import org.hl7.fhir.r4.model.codesystems.V3RoleCode;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class GerarJsonPaciente {
+
+    private static final String URN_LIBERTY = "urn:liberty:";
 
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
         var pacienteFactory = new PatientFactory(ctx);
 
         Patient patient = pacienteFactory.createPatient(new Paciente(
+                "207790-6543",
                 "12345678909",
                 "123456789",
                 "Fabiano Shidaka Maeda",

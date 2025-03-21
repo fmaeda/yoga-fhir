@@ -1125,7 +1125,7 @@ public class BRCorePatient extends PEGeneratedBase {
                         .setDisplay(raca.getDescription())));
     }
 
-    private HumanName createHumanName(String name) {
+    public static HumanName createHumanName(String name) {
         var splittedName = StringUtils.split(name, " ");
         var humanName = new HumanName()
                 .setFamily(splittedName[splittedName.length - 1]);
@@ -1139,7 +1139,7 @@ public class BRCorePatient extends PEGeneratedBase {
     }
 
     public void setName(String name) {
-        this.getNames().add(this.createHumanName(name));
+        this.getNames().add(createHumanName(name));
     }
 
 }

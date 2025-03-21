@@ -8,6 +8,7 @@ import ca.uhn.fhir.validation.ResultSeverityEnum;
 import lombok.SneakyThrows;
 import org.hl7.fhir.common.hapi.validation.support.*;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
+import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Composition;
 import org.hl7.fhir.r4.model.MetadataResource;
 import org.hl7.fhir.r4.model.StructureDefinition;
@@ -66,7 +67,7 @@ public class Teste {
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
 
-        Composition parsedJson = jsonParser.parseResource(Composition.class, readResourceAsString("samples/rac.json"));
+        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
 //        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
         var validationRes = validator.validateWithResult(parsedJson);
@@ -119,7 +120,7 @@ public class Teste {
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-specimen.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-sumarioalta.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "br-core/StructureDefinition-br-core-vitalsigns.json", StructureDefinition.class));
-        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-ips-brasil-raca-br-ips.json", StructureDefinition.class));
+        valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-raca-br-ips.json", StructureDefinition.class));
         valSupport.addStructureDefinition(parseStructureDefinition(jsonParser, "ips-brasil/StructureDefinition-sexo-nascimento-br-ips.json", StructureDefinition.class));
 //        valSupport.addCodeSystem(parseStructureDefinition(xmlParser, "loinc/loinc.xml", CodeSystem.class));
     }
