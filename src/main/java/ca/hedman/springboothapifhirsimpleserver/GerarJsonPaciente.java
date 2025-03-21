@@ -15,8 +15,6 @@ import java.util.UUID;
 
 public class GerarJsonPaciente {
 
-    private static final String URN_LIBERTY = "urn:liberty:";
-
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
         var pacienteFactory = new PatientFactory(ctx);

@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class GerarJsonRAC {
 
@@ -22,7 +23,7 @@ public class GerarJsonRAC {
         FhirContext fhirContext = FhirContext.forR4();
 
         var paciente = new Paciente(
-                "Paciente/207790-6543",
+                UUID.randomUUID().toString(),
                 "12345678909",
                 "123456789",
                 "Fabiano Shidaka Maeda",
@@ -44,22 +45,22 @@ public class GerarJsonRAC {
                         )
                 ));
 
-        var profissional = new Profissional("Profissional/207790-888", "Robledo", "91092901209", new ValueObject("225125", "Médico Clínico"), new Profissional.Conselho("123456", "CRM", "SP"));
+        var profissional = new Profissional(UUID.randomUUID().toString(), "Robledo", "91092901209", new ValueObject("225125", "Médico Clínico"), new Profissional.Conselho("123456", "CRM", "SP"));
         var cid = new ValueObject("R06.0", "Dispnéia");
         var evidencia = new RegistroAtendimentoClinico.Condicao.Evidencia(List.of(cid), "ObservacaoClinica/207790-2256");
         var informacoesAdicionais = new RegistroAtendimentoClinico.Condicao.InformacoesAdicionais(profissional.id(), "Texto Adicional", LocalDateTime.now());
-        var condicao = new RegistroAtendimentoClinico.Condicao("Condicao/207790-2258", new RegistroAtendimentoClinico.CID("S42", "FRATURA DO OMBRO E DO BRACO", ""), new ValueObject("active", "Active"),
+        var condicao = new RegistroAtendimentoClinico.Condicao(UUID.randomUUID().toString(), new RegistroAtendimentoClinico.CID("S42", "FRATURA DO OMBRO E DO BRACO", ""), new ValueObject("active", "Active"),
                 new ValueObject("confirmed", "Confirmed"), List.of(new ValueObject("01", "Principal")),
                 new ValueObject("6736007", "Moderate (severity modifier) (qualifier value)"), List.of(new ValueObject("80891009", "Heart structure (body structure)"))
                 , "2024-12-19", LocalDateTime.now(), paciente.id(), profissional.id(),
                 List.of(evidencia),
                 informacoesAdicionais);
-        var localDeAtendimento = new RegistroAtendimentoClinico.Local("Local/207790-335587", "Local de Atendimento");
-        var organizacao = new RegistroAtendimentoClinico.Organizacao("Organizacao/207790-33540", "Hospital Sírio-Libanês", "2079127");
+        var localDeAtendimento = new RegistroAtendimentoClinico.Local(UUID.randomUUID().toString(), "Local de Atendimento");
+        var organizacao = new RegistroAtendimentoClinico.Organizacao(UUID.randomUUID().toString(), "Hospital Sírio-Libanês", "2079127");
         var diagnostico = new RegistroAtendimentoClinico.Atendimento.Diagnostico(condicao,
                 new ValueObject("CC", "Chief Complaint"), 1);
         var participante = new RegistroAtendimentoClinico.Atendimento.Participante(List.of(new ValueObject("ADM", "admitter")), profissional.id());
-        var atendimento = new RegistroAtendimentoClinico.Atendimento("Atendimento/207790-75108", "final", LocalDateTime.now().toString(), LocalDateTime.now().plusHours(1).toString(), new ValueObject("AMB", "Ambulatory"), new ValueObject("R", "Routine"),
+        var atendimento = new RegistroAtendimentoClinico.Atendimento(UUID.randomUUID().toString(), "final", "2024-04-05T10:00:00Z", "2024-04-05T11:00:00Z", new ValueObject("AMB", "Ambulatory"), new ValueObject("R", "Routine"),
                 List.of(new ValueObject("02", "AMBULATORIAL")), new ValueObject("116", "SERVICO DE ATENCAO CARDIOVASCULAR CARDIOLOGIA"),
                 paciente.id(), List.of(participante),
                 new RegistroAtendimentoClinico.Periodo(LocalDateTime.now(), LocalDateTime.now().plusHours(1)),
@@ -100,7 +101,7 @@ public class GerarJsonRAC {
 //
 //        CodeableConcept type = new CodeableConcept();
 //        type.addCoding(new Coding()
-//                .setSystem("http://loinc.org")
+//                .setSystem("https://loinc.org/")
 //                .setCode("11488-4")
 //        );
 //        type.setText("Nota de consulta");
@@ -108,7 +109,7 @@ public class GerarJsonRAC {
 //
 //        CodeableConcept category = new CodeableConcept();
 //        category.addCoding(new Coding()
-//                .setSystem("http://loinc.org")
+//                .setSystem("https://loinc.org/")
 //                .setCode("11488-4")
 //        );
 //        category.setText("Nota de consulta");
@@ -129,17 +130,17 @@ public class GerarJsonRAC {
 //        );
 //
 //        addSection(composition, "Diagnósticos Avaliados",
-//                new Coding("http://loinc.org", "57852-6", "Problem list Reported"),
+//                new Coding("https://loinc.org/", "57852-6", "Problem list Reported"),
 //                "Lista de Problemas - Diagnósticos Avaliados",
 //                new Reference("Condition/91d8d24f-a70d-4ebf-8dea-71cf92ce1bd5"));
 //
 //        addSection(composition, "Procedimentos Realizados",
-//                new Coding("http://loinc.org", "47519-4", "Procedures Hx Doc"),
+//                new Coding("https://loinc.org/", "47519-4", "Procedures Hx Doc"),
 //                "Procedimentos Realizados",
 //                new Reference("Procedure/b0030c23-bd7d-445e-bfe5-020828f7dbaf"));
 //
 //        addSection(composition, "Sinais Vitais",
-//                new Coding("http://loinc.org", "85354-9", "Blood pressure panel with all children optional"),
+//                new Coding("https://loinc.org/", "85354-9", "Blood pressure panel with all children optional"),
 //                null,
 //                new Reference("Observation/07ce5462-f77b-4ad6-af8c-2f67a6500b97"));
 //
@@ -154,7 +155,7 @@ public class GerarJsonRAC {
 //                new Reference("Medication/3a46210c-7eb3-48ec-aa67-db7e7ee18864"));
 //
 //        addSection(composition, "Plano de Cuidados",
-//                new Coding("http://loinc.org", "18776-5", "Plan of care note"),
+//                new Coding("https://loinc.org/", "18776-5", "Plan of care note"),
 //                null,
 //                new Reference("CarePlan/1ed343f2-5231-40d6-a6ea-4428105b7532"));
 //
