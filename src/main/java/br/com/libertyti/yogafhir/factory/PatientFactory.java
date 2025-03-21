@@ -9,6 +9,7 @@ import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.context.SimpleWorkerContext;
 import org.hl7.fhir.r4.model.Address;
 import org.hl7.fhir.r4.model.ContactPoint;
+import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager;
 import org.hl7.fhir.utilities.npm.NpmPackage;
@@ -39,7 +40,11 @@ public class PatientFactory {
         patient.setSexoNascimento(paciente.sexo());
         patient.setIdentidadeGenero(paciente.genero());
         patient.setRaca(paciente.raca());
-        return patient.build(workerContext);
+
+        var returnValue = patient.build(workerContext);
+        returnValue.setMeta(new Meta().addProfile(BRCorePatient.CANONICAL_URL));
+
+        return returnValue;
     }
 
     private void buildEnderecos(BRCorePatient patient, List<Paciente.Endereco> enderecos) {

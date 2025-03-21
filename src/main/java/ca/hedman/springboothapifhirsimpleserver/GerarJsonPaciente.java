@@ -42,6 +42,8 @@ public class GerarJsonPaciente {
                 ))
         ));
 
+//        patient.setMeta(new Meta().setPro);
+
         var parser = ctx.newJsonParser();
         String encoded = parser.setPrettyPrint(true).encodeResourceToString(patient);
         System.out.println("Encoded: " + encoded);
