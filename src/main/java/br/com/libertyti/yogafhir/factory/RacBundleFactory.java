@@ -28,7 +28,7 @@ public class RacBundleFactory {
 //
 //        Bundle bundle = new Bundle();
 //        bundle.setType(Bundle.BundleType.DOCUMENT);
-//        bundle.setId(UUID.randomUUID().toString());
+//        bundle.setId("urn:liberty:" +UUID.randomUUID().toString());
 //        bundle.setTimestamp(new Date());
 //        bundle.setIdentifier(new Identifier().setValue(UUID.randomUUID().toString()).setSystem("urn:ietf:rfc:3986"));
 //
@@ -79,7 +79,7 @@ public class RacBundleFactory {
 
         Bundle bundle = new Bundle();
         bundle.setType(Bundle.BundleType.DOCUMENT);
-        bundle.setId("Bundle/1");
+        bundle.setId("urn:liberty:" +"Bundle/1");
         bundle.setTimestamp(new Date());
         bundle.setIdentifier(new Identifier().setValue("urn:uuid:" + UUID.randomUUID().toString()).setSystem("urn:ietf:rfc:3986"));
 
@@ -114,7 +114,7 @@ public class RacBundleFactory {
 
     private Composition createComposition(RegistroAtendimentoClinico rac, Patient patient, Encounter encounter, Procedure procedure, AllergyIntolerance allergyIntolerance) {
         Composition composition = new Composition();
-        composition.setId("Composition/1");
+        composition.setId("urn:liberty:" +"Composition/1");
         composition.setStatus(Composition.CompositionStatus.fromCode(rac.status()));
         composition.setTitle(rac.titulo());
         composition.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-registroatendimentoclinico"));
@@ -174,7 +174,7 @@ public class RacBundleFactory {
 
     private Encounter createEncounter(RegistroAtendimentoClinico rac, Patient patient, Organization organization, Location location) {
         Encounter encounter = new Encounter();
-        encounter.setId("Encounter/1");
+        encounter.setId("urn:liberty:" +"Encounter/1");
         
         encounter.addIdentifier(new Identifier().setSystem("https://saude.gov.br/fhir/sid/encounter").setValue("ENC-12345"));
 
@@ -237,7 +237,7 @@ public class RacBundleFactory {
 
     private Practitioner createPractitioner(RegistroAtendimentoClinico rac) {
         Practitioner practitioner = new Practitioner();
-        practitioner.setId(rac.autor().id());
+        practitioner.setId("urn:liberty:" +rac.autor().id());
 
         Identifier identifier1 = new Identifier();
         identifier1.setUse(Identifier.IdentifierUse.OFFICIAL);
@@ -276,7 +276,7 @@ public class RacBundleFactory {
         Condition condition = new Condition();
 
         var diagnostico = rac.atendimento().diagnosticos().get(0);
-        condition.setId(diagnostico.condicao().id());
+        condition.setId("urn:liberty:" +diagnostico.condicao().id());
         condition.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"));
         CodeableConcept code = new CodeableConcept();
         code.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10", diagnostico.condicao().cid().codigo(), diagnostico.condicao().cid().descricao()));
@@ -338,7 +338,7 @@ public class RacBundleFactory {
 
     private Procedure createProcedure(RegistroAtendimentoClinico rac, Patient patient, Encounter encounter, Practitioner practitioner) {
         Procedure procedure = new Procedure();
-        procedure.setId("Procedure/1");
+        procedure.setId("urn:liberty:" +"Procedure/1");
 
         Identifier identifier = new Identifier();
         identifier.setSystem("https://saude.gov.br/fhir/sid/procedure");
@@ -414,7 +414,7 @@ public class RacBundleFactory {
 
     private AllergyIntolerance createAllergyIntolerance(Patient patient) {
         AllergyIntolerance allergyIntolerance = new AllergyIntolerance();
-        allergyIntolerance.setId("AllergyIntolerance/1");
+        allergyIntolerance.setId("urn:liberty:" +"AllergyIntolerance/1");
 //        fixme dados adicionais que não sei se temos
         CodeableConcept clinicalStatus = new CodeableConcept();
         clinicalStatus.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "active", "Active"));
@@ -457,7 +457,7 @@ public class RacBundleFactory {
 
 //    private Medication createMedication() {
 //        Medication medication = new Medication();
-//        medication.setId("3a46210c-7eb3-48ec-aa67-db7e7ee18864");
+//        medication.setId("urn:liberty:" +"3a46210c-7eb3-48ec-aa67-db7e7ee18864");
 //
 //        Identifier identifier = new Identifier();
 //        identifier.setSystem("https://saude.gov.br/fhir/sid/medication");
@@ -502,7 +502,7 @@ public class RacBundleFactory {
 //    fixme hoje temos apenas para sumario de alta, o desfecho
 //    private CarePlan createCarePlan(Patient patient) {
 //        CarePlan carePlan = new CarePlan();
-//        carePlan.setId("1ed343f2-5231-40d6-a6ea-4428105b7532");
+//        carePlan.setId("urn:liberty:" +"1ed343f2-5231-40d6-a6ea-4428105b7532");
 //        carePlan.setInstantiatesUri(List.of(new UriType("http://www.saude.gov.br/plano-cuidados/asma")));
 //        carePlan.setStatus(CarePlan.CarePlanStatus.ACTIVE);
 //        carePlan.setIntent(CarePlan.CarePlanIntent.PLAN);
@@ -534,7 +534,7 @@ public class RacBundleFactory {
 
     private Organization createOrganization(RegistroAtendimentoClinico rac) {
         Organization organization = new Organization();
-        organization.setId("Organization/1");
+        organization.setId("urn:liberty:" +"Organization/1");
         organization.setIdentifier(List.of(new Identifier().setUse(Identifier.IdentifierUse.OFFICIAL).setSystem("https://saude.gov.br/sid/cnes").setValue("2079127")));
         organization.setType(List.of(new CodeableConcept().addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRTipoEstabelecimentoSaude", "5", "HOSPITAL GERAL"))));
         organization.setName(rac.atendimento().organizacao().descricao());
@@ -544,7 +544,7 @@ public class RacBundleFactory {
 
     private Location createLocation(RegistroAtendimentoClinico rac, Organization managingOrganization) {
         Location location = new Location();
-        location.setId("Location/1");
+        location.setId("urn:liberty:" +"Location/1");
 
         Identifier identifier = new Identifier();
         identifier.setUse(Identifier.IdentifierUse.OFFICIAL);
@@ -570,7 +570,7 @@ public class RacBundleFactory {
 
     private DiagnosticReport createDiagnosticReport(Patient patient, Encounter encounter, Organization organization) {
         DiagnosticReport diagnosticReport = new DiagnosticReport();
-        diagnosticReport.setId("DiagnosticReport/1");
+        diagnosticReport.setId("urn:liberty:" +"DiagnosticReport/1");
         diagnosticReport.setStatus(DiagnosticReport.DiagnosticReportStatus.FINAL);
         diagnosticReport.setCode(new CodeableConcept().addCoding(
                 new Coding("https://loinc.org/", "24323-8", "Complete Blood Count")));
