@@ -323,13 +323,13 @@ public class RacBundleFactory {
 //        performedPeriod.setEndElement(new DateTimeType("2023-12-12T10:30:00-03:00"));
 //        procedure.setPerformed(performedPeriod);
 //
-//        Procedure.ProcedurePerformerComponent performer = new Procedure.ProcedurePerformerComponent();
-//        CodeableConcept performerFunction = new CodeableConcept();
-//        performerFunction.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/participant-type", "emergency", "Emergency"));
-//        performerFunction.setText("Emergência");
-//        performer.setFunction(performerFunction);
-//        performer.setActor(new Reference("urn:liberty:" + practitioner.getId()));
-//        procedure.addPerformer(performer);
+        Procedure.ProcedurePerformerComponent performer = new Procedure.ProcedurePerformerComponent();
+        CodeableConcept performerFunction = new CodeableConcept();
+        performerFunction.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/participant-type", "emergency", "Emergency"));
+        performerFunction.setText("Emergência");
+        performer.setFunction(performerFunction);
+        performer.setActor(new Reference("urn:liberty:" + practitioner.getId()));
+        procedure.addPerformer(performer);
 //
 //        CodeableConcept reasonCode = new CodeableConcept();
 //        reasonCode.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10", "I10", "Hipertensão essencial (primária)"));
