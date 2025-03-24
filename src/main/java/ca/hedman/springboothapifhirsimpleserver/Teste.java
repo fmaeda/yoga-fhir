@@ -31,16 +31,6 @@ public class Teste {
         }
     }
 
-    private static <T extends MetadataResource> T parseStructureDefinition(IParser parser, String jsonPath, Class<T> klazz) {
-        try {
-            File file = ResourceUtils.getFile("classpath:definitions/" + jsonPath);
-            InputStream in = new FileInputStream(file);
-            return parser.parseResource(klazz, in);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @SneakyThrows
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
@@ -53,7 +43,7 @@ public class Teste {
         var validator = ctx.newValidator();
         var instanceValidator = new FhirInstanceValidator(ctx);
         var valSupport = new PrePopulatedValidationSupport(ctx);
-//        addJSONDefinitions(valSupport, ctx);
+        loadProfiles(jsonParser, valSupport, "/br-core");
 
         var npmPackageSupport = new NpmPackageValidationSupport(ctx);
         npmPackageSupport.loadPackageFromClasspath("classpath:definitions/ans.tgz");
@@ -94,12 +84,12 @@ public class Teste {
 
 
     @SneakyThrows
-    private static void loadProfiles(IParser parser, IWorkerContext workerContext, String folderPath) {
+    private static void loadProfiles(IParser parser, PrePopulatedValidationSupport validationSupport, String folderPath) {
         var folder = ResourceUtils.getFile("classpath:definitions" + folderPath);
         for (var file : Objects.requireNonNull(folder.listFiles())) {
             if (file.getName().contains("StructureDefinition")) {
                 var sd = parser.parseResource(StructureDefinition.class, new FileInputStream(file));
-                workerContext.cacheResource(sd);
+                validationSupport.addStructureDefinition(sd);
                 System.out.println("Loaded: " + sd.getUrl());
             } else {
                 System.out.println("Skipped " + file.getName());
