@@ -35,7 +35,7 @@ public class Teste {
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
 
-        var authInterceptor = new BasicAuthInterceptor("fmaeda", "QZK!neu7bxt7wqu5fcv");
+//        var authInterceptor = new BasicAuthInterceptor("fmaeda", "QZK!neu7bxt7wqu5fcv");
 //        var remoteTerminologyService = new RemoteTerminologyServiceValidationSupport(ctx, "https://fhir.loinc.org");
 //        remoteTerminologyService.addClientInterceptor(authInterceptor);
 
@@ -63,7 +63,7 @@ public class Teste {
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
 
-        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
+        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("samples/rac-teste-maeda.json"));
 //        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
         StopWatch sw = new StopWatch();

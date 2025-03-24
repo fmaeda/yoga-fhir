@@ -1,16 +1,14 @@
 package br.com.libertyti.yogafhir.factory;
 
 import br.com.libertyti.yogafhir.codegen.BRCorePatient;
+import br.com.libertyti.yogafhir.codegen.BRCoreRegistroAtendimentoClinico;
 import br.com.libertyti.yogafhir.model.Paciente;
 import ca.uhn.fhir.context.FhirContext;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.context.SimpleWorkerContext;
-import org.hl7.fhir.r4.model.Address;
-import org.hl7.fhir.r4.model.ContactPoint;
-import org.hl7.fhir.r4.model.Meta;
-import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.*;
 import org.hl7.fhir.utilities.npm.FilesystemPackageCacheManager;
 import org.hl7.fhir.utilities.npm.NpmPackage;
 import org.springframework.util.ResourceUtils;
@@ -115,6 +113,16 @@ public class PatientFactory {
             contact.setAddress(buildEndereco(contato.endereco()));
         }
         return contact;
+    }
+
+    public void gerarRac() {
+        var rac = new BRCoreRegistroAtendimentoClinico(workerContext);
+        rac.getDiagnosticosAvaliados().add(new BackboneElement() {
+            @Override
+            public BackboneElement copy() {
+                return null;
+            }
+        });
     }
 
     @SneakyThrows
