@@ -63,7 +63,7 @@ public class Teste {
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
 
-        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("samples/rac-teste-maeda.json"));
+        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
 //        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
         StopWatch sw = new StopWatch();
