@@ -22,7 +22,7 @@ public class GerarJsonRAC {
         FhirContext fhirContext = FhirContext.forR4();
 
         var paciente = new Paciente(
-                "Patient/1",
+                "patient/1",
                 "12345678909",
                 "123456789",
                 "Fabiano Shidaka Maeda",
@@ -44,33 +44,33 @@ public class GerarJsonRAC {
                         )
                 ));
 
-        var profissional = new Profissional("Practitioner/1", "Robledo", "91092901209", new ValueObject("225125", "Médico Clínico"), new Profissional.Conselho("123456", "CRM", "SP"));
+        var profissional = new Profissional("practitioner/1", "Robledo", "91092901209", new ValueObject("225125", "ENFERMEIRO"), new Profissional.Conselho("123456", "CRM", "SP"));
         var cid = new ValueObject("R06.0", "Dispnéia");
-        var evidencia = new RegistroAtendimentoClinico.Condicao.Evidencia(List.of(cid), "ObservacaoClinica/207790-2256");
+        var evidencia = new RegistroAtendimentoClinico.Condicao.Evidencia(List.of(cid), "observacaoclinica/207790-2256");
         var informacoesAdicionais = new RegistroAtendimentoClinico.Condicao.InformacoesAdicionais(profissional.id(), "Texto Adicional", LocalDateTime.now());
-        var condicao = new RegistroAtendimentoClinico.Condicao("Condition/1", new RegistroAtendimentoClinico.CID("S42", "FRATURA DO OMBRO E DO BRACO", ""), new ValueObject("active", "Active"),
+        var condicao = new RegistroAtendimentoClinico.Condicao("condition/1", new RegistroAtendimentoClinico.CID("B34.2", "Infecção por coronavírus de localização não especificada", ""), new ValueObject("active", "Active"),
                 new ValueObject("confirmed", "Confirmed"), List.of(new ValueObject("01", "Principal")),
                 new ValueObject("6736007", "Moderate (severity modifier) (qualifier value)"), List.of(new ValueObject("80891009", "Heart structure (body structure)"))
                 , "2024-12-19", LocalDateTime.now(), paciente.id(), profissional.id(),
                 List.of(evidencia),
                 informacoesAdicionais);
-        var localDeAtendimento = new RegistroAtendimentoClinico.Local("Location/1", "Local de Atendimento");
-        var organizacao = new RegistroAtendimentoClinico.Organizacao("Organization/1", "Hospital Sírio-Libanês", "2079127");
+        var localDeAtendimento = new RegistroAtendimentoClinico.Local("location/1", "Local de Atendimento");
+        var organizacao = new RegistroAtendimentoClinico.Organizacao("oganization/1", "Hospital Sírio-Libanês", "2079127");
         var diagnostico = new RegistroAtendimentoClinico.Atendimento.Diagnostico(condicao,
                 new ValueObject("CC", "Chief Complaint"), 1);
         var participante = new RegistroAtendimentoClinico.Atendimento.Participante(List.of(new ValueObject("ADM", "admitter")), profissional.id());
-        var atendimento = new RegistroAtendimentoClinico.Atendimento("Encounter/1", "final", "2024-04-05T10:00:00Z", "2024-04-05T11:00:00Z", new ValueObject("AMB", "Ambulatory"), new ValueObject("R", "Routine"),
+        var atendimento = new RegistroAtendimentoClinico.Atendimento("encounter/1", "final", "2024-04-05T10:00:00Z", "2024-04-05T11:00:00Z", new ValueObject("AMB", "Ambulatory"), new ValueObject("R", "Routine"),
                 List.of(new ValueObject("02", "AMBULATORIAL")), new ValueObject("116", "SERVICO DE ATENCAO CARDIOVASCULAR CARDIOLOGIA"),
                 paciente.id(), List.of(participante),
                 new RegistroAtendimentoClinico.Periodo(LocalDateTime.now(), LocalDateTime.now().plusHours(1)),
-                List.of(new RegistroAtendimentoClinico.CID("S42", "FRATURA DO OMBRO E DO BRACO", "")), List.of(diagnostico),
+                List.of(new RegistroAtendimentoClinico.CID("B34.2", "Infecção por coronavírus de localização não especificada", "")), List.of(diagnostico),
                 localDeAtendimento, organizacao, List.of(new ValueObject("0211060127", "MAPEAMENTO DE RETINA")), List.of(new RegistroAtendimentoClinico.Atendimento.Alergia("Alergia", new ValueObject("A100", "Amendoim"), "Urticária", "Alta", "Alta", LocalDateTime.now(), new ValueObject("active", "Active"), new ValueObject("confirmed", "Confirmed"))));
         var registroAtendimentoClinico = new RegistroAtendimentoClinico(
                 "1",
                 "final",
                 "Registro de Atendimento Clínico",
                 LocalDateTime.now(),
-                new ValueObject("60591-5", "Patient summary Document"),
+                new ValueObject("11488-4", "Consult note"),
                 List.of(new ValueObject("11488-4", "Consult note")),
                 paciente,
                 atendimento,

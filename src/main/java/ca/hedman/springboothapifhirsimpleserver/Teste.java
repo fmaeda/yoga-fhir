@@ -11,6 +11,7 @@ import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
 import org.hl7.fhir.r4.model.*;
 import org.hl7.fhir.r4.profilemodel.gen.PECodeGenerator;
 import org.springframework.util.ResourceUtils;
+import org.springframework.util.StopWatch;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -59,7 +60,7 @@ public class Teste {
         npmPackageSupport.loadPackageFromClasspath("classpath:definitions/rnds.tgz");
         npmPackageSupport.loadPackageFromClasspath("classpath:definitions/terminologias.tgz");
 
-        var supportChain = new ValidationSupportChain(
+        var basicSupportChain = new ValidationSupportChain(
                 new DefaultProfileValidationSupport(ctx),
                 valSupport,
                 new InMemoryTerminologyServerValidationSupport(ctx),
@@ -67,13 +68,16 @@ public class Teste {
                 remoteTerminologyService
 //                new SnapshotGeneratingValidationSupport(ctx)
         );
+        var supportChain = new CachingValidationSupport(basicSupportChain);
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
 
         Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
 //        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
-
+        var sw = new StopWatch();
+        sw.start();
         var validationRes = validator.validateWithResult(parsedJson);
+        sw.stop();
         final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
                 .filter(message -> message.getSeverity().equals(severity))
                 .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));
@@ -82,7 +86,13 @@ public class Teste {
         logger.accept(ResultSeverityEnum.ERROR);
         logger.accept(ResultSeverityEnum.FATAL);
 
+        var sw2 = new StopWatch();
+        sw2.start();
+        validator.validateWithResult(parsedJson);
+        sw2.stop();
         System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size());
+        System.out.println("Tempo de validação sw: " + sw.getTotalTimeMillis() + "ms");
+        System.out.println("Tempo de validação sw2: " + sw2.getTotalTimeMillis() + "ms");
     }
 
 //    private static void addJSONDefinitions(PrePopulatedValidationSupport valSupport, FhirContext ctx) {

@@ -23,63 +23,13 @@ public class RacBundleFactory {
         this.patientFactory = new PatientFactory(ctx);
     }
 
-//    public Bundle createRacBundle(Paciente paciente) {
-//        Patient patient = patientFactory.createPatient(paciente);
-//
-//        Bundle bundle = new Bundle();
-//        bundle.setType(Bundle.BundleType.DOCUMENT);
-//        bundle.setId("urn:liberty:" +UUID.randomUUID().toString());
-//        bundle.setTimestamp(new Date());
-//        bundle.setIdentifier(new Identifier().setValue(UUID.randomUUID().toString()).setSystem("urn:ietf:rfc:3986"));
-//
-//        Composition composition = createComposition(patient);
-//        bundle.addEntry(createBundleEntry(composition));
-//
-//        bundle.addEntry(createBundleEntry(patient));
-//
-//        Organization organization = createOrganization();
-//        bundle.addEntry(createBundleEntry(organization));
-//
-//        Practitioner practitioner = createPractitioner(organization);
-//        bundle.addEntry(createBundleEntry(practitioner));
-//
-//        Location location = createLocation(organization);
-//        bundle.addEntry(createBundleEntry(location));
-//
-//        Encounter encounter = createEncounter(patient, organization, location, practitioner);
-//        bundle.addEntry(createBundleEntry(encounter));
-//
-//        Condition condition = createCondition(patient, encounter, practitioner);
-//        bundle.addEntry(createBundleEntry(condition));
-//
-//        Procedure procedure = createProcedure(patient, encounter, practitioner);
-//        bundle.addEntry(createBundleEntry(procedure));
-//
-//        Observation observation = createObservation(patient, encounter);
-//        bundle.addEntry(createBundleEntry(observation));
-//
-//        AllergyIntolerance allergyIntolerance = createAllergyIntolerance(patient);
-//        bundle.addEntry(createBundleEntry(allergyIntolerance));
-//
-//        Medication medication = createMedication();
-//        bundle.addEntry(createBundleEntry(medication));
-//
-//        CarePlan carePlan = createCarePlan(patient);
-//        bundle.addEntry(createBundleEntry(carePlan));
-//
-//        DiagnosticReport diagnosticReport = createDiagnosticReport(patient, encounter, organization);
-//        bundle.addEntry(createBundleEntry(diagnosticReport));
-//
-//        return bundle;
-//    }
-
     public Bundle createRacBundle(RegistroAtendimentoClinico rac) {
         Paciente paciente = rac.paciente();
         Patient patient = patientFactory.createPatient(paciente);
 
         Bundle bundle = new Bundle();
         bundle.setType(Bundle.BundleType.DOCUMENT);
-        bundle.setId("urn:liberty:" +"Bundle/1");
+        bundle.setId("bundle/1");
         bundle.setTimestamp(new Date());
         bundle.setIdentifier(new Identifier().setValue("urn:uuid:" + UUID.randomUUID().toString()).setSystem("urn:ietf:rfc:3986"));
 
@@ -93,7 +43,7 @@ public class RacBundleFactory {
 //        var medication = createMedication();
 //        var carePlan = createCarePlan(patient);
 //        var diagnosticReport = createDiagnosticReport(patient, encounter, organization);
-        Composition composition = createComposition(rac, patient, encounter, procedure, allergyIntolerance);
+        Composition composition = createComposition(rac, patient, encounter, allergyIntolerance);
 
 
         bundle.addEntry(createBundleEntry(composition));
@@ -103,7 +53,7 @@ public class RacBundleFactory {
         bundle.addEntry(createBundleEntry(location));
         bundle.addEntry(createBundleEntry(encounter));
         bundle.addEntry(createBundleEntry(condition));
-        bundle.addEntry(createBundleEntry(procedure));
+//        bundle.addEntry(createBundleEntry(procedure));
         bundle.addEntry(createBundleEntry(allergyIntolerance));
 //        bundle.addEntry(createBundleEntry(medication));
 //        bundle.addEntry(createBundleEntry(carePlan));
@@ -112,9 +62,9 @@ public class RacBundleFactory {
         return bundle;
     }
 
-    private Composition createComposition(RegistroAtendimentoClinico rac, Patient patient, Encounter encounter, Procedure procedure, AllergyIntolerance allergyIntolerance) {
+    private Composition createComposition(RegistroAtendimentoClinico rac, Patient patient, Encounter encounter, AllergyIntolerance allergyIntolerance) {
         Composition composition = new Composition();
-        composition.setId("urn:liberty:" +"Composition/1");
+        composition.setId("composition/1");
         composition.setStatus(Composition.CompositionStatus.fromCode(rac.status()));
         composition.setTitle(rac.titulo());
         composition.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-registroatendimentoclinico"));
@@ -133,49 +83,48 @@ public class RacBundleFactory {
             composition.addCategory(category);
         });
 
-        composition.setSubject(new Reference(patient.getId()));
-        composition.setEncounter(new Reference(encounter.getId()));
-
-        composition.addAuthor(new Reference(rac.autor().id()));
+        composition.setSubject(new Reference("urn:liberty:" + patient.getId()));
+        composition.setEncounter(new Reference("urn:liberty:" + encounter.getId()));
+        composition.addAuthor(new Reference("urn:liberty:" + rac.autor().id()));
 
         addSection(composition, "Diagnósticos Avaliados",
                 new Coding("https://loinc.org/", "57852-6", "Problem List"),
                 "Lista de Problemas - Diagnósticos Avaliados",
-                rac.atendimento().diagnosticos().stream().map(d -> new Reference(d.condicao().id())).toList());
+                rac.atendimento().diagnosticos().stream().map(d -> new Reference("urn:liberty:" + d.condicao().id())).toList());
 
-        addSection(composition, "Procedimentos Realizados",
-                new Coding(procedure.getCode().getCodingFirstRep().getSystem(), procedure.getCode().getCodingFirstRep().getCode(), procedure.getCode().getCodingFirstRep().getDisplay()),
-//                new Coding("https://loinc.org/", "47519-4", "Procedures Hx Doc"),
-                "Procedimentos Realizados",
-                List.of(new Reference(procedure.getId())));
-
-        addSection(composition, "Sinais Vitais",
-                null,
-                null,
-                Collections.emptyList());
-
-        addSection(composition, "Alergias e Intolerâncias",
-                null,
-                null,
-                List.of(new Reference(allergyIntolerance.getId())));
-
-        addSection(composition, "Medicamentos",
-                null,
-                null,
-                Collections.emptyList());
-
-        addSection(composition, "Plano de Cuidados",
-                null,
-                null,
-                Collections.emptyList());
+//        addSection(composition, "Procedimentos Realizados",
+//                new Coding(procedure.getCode().getCodingFirstRep().getSystem(), procedure.getCode().getCodingFirstRep().getCode(), procedure.getCode().getCodingFirstRep().getDisplay()),
+//                new Coding("https://loinc.org/", "47519-4", "History of Procedures Document"),
+//                "Procedimentos Realizados",
+//                List.of(new Reference("urn:liberty:" + procedure.getId())));
+//
+//        addSection(composition, "Sinais Vitais",
+//                new Coding("https://loinc.org/", "8716-3", "Vital Signs Document"),
+//                "Sinais Vitais",
+//                Collections.emptyList());
+//
+//        addSection(composition, "Alergias e Intolerâncias",
+//                new Coding("https://loinc.org/", "48765-2", "Allergies and adverse reactions Document"),
+//                "Alergias e Intolerâncias",
+//                List.of(new Reference("urn:liberty:" + allergyIntolerance.getId())));
+//
+//        addSection(composition, "Medicamentos",
+//                new Coding("https://loinc.org/", "52471-0", "Medications Document"),
+//                "Medicamentos",
+//                Collections.emptyList());
+//
+//        addSection(composition, "Plano de Cuidados",
+//                new Coding("https://loinc.org/", "18776-5", "Plan of care note"),
+//                "Plano de Cuidados",
+//                Collections.emptyList());
 
         return composition;
     }
 
     private Encounter createEncounter(RegistroAtendimentoClinico rac, Patient patient, Organization organization, Location location) {
         Encounter encounter = new Encounter();
-        encounter.setId("urn:liberty:" +"Encounter/1");
-        
+        encounter.setId("encounter/1");
+        encounter.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"));
         encounter.addIdentifier(new Identifier().setSystem("https://saude.gov.br/fhir/sid/encounter").setValue("ENC-12345"));
 
         encounter.setStatus(Encounter.EncounterStatus.FINISHED);
@@ -195,12 +144,12 @@ public class RacBundleFactory {
         priority.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v3-ActPriority", rac.atendimento().prioridadeDoAto().codigo(), rac.atendimento().prioridadeDoAto().descricao()));
         encounter.setPriority(priority);
 
-        encounter.setSubject(new Reference(patient.getId()));
+        encounter.setSubject(new Reference("urn:liberty:" + patient.getId()));
 
         rac.atendimento().participantes().forEach(p -> {
             Encounter.EncounterParticipantComponent participant = new Encounter.EncounterParticipantComponent();
             p.tipos().forEach(t -> participant.addType(new CodeableConcept().addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v3-ParticipationType", t.codigo(), t.descricao()))));
-            participant.setIndividual(new Reference(p.profissionalId()));
+            participant.setIndividual(new Reference("urn:liberty:" + p.profissionalId()));
             encounter.addParticipant(participant);
         });
 
@@ -217,7 +166,7 @@ public class RacBundleFactory {
 
         rac.atendimento().diagnosticos().forEach(d -> {
             Encounter.DiagnosisComponent diagnosis = new Encounter.DiagnosisComponent();
-            diagnosis.setCondition(new Reference(d.condicao().id()).setDisplay(d.condicao().cid().descricao()));
+            diagnosis.setCondition(new Reference("urn:liberty:" + d.condicao().id()).setDisplay(d.condicao().cid().descricao()));
             CodeableConcept diagnosisUse = new CodeableConcept();
             diagnosisUse.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/diagnosis-role", d.tipo().codigo(), d.tipo().descricao()));
             diagnosis.setUse(diagnosisUse);
@@ -226,19 +175,19 @@ public class RacBundleFactory {
         });
 
         Encounter.EncounterLocationComponent encounterLocation = new Encounter.EncounterLocationComponent();
-        encounterLocation.setLocation(new Reference(location.getId()));
+        encounterLocation.setLocation(new Reference("urn:liberty:" + location.getId()));
         encounterLocation.setStatus(Encounter.EncounterLocationStatus.ACTIVE);
         encounter.addLocation(encounterLocation);
 
-        encounter.setServiceProvider(new Reference(organization.getId()));
+        encounter.setServiceProvider(new Reference("urn:liberty:" + organization.getId()));
 
         return encounter;
     }
 
     private Practitioner createPractitioner(RegistroAtendimentoClinico rac) {
         Practitioner practitioner = new Practitioner();
-        practitioner.setId("urn:liberty:" +rac.autor().id());
-
+        practitioner.setId(rac.autor().id());
+        practitioner.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner"));
         Identifier identifier1 = new Identifier();
         identifier1.setUse(Identifier.IdentifierUse.OFFICIAL);
         identifier1.setSystem("https://saude.gov.br/fhir/sid/crm-sp");
@@ -264,7 +213,7 @@ public class RacBundleFactory {
         qualification.addIdentifier(qualificationIdentifier);
 
         CodeableConcept qualificationCode = new CodeableConcept();
-        qualificationCode.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem-BRCBO.html", rac.autor().cbo().codigo(), rac.autor().cbo().descricao()));
+        qualificationCode.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRCBO", rac.autor().cbo().codigo(), rac.autor().cbo().descricao()));
         qualification.setCode(qualificationCode);
         practitioner.addQualification(qualification);
 
@@ -276,7 +225,7 @@ public class RacBundleFactory {
         Condition condition = new Condition();
 
         var diagnostico = rac.atendimento().diagnosticos().get(0);
-        condition.setId("urn:liberty:" +diagnostico.condicao().id());
+        condition.setId(diagnostico.condicao().id());
         condition.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"));
         CodeableConcept code = new CodeableConcept();
         code.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10", diagnostico.condicao().cid().codigo(), diagnostico.condicao().cid().descricao()));
@@ -309,24 +258,24 @@ public class RacBundleFactory {
 //        bodySite.setText("Coração");
 //        condition.addBodySite(bodySite);
 
-        condition.setSubject(new Reference(patient.getId()));
+        condition.setSubject(new Reference("urn:liberty:" + patient.getId()));
 
-        condition.setEncounter(new Reference(encounter.getId()));
+        condition.setEncounter(new Reference("urn:liberty:" + encounter.getId()));
 
         condition.setOnset(new DateTimeType("2024-04-05T10:00:00Z"));
 
         condition.setRecordedDateElement(new DateTimeType("2024-04-05T10:00:00Z"));
 
-//        condition.setRecorder(new Reference(practitioner.getId())); // fixme quem registrou o diagnóstico
+//        condition.setRecorder(new Reference("urn:liberty:" + practitioner.getId())); // fixme quem registrou o diagnóstico
 
-//        condition.setAsserter(new Reference(practitioner.getId())); // fixme quem confirmou o diagnóstico
+//        condition.setAsserter(new Reference("urn:liberty:" + practitioner.getId())); // fixme quem confirmou o diagnóstico
 
 //        Condition.ConditionEvidenceComponent evidence = new Condition.ConditionEvidenceComponent();
 //        CodeableConcept evidenceCode = new CodeableConcept();
 //        evidenceCode.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10", "R50.9", "Febre não especificada"));
 //        evidenceCode.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10", "R05", "Tosse"));
 //        evidence.addCode(evidenceCode);
-//        evidence.addDetail(new Reference("urn:uuid:52ba1c80-5d2c-4faf-8c90-f4363e20d7bb").setDisplay("Vital Signs"));
+//        evidence.addDetail(new Reference("urn:liberty:" + "urn:uuid:52ba1c80-5d2c-4faf-8c90-f4363e20d7bb").setDisplay("Vital Signs"));
 //        condition.addEvidence(evidence);
 
 //        Annotation note = new Annotation();
@@ -338,8 +287,8 @@ public class RacBundleFactory {
 
     private Procedure createProcedure(RegistroAtendimentoClinico rac, Patient patient, Encounter encounter, Practitioner practitioner) {
         Procedure procedure = new Procedure();
-        procedure.setId("urn:liberty:" +"Procedure/1");
-
+        procedure.setId("procedure/1");
+        procedure.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-procedure"));
         Identifier identifier = new Identifier();
         identifier.setSystem("https://saude.gov.br/fhir/sid/procedure");
         identifier.setValue(rac.atendimento().procedimentos().get(0).codigo());
@@ -365,9 +314,9 @@ public class RacBundleFactory {
 //        code.setText("Consulta médica em atenção primária");
 //        procedure.setCode(code);
 //
-        procedure.setSubject(new Reference(patient.getId()));
+        procedure.setSubject(new Reference("urn:liberty:" + patient.getId()));
 //
-        procedure.setEncounter(new Reference(encounter.getId()));
+        procedure.setEncounter(new Reference("urn:liberty:" + encounter.getId()));
 //
 //        Period performedPeriod = new Period();
 //        performedPeriod.setStartElement(new DateTimeType("2023-12-12T09:00:00-03:00"));
@@ -379,7 +328,7 @@ public class RacBundleFactory {
 //        performerFunction.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/participant-type", "emergency", "Emergency"));
 //        performerFunction.setText("Emergência");
 //        performer.setFunction(performerFunction);
-//        performer.setActor(new Reference(practitioner.getId()));
+//        performer.setActor(new Reference("urn:liberty:" + practitioner.getId()));
 //        procedure.addPerformer(performer);
 //
 //        CodeableConcept reasonCode = new CodeableConcept();
@@ -397,9 +346,9 @@ public class RacBundleFactory {
 //        outcome.setText("Melhora Clínica");
 //        procedure.setOutcome(outcome);
 //
-//        procedure.addReport(new Reference("DiagnosticReport/example-report"));
+//        procedure.addReport(new Reference("urn:liberty:" + "DiagnosticReport/example-report"));
 //
-//        procedure.addComplicationDetail(new Reference("urn:uuid:91d8d24f-a70d-4ebf-8dea-71cf92ce1bd5"));
+//        procedure.addComplicationDetail(new Reference("urn:liberty:" + "urn:uuid:91d8d24f-a70d-4ebf-8dea-71cf92ce1bd5"));
 //
 //        CodeableConcept followUp = new CodeableConcept();
 //        followUp.setText("Consulta de acompanhamento em 2 semanas");
@@ -414,7 +363,8 @@ public class RacBundleFactory {
 
     private AllergyIntolerance createAllergyIntolerance(Patient patient) {
         AllergyIntolerance allergyIntolerance = new AllergyIntolerance();
-        allergyIntolerance.setId("urn:liberty:" +"AllergyIntolerance/1");
+        allergyIntolerance.setId("allergyintolerance/1");
+        allergyIntolerance.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-allergyintolerance"));
 //        fixme dados adicionais que não sei se temos
         CodeableConcept clinicalStatus = new CodeableConcept();
         clinicalStatus.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "active", "Active"));
@@ -430,11 +380,11 @@ public class RacBundleFactory {
 
         allergyIntolerance.setCriticality(AllergyIntolerance.AllergyIntoleranceCriticality.HIGH);
 
-//        CodeableConcept code = new CodeableConcept();
-//        code.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRAlergenosCBARA", "camarao", "Camarão")).setText("Alergia a camarão");
-//        allergyIntolerance.setCode(code);
+        CodeableConcept code = new CodeableConcept();
+        code.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRAlergenosCBARA", "camarao", "Camarão")).setText("Alergia a camarão");
+        allergyIntolerance.setCode(code);
 
-        allergyIntolerance.setPatient(new Reference(patient.getId()));
+        allergyIntolerance.setPatient(new Reference("urn:liberty:" + patient.getId()));
 
 //        AllergyIntolerance.AllergyIntoleranceReactionComponent reaction = new AllergyIntolerance.AllergyIntoleranceReactionComponent();
 //        CodeableConcept manifestation = new CodeableConcept();
@@ -457,7 +407,7 @@ public class RacBundleFactory {
 
 //    private Medication createMedication() {
 //        Medication medication = new Medication();
-//        medication.setId("urn:liberty:" +"3a46210c-7eb3-48ec-aa67-db7e7ee18864");
+//        medication.setId("3a46210c-7eb3-48ec-aa67-db7e7ee18864");
 //
 //        Identifier identifier = new Identifier();
 //        identifier.setSystem("https://saude.gov.br/fhir/sid/medication");
@@ -470,7 +420,7 @@ public class RacBundleFactory {
 //
 //        medication.setStatus(Medication.MedicationStatus.ACTIVE);
 //
-//        medication.setManufacturer(new Reference("urn:uuid:1428c345-c221-411f-880f-6fb163817387"));
+//        medication.setManufacturer(new Reference("urn:liberty:" + "urn:uuid:1428c345-c221-411f-880f-6fb163817387"));
 //
 //        Medication.MedicationIngredientComponent ingredient = new Medication.MedicationIngredientComponent();
 //        CodeableConcept ingredientCode = new CodeableConcept();
@@ -502,16 +452,16 @@ public class RacBundleFactory {
 //    fixme hoje temos apenas para sumario de alta, o desfecho
 //    private CarePlan createCarePlan(Patient patient) {
 //        CarePlan carePlan = new CarePlan();
-//        carePlan.setId("urn:liberty:" +"1ed343f2-5231-40d6-a6ea-4428105b7532");
+//        carePlan.setId("1ed343f2-5231-40d6-a6ea-4428105b7532");
 //        carePlan.setInstantiatesUri(List.of(new UriType("http://www.saude.gov.br/plano-cuidados/asma")));
 //        carePlan.setStatus(CarePlan.CarePlanStatus.ACTIVE);
 //        carePlan.setIntent(CarePlan.CarePlanIntent.PLAN);
 //        carePlan.setTitle("Plano de Cuidados para Asma Persistente Moderada");
 //        carePlan.setDescription("Plano de cuidado voltado para controle de asma e monitoramento do paciente.");
-//        carePlan.setSubject(new Reference(patient.getId()));
+//        carePlan.setSubject(new Reference("urn:liberty:" + patient.getId()));
 //        carePlan.setCreatedElement(new DateTimeType("2024-12-19"));
-//        carePlan.setContributor(List.of(new Reference("urn:uuid:1428c345-c221-411f-880f-6fb163817387")));
-//        carePlan.setAddresses(List.of(new Reference("urn:uuid:91d8d24f-a70d-4ebf-8dea-71cf92ce1bd5").setDisplay("Dispnéia")));
+//        carePlan.setContributor(List.of(new Reference("urn:liberty:" + "urn:uuid:1428c345-c221-411f-880f-6fb163817387")));
+//        carePlan.setAddresses(List.of(new Reference("urn:liberty:" + "urn:uuid:91d8d24f-a70d-4ebf-8dea-71cf92ce1bd5").setDisplay("Dispnéia")));
 //
 //        CarePlan.CarePlanActivityComponent activity = new CarePlan.CarePlanActivityComponent();
 //        CarePlan.CarePlanActivityDetailComponent detail = new CarePlan.CarePlanActivityDetailComponent();
@@ -524,7 +474,7 @@ public class RacBundleFactory {
 //        scheduledPeriod.setStartElement(new DateTimeType("2024-12-20"));
 //        scheduledPeriod.setEndElement(new DateTimeType("2024-12-20"));
 //        detail.setScheduled(scheduledPeriod);
-//        detail.setPerformer(List.of(new Reference("urn:uuid:1428c345-c221-411f-880f-6fb163817387")));
+//        detail.setPerformer(List.of(new Reference("urn:liberty:" + "urn:uuid:1428c345-c221-411f-880f-6fb163817387")));
 //        detail.setDescription("Consulta periódica para acompanhamento da asma persistente moderada.");
 //        activity.setDetail(detail);
 //        carePlan.addActivity(activity);
@@ -534,18 +484,26 @@ public class RacBundleFactory {
 
     private Organization createOrganization(RegistroAtendimentoClinico rac) {
         Organization organization = new Organization();
-        organization.setId("urn:liberty:" +"Organization/1");
+        organization.setId("organization/1");
+        organization.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"));
         organization.setIdentifier(List.of(new Identifier().setUse(Identifier.IdentifierUse.OFFICIAL).setSystem("https://saude.gov.br/sid/cnes").setValue("2079127")));
         organization.setType(List.of(new CodeableConcept().addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRTipoEstabelecimentoSaude", "5", "HOSPITAL GERAL"))));
         organization.setName(rac.atendimento().organizacao().descricao());
+        organization.setAlias(List.of(new StringType(rac.atendimento().organizacao().descricao())));
         organization.setActive(true);
+        organization.setAddress(List.of(new Address()
+                .setLine(List.of(new StringType("123 Rua Fictícia")))
+                .setCity("Cidade Exemplo")
+                .setState("Estado Exemplo")
+                .setPostalCode("12345-678")
+                .setCountry("BR")));
         return organization;
     }
 
     private Location createLocation(RegistroAtendimentoClinico rac, Organization managingOrganization) {
         Location location = new Location();
-        location.setId("urn:liberty:" +"Location/1");
-
+        location.setId("location/1");
+        location.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"));
         Identifier identifier = new Identifier();
         identifier.setUse(Identifier.IdentifierUse.OFFICIAL);
         identifier.setSystem("https://saude.gov.br/sid/cnes");
@@ -563,26 +521,26 @@ public class RacBundleFactory {
 //        physicalType.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRInstalacoesFisicas", "42", "SALA DE ACOLHIMENTO COM CLASSIFICACAO DE RISCO"));
 //        location.setPhysicalType(physicalType);
 
-        location.setManagingOrganization(new Reference(managingOrganization.getId()));
+        location.setManagingOrganization(new Reference("urn:liberty:" + managingOrganization.getId()));
 
         return location;
     }
 
     private DiagnosticReport createDiagnosticReport(Patient patient, Encounter encounter, Organization organization) {
         DiagnosticReport diagnosticReport = new DiagnosticReport();
-        diagnosticReport.setId("urn:liberty:" +"DiagnosticReport/1");
+        diagnosticReport.setId("DiagnosticReport/1");
         diagnosticReport.setStatus(DiagnosticReport.DiagnosticReportStatus.FINAL);
         diagnosticReport.setCode(new CodeableConcept().addCoding(
                 new Coding("https://loinc.org/", "24323-8", "Complete Blood Count")));
-        diagnosticReport.setSubject(new Reference(patient.getId()));
-        diagnosticReport.setEncounter(new Reference(encounter.getId()));
-        diagnosticReport.setPerformer(List.of(new Reference("urn:uuid" + organization.getId())));
+        diagnosticReport.setSubject(new Reference("urn:liberty:" + patient.getId()));
+        diagnosticReport.setEncounter(new Reference("urn:liberty:" + encounter.getId()));
+        diagnosticReport.setPerformer(List.of(new Reference("urn:liberty:" + "urn:uuid" + organization.getId())));
         return diagnosticReport;
     }
 
     private Bundle.BundleEntryComponent createBundleEntry(Resource resource) {
         Bundle.BundleEntryComponent entry = new Bundle.BundleEntryComponent();
-        entry.setFullUrl(resource.getId());
+        entry.setFullUrl("urn:liberty:" + resource.getId().toLowerCase());
         entry.setResource(resource);
         return entry;
     }
@@ -593,7 +551,7 @@ public class RacBundleFactory {
         if (coding != null) {
             section.getCode().addCoding(coding);
         } else {
-            section.setEmptyReason(new CodeableConcept().addCoding(new Coding("http://terminology.hl7.org/CodeSystem/data-absent-reason", "unknown", "Unknown")));
+            section.setEmptyReason(new CodeableConcept().addCoding(new Coding("http://terminology.hl7.org/CodeSystem/data-absent-reason", "nilknown", "Nil Known")));
         }
         if (text != null) {
             section.getCode().setText(text);

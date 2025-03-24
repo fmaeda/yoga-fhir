@@ -28,10 +28,11 @@ public class PatientFactory {
 
     public Patient createPatient(Paciente paciente) {
         BRCorePatient patient = new BRCorePatient();
-        patient.setId("Patient/1");
+        patient.setId("patient/1");
         patient.setCpf(paciente.cpf());
         patient.setCns(paciente.cns());
         patient.setName(paciente.nome());
+        patient.setGender(BRCorePatient.AdministrativeGender.UNKNOWN);
 
         buildEnderecos(patient, paciente.enderecos());
         buildContatos(patient, paciente.contatos());
