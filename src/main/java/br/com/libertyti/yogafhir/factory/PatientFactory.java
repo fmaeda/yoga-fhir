@@ -28,7 +28,7 @@ public class PatientFactory {
 
     public Patient createPatient(Paciente paciente) {
         BRCorePatient patient = new BRCorePatient();
-        patient.setId(paciente.id());
+        patient.setId("Patient/1");
         patient.setCpf(paciente.cpf());
         patient.setCns(paciente.cns());
         patient.setName(paciente.nome());

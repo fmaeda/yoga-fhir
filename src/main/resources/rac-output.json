@@ -1,17 +1,17 @@
 {
   "resourceType": "Bundle",
-  "id": "8ace5d21-6b11-41b7-9364-d86d4b54f362",
+  "id": "1",
   "identifier": {
     "system": "urn:ietf:rfc:3986",
-    "value": "urn:uuid:10b572ef-207f-45f3-a093-c36b32baf05e"
+    "value": "urn:uuid:365d3014-6c2b-4678-ae7b-89de023daba2"
   },
   "type": "document",
-  "timestamp": "2025-03-21T17:13:00.862-03:00",
+  "timestamp": "2025-03-24T10:08:14.605-03:00",
   "entry": [ {
-    "fullUrl": "urn:uuid:127ee971-8dcc-4db8-96ba-cb5baac130d3",
+    "fullUrl": "Composition/1",
     "resource": {
       "resourceType": "Composition",
-      "id": "127ee971-8dcc-4db8-96ba-cb5baac130d3",
+      "id": "1",
       "meta": {
         "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-registroatendimentoclinico" ]
       },
@@ -33,13 +33,14 @@
         "text": "Consult note"
       } ],
       "subject": {
-        "reference": "915292aa-aa83-43da-8c70-76e732bd967f"
+        "reference": "Patient/1"
       },
       "encounter": {
-        "reference": "f814c04f-9ca0-4463-a51a-7bbf7e6a9df4"
+        "reference": "Encounter/1"
       },
+      "date": "2024-04-05T10:00:00Z",
       "author": [ {
-        "reference": "555efa1e-443d-4f08-8fe0-9cd82e3f5127"
+        "reference": "Practitioner/1"
       } ],
       "title": "Registro de Atendimento Clínico",
       "section": [ {
@@ -53,7 +54,7 @@
           "text": "Lista de Problemas - Diagnósticos Avaliados"
         },
         "entry": [ {
-          "reference": "urn:uuid:ecc2581a-58bd-4a8b-b7f3-76eeab0f5a25"
+          "reference": "Condition/1"
         } ]
       }, {
         "title": "Procedimentos Realizados",
@@ -66,26 +67,54 @@
           "text": "Procedimentos Realizados"
         },
         "entry": [ {
-          "reference": "urn:uuid:87efcf40-08af-4bee-bb24-b48a396d9835"
+          "reference": "Procedure/1"
         } ]
       }, {
-        "title": "Sinais Vitais"
+        "title": "Sinais Vitais",
+        "emptyReason": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+            "code": "unknown",
+            "display": "Unknown"
+          } ]
+        }
       }, {
         "title": "Alergias e Intolerâncias",
         "entry": [ {
-          "reference": "urn:uuid:28935909-61ca-4808-9e19-b1bdd78a5e2d"
-        } ]
+          "reference": "AllergyIntolerance/1"
+        } ],
+        "emptyReason": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+            "code": "unknown",
+            "display": "Unknown"
+          } ]
+        }
       }, {
-        "title": "Medicamentos"
+        "title": "Medicamentos",
+        "emptyReason": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+            "code": "unknown",
+            "display": "Unknown"
+          } ]
+        }
       }, {
-        "title": "Plano de Cuidados"
+        "title": "Plano de Cuidados",
+        "emptyReason": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+            "code": "unknown",
+            "display": "Unknown"
+          } ]
+        }
       } ]
     }
   }, {
-    "fullUrl": "urn:uuid:915292aa-aa83-43da-8c70-76e732bd967f",
+    "fullUrl": "Patient/1",
     "resource": {
       "resourceType": "Patient",
-      "id": "915292aa-aa83-43da-8c70-76e732bd967f",
+      "id": "1",
       "meta": {
         "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient|1.0.0" ]
       },
@@ -193,10 +222,10 @@
       } ]
     }
   }, {
-    "fullUrl": "urn:uuid:064807c5-1cb7-4836-9c13-54f31bf07cdf",
+    "fullUrl": "Organization/1",
     "resource": {
       "resourceType": "Organization",
-      "id": "064807c5-1cb7-4836-9c13-54f31bf07cdf",
+      "id": "1",
       "identifier": [ {
         "use": "official",
         "system": "https://saude.gov.br/sid/cnes",
@@ -213,10 +242,10 @@
       "name": "Hospital Sírio-Libanês"
     }
   }, {
-    "fullUrl": "urn:uuid:555efa1e-443d-4f08-8fe0-9cd82e3f5127",
+    "fullUrl": "Practitioner/1",
     "resource": {
       "resourceType": "Practitioner",
-      "id": "555efa1e-443d-4f08-8fe0-9cd82e3f5127",
+      "id": "1",
       "identifier": [ {
         "use": "official",
         "type": {
@@ -261,10 +290,10 @@
       } ]
     }
   }, {
-    "fullUrl": "urn:uuid:7f1bd706-8f89-4f9b-92a3-3e1d27cc9c71",
+    "fullUrl": "Location/1",
     "resource": {
       "resourceType": "Location",
-      "id": "7f1bd706-8f89-4f9b-92a3-3e1d27cc9c71",
+      "id": "1",
       "identifier": [ {
         "use": "official",
         "system": "https://saude.gov.br/sid/cnes",
@@ -282,14 +311,14 @@
         "text": "HOSPITAL DIA"
       } ],
       "managingOrganization": {
-        "reference": "urn:uuid:064807c5-1cb7-4836-9c13-54f31bf07cdf"
+        "reference": "Organization/1"
       }
     }
   }, {
-    "fullUrl": "urn:uuid:f814c04f-9ca0-4463-a51a-7bbf7e6a9df4",
+    "fullUrl": "Encounter/1",
     "resource": {
       "resourceType": "Encounter",
-      "id": "f814c04f-9ca0-4463-a51a-7bbf7e6a9df4",
+      "id": "1",
       "identifier": [ {
         "system": "https://saude.gov.br/fhir/sid/encounter",
         "value": "ENC-12345"
@@ -322,7 +351,7 @@
         } ]
       },
       "subject": {
-        "reference": "urn:uuid:915292aa-aa83-43da-8c70-76e732bd967f"
+        "reference": "Patient/1"
       },
       "participant": [ {
         "type": [ {
@@ -333,7 +362,7 @@
           } ]
         } ],
         "individual": {
-          "reference": "urn:uuid:555efa1e-443d-4f08-8fe0-9cd82e3f5127"
+          "reference": "Practitioner/1"
         }
       } ],
       "period": {
@@ -349,7 +378,7 @@
       } ],
       "diagnosis": [ {
         "condition": {
-          "reference": "urn:uuid:ecc2581a-58bd-4a8b-b7f3-76eeab0f5a25",
+          "reference": "Condition/1",
           "display": "FRATURA DO OMBRO E DO BRACO"
         },
         "use": {
@@ -363,19 +392,19 @@
       } ],
       "location": [ {
         "location": {
-          "reference": "urn:uuid:7f1bd706-8f89-4f9b-92a3-3e1d27cc9c71"
+          "reference": "Location/1"
         },
         "status": "active"
       } ],
       "serviceProvider": {
-        "reference": "urn:uuid:064807c5-1cb7-4836-9c13-54f31bf07cdf"
+        "reference": "Organization/1"
       }
     }
   }, {
-    "fullUrl": "urn:uuid:ecc2581a-58bd-4a8b-b7f3-76eeab0f5a25",
+    "fullUrl": "Condition/1",
     "resource": {
       "resourceType": "Condition",
-      "id": "ecc2581a-58bd-4a8b-b7f3-76eeab0f5a25",
+      "id": "1",
       "meta": {
         "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition" ]
       },
@@ -387,19 +416,19 @@
         } ]
       },
       "subject": {
-        "reference": "urn:uuid:915292aa-aa83-43da-8c70-76e732bd967f"
+        "reference": "Patient/1"
       },
       "encounter": {
-        "reference": "urn:uuid:f814c04f-9ca0-4463-a51a-7bbf7e6a9df4"
+        "reference": "Encounter/1"
       },
       "onsetDateTime": "2024-04-05T10:00:00Z",
       "recordedDate": "2024-04-05T10:00:00Z"
     }
   }, {
-    "fullUrl": "urn:uuid:87efcf40-08af-4bee-bb24-b48a396d9835",
+    "fullUrl": "Procedure/1",
     "resource": {
       "resourceType": "Procedure",
-      "id": "87efcf40-08af-4bee-bb24-b48a396d9835",
+      "id": "1",
       "identifier": [ {
         "system": "https://saude.gov.br/fhir/sid/procedure",
         "value": "0211060127"
@@ -413,17 +442,17 @@
         } ]
       },
       "subject": {
-        "reference": "urn:uuid:915292aa-aa83-43da-8c70-76e732bd967f"
+        "reference": "Patient/1"
       },
       "encounter": {
-        "reference": "urn:uuid:f814c04f-9ca0-4463-a51a-7bbf7e6a9df4"
+        "reference": "Encounter/1"
       }
     }
   }, {
-    "fullUrl": "urn:uuid:28935909-61ca-4808-9e19-b1bdd78a5e2d",
+    "fullUrl": "AllergyIntolerance/1",
     "resource": {
       "resourceType": "AllergyIntolerance",
-      "id": "28935909-61ca-4808-9e19-b1bdd78a5e2d",
+      "id": "1",
       "clinicalStatus": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
@@ -442,7 +471,7 @@
       "category": [ "medication" ],
       "criticality": "high",
       "patient": {
-        "reference": "urn:uuid:915292aa-aa83-43da-8c70-76e732bd967f"
+        "reference": "Patient/1"
       }
     }
   } ]
