@@ -1,0 +1,43 @@
+{
+  "resourceType": "Organization",
+  "id": "1",
+  "meta": {
+    "profile": [
+      "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+    ]
+  },
+  "identifier": [
+    {
+      "use": "official",
+      "system": "https://saude.gov.br/sid/cnes",
+      "value": "2079127"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRTipoEstabelecimentoSaude",
+          "code": "5",
+          "display": "HOSPITAL GERAL"
+        }
+      ]
+    }
+  ],
+  "name": "Hospital Sírio-Libanês",
+  "alias": [
+    "Hospital Sírio-Libanês"
+  ],
+  "address": [
+    {
+      "line": [
+        "123 Rua Fictícia"
+      ],
+      "city": "Cidade Exemplo",
+      "state": "Estado Exemplo",
+      "postalCode": "12345-678",
+      "country": "BR"
+    }
+  ]
+}

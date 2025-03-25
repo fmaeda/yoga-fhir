@@ -4,10 +4,12 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.rest.client.interceptor.BasicAuthInterceptor;
+import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ResultSeverityEnum;
 import lombok.SneakyThrows;
 import org.hl7.fhir.common.hapi.validation.support.*;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
+import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.model.*;
 import org.hl7.fhir.r4.profilemodel.gen.PECodeGenerator;
@@ -35,9 +37,9 @@ public class Teste {
     public static void main(String[] args) {
         FhirContext ctx = FhirContext.forR4();
 
-//        var authInterceptor = new BasicAuthInterceptor("fmaeda", "QZK!neu7bxt7wqu5fcv");
-//        var remoteTerminologyService = new RemoteTerminologyServiceValidationSupport(ctx, "https://fhir.loinc.org");
-//        remoteTerminologyService.addClientInterceptor(authInterceptor);
+        var authInterceptor = new BasicAuthInterceptor("fmaeda", "QZK!neu7bxt7wqu5fcv");
+        var remoteTerminologyService = new RemoteTerminologyServiceValidationSupport(ctx, "https://fhir.loinc.org");
+        remoteTerminologyService.addClientInterceptor(authInterceptor);
 
         var jsonParser = ctx.newJsonParser();
         var validator = ctx.newValidator();
@@ -56,20 +58,42 @@ public class Teste {
                 new DefaultProfileValidationSupport(ctx),
                 valSupport,
                 new InMemoryTerminologyServerValidationSupport(ctx),
-                npmPackageSupport//,
-//                remoteTerminologyService
+                npmPackageSupport,
+                remoteTerminologyService
 //                new SnapshotGeneratingValidationSupport(ctx)
         );
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
 
-        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
+//        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
+        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-rac.json")));
+        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-location.json")));
+        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-organization.json")));
+        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-encounter.json")));
+        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-condition.json")));
 //        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
 
+//        StopWatch sw = new StopWatch();
+//        System.out.println("====>INICIANDO VALIDACAO");
+//        sw.start();
+//        var validationRes = validator.validateWithResult(parsedJson);
+//        final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
+//                .filter(message -> message.getSeverity().equals(severity))
+//                .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));
+//        logger.accept(ResultSeverityEnum.INFORMATION);
+//        logger.accept(ResultSeverityEnum.WARNING);
+//        logger.accept(ResultSeverityEnum.ERROR);
+//        logger.accept(ResultSeverityEnum.FATAL);
+//
+//        sw.stop();
+//        System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size() + "(" + sw.getTotalTimeMillis() + "ms)");
+    }
+
+    private static void validate(FhirValidator validator, IBaseResource resource) {
         StopWatch sw = new StopWatch();
-        System.out.println("====>INICIANDO VALIDACAO");
+        System.out.println("====>INICIANDO VALIDACAO: " + resource.getMeta().getProfile().getFirst().getValue());
         sw.start();
-        var validationRes = validator.validateWithResult(parsedJson);
+        var validationRes = validator.validateWithResult(resource);
         final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
                 .filter(message -> message.getSeverity().equals(severity))
                 .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));

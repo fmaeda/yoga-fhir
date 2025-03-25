@@ -1,0 +1,26 @@
+{
+  "resourceType": "Condition",
+  "id": "1",
+  "meta": {
+    "profile": [
+      "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10",
+        "code": "B34.2",
+        "display": "Infecção por coronavírus de localização não especificada"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "urn:liberty:patient/1"
+  },
+  "encounter": {
+    "reference": "urn:liberty:encounter/1"
+  },
+  "onsetDateTime": "2024-04-05T10:00:00Z",
+  "recordedDate": "2024-04-05T10:00:00Z"
+}

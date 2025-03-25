@@ -403,8 +403,8 @@
             "coding": [
               {
                 "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRServicoEspecializado",
-                "code": "148",
-                "display": "HOSPITAL DIA"
+                "code": "140",
+                "display": "SERVICO DE URGENCIA E EMERGENCIA"
               }
             ],
             "text": "HOSPITAL DIA"

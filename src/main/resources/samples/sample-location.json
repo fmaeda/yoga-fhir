@@ -1,0 +1,34 @@
+{
+  "resourceType": "Location",
+  "id": "1",
+  "meta": {
+    "profile": [
+      "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+    ]
+  },
+  "identifier": [
+    {
+      "use": "official",
+      "system": "https://saude.gov.br/sid/cnes",
+      "value": "2079127"
+    }
+  ],
+  "status": "active",
+  "name": "Hospital Sírio-Libanês",
+  "mode": "instance",
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRServicoEspecializado",
+          "code": "140",
+          "display": "SERVICO DE URGENCIA E EMERGENCIA"
+        }
+      ],
+      "text": "HOSPITAL DIA"
+    }
+  ],
+  "managingOrganization": {
+    "reference": "urn:liberty:organization/1"
+  }
+}
