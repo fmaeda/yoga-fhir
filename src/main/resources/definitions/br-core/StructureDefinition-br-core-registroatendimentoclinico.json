@@ -5091,7 +5091,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "47519-4",
+        "fixedCode": "47519-4",
         "constraint": [
           {
             "key": "ele-1",
@@ -5143,7 +5143,7 @@
             "code": "string"
           }
         ],
-        "patternString": "History of Procedures Document",
+        "fixedString": "History of Procedures Document",
         "constraint": [
           {
             "key": "ele-1",
@@ -6229,7 +6229,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "8716-3",
+        "fixedCode": "8716-3",
         "constraint": [
           {
             "key": "ele-1",
@@ -6281,7 +6281,7 @@
             "code": "string"
           }
         ],
-        "patternString": "Vital Signs Document",
+        "fixedString": "Vital Signs Document",
         "constraint": [
           {
             "key": "ele-1",
@@ -7367,7 +7367,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "89213-3",
+        "fixedCode": "89213-3",
         "constraint": [
           {
             "key": "ele-1",
@@ -7419,7 +7419,7 @@
             "code": "string"
           }
         ],
-        "patternString": "Obstetrics History and physical note Document",
+        "fixedString": "Obstetrics History and physical note Document",
         "constraint": [
           {
             "key": "ele-1",
@@ -8506,7 +8506,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "63895-7",
+        "fixedCode": "63895-7",
         "constraint": [
           {
             "key": "ele-1",
@@ -8558,7 +8558,7 @@
             "code": "string"
           }
         ],
-        "patternString": "Breastfeeding status Document",
+        "fixedString": "Breastfeeding status Document",
         "constraint": [
           {
             "key": "ele-1",
@@ -9644,7 +9644,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "29762-2",
+        "fixedCode": "29762-2",
         "constraint": [
           {
             "key": "ele-1",
@@ -9696,7 +9696,7 @@
             "code": "string"
           }
         ],
-        "patternString": "Social history Narrative Document",
+        "fixedString": "Social history Narrative Document",
         "constraint": [
           {
             "key": "ele-1",
@@ -10783,7 +10783,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "48765-2",
+        "fixedCode": "48765-2",
         "constraint": [
           {
             "key": "ele-1",
@@ -10835,7 +10835,7 @@
             "code": "string"
           }
         ],
-        "patternString": "Allergies and adverse reactions Document",
+        "fixedString": "Allergies and adverse reactions Document",
         "constraint": [
           {
             "key": "ele-1",
@@ -11921,7 +11921,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "42346-7",
+        "fixedCode": "42346-7",
         "constraint": [
           {
             "key": "ele-1",
@@ -11973,7 +11973,7 @@
             "code": "string"
           }
         ],
-        "patternString": "Medications Document",
+        "fixedString": "Medications Document",
         "constraint": [
           {
             "key": "ele-1",
@@ -13063,7 +13063,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "18776-5",
+        "fixedCode": "18776-5",
         "constraint": [
           {
             "key": "ele-1",
@@ -13115,7 +13115,7 @@
             "code": "string"
           }
         ],
-        "patternString": "Plan of care note",
+        "fixedString": "Plan of care note",
         "constraint": [
           {
             "key": "ele-1",
@@ -14110,7 +14110,7 @@
             "code": "uri"
           }
         ],
-        "patternUri": "https://loinc.org/",
+        "patternUri": "http://loinc.org",
         "constraint": [
           {
             "key": "ele-1",
@@ -14201,7 +14201,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "54522-8",
+        "fixedCode": "54522-8",
         "constraint": [
           {
             "key": "ele-1",
@@ -14253,7 +14253,7 @@
             "code": "string"
           }
         ],
-        "patternString": "Functional status",
+        "fixedString": "Functional status",
         "constraint": [
           {
             "key": "ele-1",
@@ -14840,7 +14840,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:diagnosticosAvaliados.code.coding.version",
@@ -14853,14 +14853,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "57852-6"
+        "fixedCode": "57852-6"
       },
       {
         "id": "Composition.section:diagnosticosAvaliados.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Problem List"
+        "fixedString": "Problem List"
       },
       {
         "id": "Composition.section:diagnosticosAvaliados.code.coding.userSelected",
@@ -14973,7 +14973,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:procedimentosRealizados.code.coding.version",
@@ -14986,14 +14986,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "47519-4"
+        "fixedCode": "47519-4"
       },
       {
         "id": "Composition.section:procedimentosRealizados.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "History of Procedures Document"
+        "fixedString": "History of Procedures Document"
       },
       {
         "id": "Composition.section:procedimentosRealizados.code.coding.userSelected",
@@ -15106,7 +15106,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:sinaisVitais.code.coding.version",
@@ -15119,14 +15119,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "8716-3"
+        "fixedCode": "8716-3"
       },
       {
         "id": "Composition.section:sinaisVitais.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Vital Signs Document"
+        "fixedString": "Vital Signs Document"
       },
       {
         "id": "Composition.section:sinaisVitais.code.coding.userSelected",
@@ -15239,7 +15239,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:historiaObstetrica.code.coding.version",
@@ -15252,14 +15252,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "89213-3"
+        "fixedCode": "89213-3"
       },
       {
         "id": "Composition.section:historiaObstetrica.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Obstetrics History and physical note Document"
+        "fixedString": "Obstetrics History and physical note Document"
       },
       {
         "id": "Composition.section:historiaObstetrica.code.coding.userSelected",
@@ -15373,7 +15373,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:aleitamentoMaterno.code.coding.version",
@@ -15386,14 +15386,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "63895-7"
+        "fixedCode": "63895-7"
       },
       {
         "id": "Composition.section:aleitamentoMaterno.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Breastfeeding status Document"
+        "fixedString": "Breastfeeding status Document"
       },
       {
         "id": "Composition.section:aleitamentoMaterno.code.coding.userSelected",
@@ -15506,7 +15506,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:historiaSocial.code.coding.version",
@@ -15519,14 +15519,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "29762-2"
+        "fixedCode": "29762-2"
       },
       {
         "id": "Composition.section:historiaSocial.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Social history Narrative Document"
+        "fixedString": "Social history Narrative Document"
       },
       {
         "id": "Composition.section:historiaSocial.code.coding.userSelected",
@@ -15640,7 +15640,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:alergiasIntolerancias.code.coding.version",
@@ -15653,14 +15653,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "48765-2"
+        "fixedCode": "48765-2"
       },
       {
         "id": "Composition.section:alergiasIntolerancias.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Allergies and adverse reactions Document"
+        "fixedString": "Allergies and adverse reactions Document"
       },
       {
         "id": "Composition.section:alergiasIntolerancias.code.coding.userSelected",
@@ -15773,7 +15773,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:medicamentos.code.coding.version",
@@ -15786,14 +15786,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "42346-7"
+        "fixedCode": "42346-7"
       },
       {
         "id": "Composition.section:medicamentos.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Medications Document"
+        "fixedString": "Medications Document"
       },
       {
         "id": "Composition.section:medicamentos.code.coding.userSelected",
@@ -15910,7 +15910,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:planoCuidados.code.coding.version",
@@ -15923,14 +15923,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "18776-5"
+        "fixedCode": "18776-5"
       },
       {
         "id": "Composition.section:planoCuidados.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Plan of care note"
+        "fixedString": "Plan of care note"
       },
       {
         "id": "Composition.section:planoCuidados.code.coding.userSelected",
@@ -16043,7 +16043,7 @@
         "path": "Composition.section.code.coding.system",
         "short": "Identificador da terminologia",
         "definition": "Identidade da terminologia",
-        "patternUri": "https://loinc.org/"
+        "patternUri": "http://loinc.org"
       },
       {
         "id": "Composition.section:capacidadeFuncional.code.coding.version",
@@ -16056,14 +16056,14 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "54522-8"
+        "fixedCode": "54522-8"
       },
       {
         "id": "Composition.section:capacidadeFuncional.code.coding.display",
         "path": "Composition.section.code.coding.display",
         "short": "Descrição conforme definido pela terminologia",
         "definition": "Representação definida pela terminologia",
-        "patternString": "Functional status"
+        "fixedString": "Functional status"
       },
       {
         "id": "Composition.section:capacidadeFuncional.code.coding.userSelected",
