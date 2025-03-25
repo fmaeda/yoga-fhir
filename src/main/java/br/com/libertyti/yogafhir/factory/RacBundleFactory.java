@@ -49,7 +49,7 @@ public class RacBundleFactory {
         bundle.addEntry(createBundleEntry(location));
         bundle.addEntry(createBundleEntry(encounter));
         bundle.addEntry(createBundleEntry(condition));
-//        bundle.addEntry(createBundleEntry(procedure));
+        bundle.addEntry(createBundleEntry(procedure));
         bundle.addEntry(createBundleEntry(allergyIntolerance));
 //        bundle.addEntry(createBundleEntry(medication));
 //        bundle.addEntry(createBundleEntry(carePlan));
@@ -68,13 +68,13 @@ public class RacBundleFactory {
         composition.setDateElement(new DateTimeType("2024-04-05T10:00:00Z"));
 
         CodeableConcept type = new CodeableConcept();
-        type.addCoding(new Coding("https://loinc.org/", rac.tipo().codigo(), rac.tipo().descricao()));
+        type.addCoding(new Coding("http://loinc.org", rac.tipo().codigo(), rac.tipo().descricao()));
         type.setText(rac.tipo().descricao());
         composition.setType(type);
 
         rac.categorias().forEach(c -> {
             CodeableConcept category = new CodeableConcept();
-            category.addCoding(new Coding("https://loinc.org/", c.codigo(), c.descricao()));
+            category.addCoding(new Coding("http://loinc.org", c.codigo(), c.descricao()));
             category.setText(c.descricao());
             composition.addCategory(category);
         });
@@ -90,29 +90,29 @@ public class RacBundleFactory {
 
         addSection(composition, "Procedimentos Realizados",
 //                new Coding(procedure.getCode().getCodingFirstRep().getSystem(), procedure.getCode().getCodingFirstRep().getCode(), procedure.getCode().getCodingFirstRep().getDisplay()),
-                new Coding("https://loinc.org/", "47519-4", "History of Procedures Document"),
+                new Coding("http://loinc.org", "47519-4", "History of Procedures Document"),
                 "Procedimentos Realizados",
                 List.of(new Reference("urn:liberty:" + procedure.getId())));
 
-        addSection(composition, "Sinais Vitais",
-                new Coding("https://loinc.org/", "8716-3", "Vital Signs Document"),
-                "Sinais Vitais",
-                Collections.emptyList());
+//        addSection(composition, "Sinais Vitais",
+//                new Coding("http://loinc.org", "8716-3", "Vital Signs Document"),
+//                "Sinais Vitais",
+//                Collections.emptyList());
 
         addSection(composition, "Alergias e Intolerâncias",
-                new Coding("https://loinc.org/", "48765-2", "Allergies and adverse reactions Document"),
+                new Coding("http://loinc.org", "48765-2", "Allergies and adverse reactions Document"),
                 "Alergias e Intolerâncias",
                 List.of(new Reference("urn:liberty:" + allergyIntolerance.getId())));
 
-        addSection(composition, "Medicamentos",
-                new Coding("https://loinc.org/", "52471-0", "Medications Document"),
-                "Medicamentos",
-                Collections.emptyList());
+//        addSection(composition, "Medicamentos",
+//                new Coding("http://loinc.org", "42346-7", "Medications Document"),
+//                "Medicamentos",
+//                Collections.emptyList());
 
-        addSection(composition, "Plano de Cuidados",
-                new Coding("https://loinc.org/", "18776-5", "Plan of care note"),
-                "Plano de Cuidados",
-                Collections.emptyList());
+//        addSection(composition, "Plano de Cuidados",
+//                new Coding("http://loinc.org", "18776-5", "Plan of care note"),
+//                "Plano de Cuidados",
+//                Collections.emptyList());
 
         return composition;
     }
@@ -527,7 +527,7 @@ public class RacBundleFactory {
         diagnosticReport.setId("DiagnosticReport/1");
         diagnosticReport.setStatus(DiagnosticReport.DiagnosticReportStatus.FINAL);
         diagnosticReport.setCode(new CodeableConcept().addCoding(
-                new Coding("https://loinc.org/", "24323-8", "Complete Blood Count")));
+                new Coding("http://loinc.org", "24323-8", "Complete Blood Count")));
         diagnosticReport.setSubject(new Reference("urn:liberty:" + patient.getId()));
         diagnosticReport.setEncounter(new Reference("urn:liberty:" + encounter.getId()));
         diagnosticReport.setPerformer(List.of(new Reference("urn:liberty:" + "urn:uuid" + organization.getId())));

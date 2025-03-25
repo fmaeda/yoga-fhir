@@ -5000,7 +5000,7 @@
             "code": "uri"
           }
         ],
-        "patternUri": "https://loinc.org/",
+        "patternUri": "http://loinc.org",
         "constraint": [
           {
             "key": "ele-1",
@@ -6138,7 +6138,7 @@
             "code": "uri"
           }
         ],
-        "patternUri": "https://loinc.org/",
+        "patternUri": "http://loinc.org",
         "constraint": [
           {
             "key": "ele-1",
@@ -10692,7 +10692,7 @@
             "code": "uri"
           }
         ],
-        "patternUri": "https://loinc.org/",
+        "patternUri": "http://loinc.org",
         "constraint": [
           {
             "key": "ele-1",
@@ -11830,7 +11830,7 @@
             "code": "uri"
           }
         ],
-        "patternUri": "https://loinc.org/",
+        "patternUri": "http://loinc.org",
         "constraint": [
           {
             "key": "ele-1",
@@ -11921,7 +11921,7 @@
             "code": "code"
           }
         ],
-        "patternCode": "52471-0",
+        "patternCode": "42346-7",
         "constraint": [
           {
             "key": "ele-1",
@@ -12972,7 +12972,7 @@
             "code": "uri"
           }
         ],
-        "patternUri": "https://loinc.org/",
+        "patternUri": "http://loinc.org",
         "constraint": [
           {
             "key": "ele-1",
@@ -15786,7 +15786,7 @@
         "path": "Composition.section.code.coding.code",
         "short": "Código do conceito na sintaxe definida pela terminologia",
         "definition": "Código do conceito na sintaxe definida pela terminologia - fixo em loinc#42347-5 'Admission Diagnosis'",
-        "patternCode": "52471-0"
+        "patternCode": "42346-7"
       },
       {
         "id": "Composition.section:medicamentos.code.coding.display",
