@@ -3862,7 +3862,7 @@
             "code": "uri"
           }
         ],
-        "patternUri": "https://loinc.org/",
+        "patternUri": "http://loinc.org",
         "constraint": [
           {
             "key": "ele-1",

@@ -7,428 +7,572 @@
   },
   "type": "document",
   "timestamp": "2025-03-24T15:06:09.461-03:00",
-  "entry": [ {
-    "fullUrl": "urn:liberty:composition/1",
-    "resource": {
-      "resourceType": "Composition",
-      "id": "1",
-      "meta": {
-        "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-registroatendimentoclinico" ]
-      },
-      "status": "final",
-      "type": {
-        "coding": [ {
-          "system": "https://loinc.org/",
-          "code": "11488-00",
-          "display": "Consult notee"
-        } ],
-        "text": "Consult note"
-      },
-      "category": [ {
-        "coding": [ {
-          "system": "https://loinc.org/",
-          "code": "11488-4",
-          "display": "Consult note"
-        } ],
-        "text": "Consult note"
-      } ],
-      "subject": {
-        "reference": "urn:liberty:patient/1"
-      },
-      "encounter": {
-        "reference": "urn:liberty:encounter/1"
-      },
-      "date": "2024-04-05T10:00:00Z",
-      "author": [ {
-        "reference": "urn:liberty:practitioner/1"
-      } ],
-      "title": "Registro de Atendimento Clínico",
-      "section": [ {
-        "title": "Diagnósticos Avaliados",
+  "entry": [
+    {
+      "fullUrl": "urn:liberty:composition/1",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "1",
+        "meta": {
+          "profile": [
+            "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-registroatendimentoclinico"
+          ]
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "https://loinc.org/",
+              "code": "11488-00",
+              "display": "Consult notee"
+            }
+          ],
+          "text": "Consult note"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "https://loinc.org/",
+                "code": "11488-4",
+                "display": "Consult note"
+              }
+            ],
+            "text": "Consult note"
+          }
+        ],
+        "subject": {
+          "reference": "urn:liberty:patient/1"
+        },
+        "encounter": {
+          "reference": "urn:liberty:encounter/1"
+        },
+        "date": "2024-04-05T10:00:00Z",
+        "author": [
+          {
+            "reference": "urn:liberty:practitioner/1"
+          }
+        ],
+        "title": "Registro de Atendimento Clínico",
+        "section": [
+          {
+            "title": "Diagnósticos Avaliados",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "57852-6",
+                  "display": "Problem List"
+                }
+              ],
+              "text": "Lista de Problemas - Diagnósticos Avaliados"
+            },
+            "entry": [
+              {
+                "reference": "urn:liberty:condition/1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:liberty:patient/1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "1",
+        "meta": {
+          "profile": [
+            "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient|1.0.0"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+            "valueAddress": {
+              "use": "home",
+              "type": "both",
+              "text": "Rua Paris",
+              "line": [
+                "Rua Paris11"
+              ],
+              "city": "Paranavaí",
+              "state": "PR",
+              "postalCode": "87935-180",
+              "country": "Brasil"
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "446151000124109",
+                  "display": "Identifies as male gender (finding)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "https://ips.saude.gov.br/fhir/StructureDefinition/raca-br-ips",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRRacaCor",
+                  "code": "04",
+                  "display": "Amarela"
+                }
+              ]
+            }
+          },
+          {
+            "url": "https://ips.saude.gov.br/fhir/StructureDefinition/sexo-nascimento-br-ips",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/administrative-gender",
+                  "code": "male",
+                  "display": "Masculino"
+                }
+              ]
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "use": "official",
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "HC",
+                  "display": "Health Card Number"
+                }
+              ]
+            },
+            "system": "https://saude.gov.br/fhir/sid/cns",
+            "value": "123456789"
+          },
+          {
+            "use": "official",
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "TAX",
+                  "display": "Tax ID number"
+                }
+              ]
+            },
+            "system": "https://saude.gov.br/fhir/sid/cpf",
+            "value": "12345678909"
+          }
+        ],
+        "name": [
+          {
+            "family": "Maeda",
+            "given": [
+              "Fabiano"
+            ]
+          }
+        ],
+        "gender": "unknown",
+        "address": [
+          {
+            "use": "home",
+            "type": "both",
+            "text": "Av. Brasil",
+            "line": [
+              "Av. Brasil1"
+            ],
+            "city": "Rondon",
+            "state": "PR",
+            "postalCode": "87800-000",
+            "country": "Brasil"
+          }
+        ],
+        "contact": [
+          {
+            "telecom": [
+              {
+                "system": "phone",
+                "value": "(61) 98888-8888",
+                "use": "mobile"
+              },
+              {
+                "system": "phone",
+                "value": "(61) 5555-8888",
+                "use": "home"
+              },
+              {
+                "system": "email",
+                "value": "teste@teste.com",
+                "use": "home"
+              }
+            ],
+            "address": {
+              "use": "home",
+              "type": "both",
+              "text": "Av. São Paulo",
+              "line": [
+                "Av. São Paulo123"
+              ],
+              "city": "Maringá",
+              "state": "PR",
+              "postalCode": "85000-000",
+              "country": "Brasil"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:liberty:organization/1",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "1",
+        "meta": {
+          "profile": [
+            "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization"
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://saude.gov.br/sid/cnes",
+            "value": "2079127"
+          }
+        ],
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRTipoEstabelecimentoSaude",
+                "code": "5",
+                "display": "HOSPITAL GERAL"
+              }
+            ]
+          }
+        ],
+        "name": "Hospital Sírio-Libanês",
+        "alias": [
+          "Hospital Sírio-Libanês"
+        ],
+        "address": [
+          {
+            "line": [
+              "123 Rua Fictícia"
+            ],
+            "city": "Cidade Exemplo",
+            "state": "Estado Exemplo",
+            "postalCode": "12345-678",
+            "country": "BR"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:liberty:practitioner/1",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "1",
+        "meta": {
+          "profile": [
+            "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner"
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "MD",
+                  "display": "Medical License number"
+                }
+              ],
+              "text": "Número de Registro no Conselho Federal de Medicina"
+            },
+            "system": "https://saude.gov.br/fhir/sid/crm-sp",
+            "value": "123456"
+          },
+          {
+            "use": "official",
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "HC",
+                  "display": "Health Card Number"
+                }
+              ],
+              "text": "Número do Cartão Nacional de Saúde"
+            },
+            "system": "https://saude.gov.br/fhir/sid/cns",
+            "value": "91092901209"
+          }
+        ],
+        "active": true,
+        "name": [
+          {
+            "family": "Robledo"
+          }
+        ],
+        "qualification": [
+          {
+            "identifier": [
+              {
+                "system": "https://saude.gov.br/fhir/sid/cns",
+                "value": "91092901209"
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRCBO",
+                  "code": "225125",
+                  "display": "ENFERMEIRO"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:liberty:location/1",
+      "resource": {
+        "resourceType": "Location",
+        "id": "1",
+        "meta": {
+          "profile": [
+            "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location"
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://saude.gov.br/sid/cnes",
+            "value": "2079127"
+          }
+        ],
+        "status": "active",
+        "name": "Hospital Sírio-Libanês",
+        "mode": "instance",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRServicoEspecializado",
+                "code": "148",
+                "display": "HOSPITAL DIA"
+              }
+            ],
+            "text": "HOSPITAL DIA"
+          }
+        ],
+        "managingOrganization": {
+          "reference": "urn:liberty:organization/1"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:liberty:encounter/1",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "1",
+        "meta": {
+          "profile": [
+            "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://saude.gov.br/fhir/sid/encounter",
+            "value": "ENC-12345"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "Ambulatory"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRAtendimentoPrestado",
+                "code": "02",
+                "display": "AMBULATORIAL"
+              }
+            ]
+          }
+        ],
+        "serviceType": {
+          "coding": [
+            {
+              "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRServicoEspecializado",
+              "code": "116",
+              "display": "SERVICO DE ATENCAO CARDIOVASCULAR CARDIOLOGIA"
+            }
+          ]
+        },
+        "priority": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActPriority",
+              "code": "R",
+              "display": "Routine"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:liberty:patient/1"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "code": "ADM",
+                    "display": "admitter"
+                  }
+                ]
+              }
+            ],
+            "individual": {
+              "reference": "urn:liberty:practitioner/1"
+            }
+          }
+        ],
+        "period": {
+          "start": "2024-04-05T10:00:00Z",
+          "end": "2024-04-05T11:00:00Z"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10",
+                "code": "B34.2",
+                "display": "Infecção por coronavírus de localização não especificada"
+              }
+            ]
+          }
+        ],
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "urn:liberty:condition/1",
+              "display": "Infecção por coronavírus de localização não especificada"
+            },
+            "use": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+                  "code": "CC",
+                  "display": "Chief Complaint"
+                }
+              ]
+            },
+            "rank": 1
+          }
+        ],
+        "location": [
+          {
+            "location": {
+              "reference": "urn:liberty:location/1"
+            },
+            "status": "active"
+          }
+        ],
+        "serviceProvider": {
+          "reference": "urn:liberty:organization/1"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:liberty:condition/1",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "1",
+        "meta": {
+          "profile": [
+            "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition"
+          ]
+        },
         "code": {
-          "coding": [ {
-            "system": "https://loinc.org/",
-            "code": "57852-6",
-            "display": "Problem List"
-          } ],
-          "text": "Lista de Problemas - Diagnósticos Avaliados"
+          "coding": [
+            {
+              "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10",
+              "code": "B34.2",
+              "display": "Infecção por coronavírus de localização não especificada"
+            }
+          ]
         },
-        "entry": [ {
-          "reference": "urn:liberty:condition/1"
-        } ]
-      } ]
-    }
-  }, {
-    "fullUrl": "urn:liberty:patient/1",
-    "resource": {
-      "resourceType": "Patient",
-      "id": "1",
-      "meta": {
-        "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-patient|1.0.0" ]
-      },
-      "extension": [ {
-        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
-        "valueAddress": {
-          "use": "home",
-          "type": "both",
-          "text": "Rua Paris",
-          "line": [ "Rua Paris11" ],
-          "city": "Paranavaí",
-          "state": "PR",
-          "postalCode": "87935-180",
-          "country": "Brasil"
-        }
-      }, {
-        "url": "http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
-        "valueCodeableConcept": {
-          "coding": [ {
-            "system": "http://snomed.info/sct",
-            "code": "446151000124109",
-            "display": "Identifies as male gender (finding)"
-          } ]
-        }
-      }, {
-        "url": "https://ips.saude.gov.br/fhir/StructureDefinition/raca-br-ips",
-        "valueCodeableConcept": {
-          "coding": [ {
-            "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRRacaCor",
-            "code": "04",
-            "display": "Amarela"
-          } ]
-        }
-      }, {
-        "url": "https://ips.saude.gov.br/fhir/StructureDefinition/sexo-nascimento-br-ips",
-        "valueCodeableConcept": {
-          "coding": [ {
-            "system": "http://hl7.org/fhir/administrative-gender",
-            "code": "male",
-            "display": "Masculino"
-          } ]
-        }
-      } ],
-      "identifier": [ {
-        "use": "official",
-        "type": {
-          "coding": [ {
-            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-            "code": "HC",
-            "display": "Health Card Number"
-          } ]
+        "subject": {
+          "reference": "urn:liberty:patient/1"
         },
-        "system": "https://saude.gov.br/fhir/sid/cns",
-        "value": "123456789"
-      }, {
-        "use": "official",
-        "type": {
-          "coding": [ {
-            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-            "code": "TAX",
-            "display": "Tax ID number"
-          } ]
+        "encounter": {
+          "reference": "urn:liberty:encounter/1"
         },
-        "system": "https://saude.gov.br/fhir/sid/cpf",
-        "value": "12345678909"
-      } ],
-      "name": [ {
-        "family": "Maeda",
-        "given": [ "Fabiano" ]
-      } ],
-      "gender": "unknown",
-      "address": [ {
-        "use": "home",
-        "type": "both",
-        "text": "Av. Brasil",
-        "line": [ "Av. Brasil1" ],
-        "city": "Rondon",
-        "state": "PR",
-        "postalCode": "87800-000",
-        "country": "Brasil"
-      } ],
-      "contact": [ {
-        "telecom": [ {
-          "system": "phone",
-          "value": "(61) 98888-8888",
-          "use": "mobile"
-        }, {
-          "system": "phone",
-          "value": "(61) 5555-8888",
-          "use": "home"
-        }, {
-          "system": "email",
-          "value": "teste@teste.com",
-          "use": "home"
-        } ],
-        "address": {
-          "use": "home",
-          "type": "both",
-          "text": "Av. São Paulo",
-          "line": [ "Av. São Paulo123" ],
-          "city": "Maringá",
-          "state": "PR",
-          "postalCode": "85000-000",
-          "country": "Brasil"
-        }
-      } ]
-    }
-  }, {
-    "fullUrl": "urn:liberty:organization/1",
-    "resource": {
-      "resourceType": "Organization",
-      "id": "1",
-      "meta": {
-        "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-organization" ]
-      },
-      "identifier": [ {
-        "use": "official",
-        "system": "https://saude.gov.br/sid/cnes",
-        "value": "2079127"
-      } ],
-      "active": true,
-      "type": [ {
-        "coding": [ {
-          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRTipoEstabelecimentoSaude",
-          "code": "5",
-          "display": "HOSPITAL GERAL"
-        } ]
-      } ],
-      "name": "Hospital Sírio-Libanês",
-      "alias": [ "Hospital Sírio-Libanês" ],
-      "address": [ {
-        "line": [ "123 Rua Fictícia" ],
-        "city": "Cidade Exemplo",
-        "state": "Estado Exemplo",
-        "postalCode": "12345-678",
-        "country": "BR"
-      } ]
-    }
-  }, {
-    "fullUrl": "urn:liberty:practitioner/1",
-    "resource": {
-      "resourceType": "Practitioner",
-      "id": "1",
-      "meta": {
-        "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-practitioner" ]
-      },
-      "identifier": [ {
-        "use": "official",
-        "type": {
-          "coding": [ {
-            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-            "code": "MD",
-            "display": "Medical License number"
-          } ],
-          "text": "Número de Registro no Conselho Federal de Medicina"
+        "onsetDateTime": "2024-04-05T10:00:00Z",
+        "recordedDate": "2024-04-05T10:00:00Z"
+      }
+    },
+    {
+      "fullUrl": "urn:liberty:allergyintolerance/1",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "1",
+        "meta": {
+          "profile": [
+            "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-allergyintolerance"
+          ]
         },
-        "system": "https://saude.gov.br/fhir/sid/crm-sp",
-        "value": "123456"
-      }, {
-        "use": "official",
-        "type": {
-          "coding": [ {
-            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-            "code": "HC",
-            "display": "Health Card Number"
-          } ],
-          "text": "Número do Cartão Nacional de Saúde"
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
         },
-        "system": "https://saude.gov.br/fhir/sid/cns",
-        "value": "91092901209"
-      } ],
-      "active": true,
-      "name": [ {
-        "family": "Robledo"
-      } ],
-      "qualification": [ {
-        "identifier": [ {
-          "system": "https://saude.gov.br/fhir/sid/cns",
-          "value": "91092901209"
-        } ],
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ]
+        },
+        "type": "allergy",
+        "category": [
+          "medication"
+        ],
+        "criticality": "high",
         "code": {
-          "coding": [ {
-            "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRCBO",
-            "code": "225125",
-            "display": "ENFERMEIRO"
-          } ]
+          "coding": [
+            {
+              "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRAlergenosCBARA",
+              "code": "camarao",
+              "display": "Camarão"
+            }
+          ],
+          "text": "Alergia a camarão"
+        },
+        "patient": {
+          "reference": "urn:liberty:patient/1"
         }
-      } ]
-    }
-  }, {
-    "fullUrl": "urn:liberty:location/1",
-    "resource": {
-      "resourceType": "Location",
-      "id": "1",
-      "meta": {
-        "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-location" ]
-      },
-      "identifier": [ {
-        "use": "official",
-        "system": "https://saude.gov.br/sid/cnes",
-        "value": "2079127"
-      } ],
-      "status": "active",
-      "name": "Hospital Sírio-Libanês",
-      "mode": "instance",
-      "type": [ {
-        "coding": [ {
-          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRServicoEspecializado",
-          "code": "148",
-          "display": "HOSPITAL DIA"
-        } ],
-        "text": "HOSPITAL DIA"
-      } ],
-      "managingOrganization": {
-        "reference": "urn:liberty:organization/1"
       }
     }
-  }, {
-    "fullUrl": "urn:liberty:encounter/1",
-    "resource": {
-      "resourceType": "Encounter",
-      "id": "1",
-      "meta": {
-        "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-encounter" ]
-      },
-      "identifier": [ {
-        "system": "https://saude.gov.br/fhir/sid/encounter",
-        "value": "ENC-12345"
-      } ],
-      "status": "finished",
-      "class": {
-        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-        "code": "AMB",
-        "display": "Ambulatory"
-      },
-      "type": [ {
-        "coding": [ {
-          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRAtendimentoPrestado",
-          "code": "02",
-          "display": "AMBULATORIAL"
-        } ]
-      } ],
-      "serviceType": {
-        "coding": [ {
-          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRServicoEspecializado",
-          "code": "116",
-          "display": "SERVICO DE ATENCAO CARDIOVASCULAR CARDIOLOGIA"
-        } ]
-      },
-      "priority": {
-        "coding": [ {
-          "system": "http://terminology.hl7.org/CodeSystem/v3-ActPriority",
-          "code": "R",
-          "display": "Routine"
-        } ]
-      },
-      "subject": {
-        "reference": "urn:liberty:patient/1"
-      },
-      "participant": [ {
-        "type": [ {
-          "coding": [ {
-            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
-            "code": "ADM",
-            "display": "admitter"
-          } ]
-        } ],
-        "individual": {
-          "reference": "urn:liberty:practitioner/1"
-        }
-      } ],
-      "period": {
-        "start": "2024-04-05T10:00:00Z",
-        "end": "2024-04-05T11:00:00Z"
-      },
-      "reasonCode": [ {
-        "coding": [ {
-          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10",
-          "code": "B34.2",
-          "display": "Infecção por coronavírus de localização não especificada"
-        } ]
-      } ],
-      "diagnosis": [ {
-        "condition": {
-          "reference": "urn:liberty:condition/1",
-          "display": "Infecção por coronavírus de localização não especificada"
-        },
-        "use": {
-          "coding": [ {
-            "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
-            "code": "CC",
-            "display": "Chief Complaint"
-          } ]
-        },
-        "rank": 1
-      } ],
-      "location": [ {
-        "location": {
-          "reference": "urn:liberty:location/1"
-        },
-        "status": "active"
-      } ],
-      "serviceProvider": {
-        "reference": "urn:liberty:organization/1"
-      }
-    }
-  }, {
-    "fullUrl": "urn:liberty:condition/1",
-    "resource": {
-      "resourceType": "Condition",
-      "id": "1",
-      "meta": {
-        "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-condition" ]
-      },
-      "code": {
-        "coding": [ {
-          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRCID10",
-          "code": "B34.2",
-          "display": "Infecção por coronavírus de localização não especificada"
-        } ]
-      },
-      "subject": {
-        "reference": "urn:liberty:patient/1"
-      },
-      "encounter": {
-        "reference": "urn:liberty:encounter/1"
-      },
-      "onsetDateTime": "2024-04-05T10:00:00Z",
-      "recordedDate": "2024-04-05T10:00:00Z"
-    }
-  }, {
-    "fullUrl": "urn:liberty:allergyintolerance/1",
-    "resource": {
-      "resourceType": "AllergyIntolerance",
-      "id": "1",
-      "meta": {
-        "profile": [ "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-allergyintolerance" ]
-      },
-      "clinicalStatus": {
-        "coding": [ {
-          "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
-          "code": "active",
-          "display": "Active"
-        } ]
-      },
-      "verificationStatus": {
-        "coding": [ {
-          "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-          "code": "confirmed",
-          "display": "Confirmed"
-        } ]
-      },
-      "type": "allergy",
-      "category": [ "medication" ],
-      "criticality": "high",
-      "code": {
-        "coding": [ {
-          "system": "https://terminologia.saude.gov.br/fhir/CodeSystem/BRAlergenosCBARA",
-          "code": "camarao",
-          "display": "Camarão"
-        } ],
-        "text": "Alergia a camarão"
-      },
-      "patient": {
-        "reference": "urn:liberty:patient/1"
-      }
-    }
-  } ]
+  ]
 }
