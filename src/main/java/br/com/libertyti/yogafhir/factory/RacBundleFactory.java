@@ -5,10 +5,6 @@ import br.com.libertyti.yogafhir.model.RegistroAtendimentoClinico;
 import ca.uhn.fhir.context.FhirContext;
 import org.hl7.fhir.r4.model.*;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +39,7 @@ public class RacBundleFactory {
 //        var medication = createMedication();
 //        var carePlan = createCarePlan(patient);
 //        var diagnosticReport = createDiagnosticReport(patient, encounter, organization);
-        Composition composition = createComposition(rac, patient, encounter, allergyIntolerance);
+        Composition composition = createComposition(rac, patient, encounter, procedure, allergyIntolerance);
 
 
         bundle.addEntry(createBundleEntry(composition));
@@ -62,7 +58,7 @@ public class RacBundleFactory {
         return bundle;
     }
 
-    private Composition createComposition(RegistroAtendimentoClinico rac, Patient patient, Encounter encounter, AllergyIntolerance allergyIntolerance) {
+    private Composition createComposition(RegistroAtendimentoClinico rac, Patient patient, Encounter encounter, Procedure procedure, AllergyIntolerance allergyIntolerance) {
         Composition composition = new Composition();
         composition.setId("composition/1");
         composition.setStatus(Composition.CompositionStatus.fromCode(rac.status()));
@@ -88,35 +84,35 @@ public class RacBundleFactory {
         composition.addAuthor(new Reference("urn:liberty:" + rac.autor().id()));
 
         addSection(composition, "Diagnósticos Avaliados",
-                new Coding("https://loinc.org/", "57852-6", "Problem List"),
+                new Coding("http://loinc.org", "57852-6", "Problem List"),
                 "Lista de Problemas - Diagnósticos Avaliados",
                 rac.atendimento().diagnosticos().stream().map(d -> new Reference("urn:liberty:" + d.condicao().id())).toList());
 
-//        addSection(composition, "Procedimentos Realizados",
+        addSection(composition, "Procedimentos Realizados",
 //                new Coding(procedure.getCode().getCodingFirstRep().getSystem(), procedure.getCode().getCodingFirstRep().getCode(), procedure.getCode().getCodingFirstRep().getDisplay()),
-//                new Coding("https://loinc.org/", "47519-4", "History of Procedures Document"),
-//                "Procedimentos Realizados",
-//                List.of(new Reference("urn:liberty:" + procedure.getId())));
-//
-//        addSection(composition, "Sinais Vitais",
-//                new Coding("https://loinc.org/", "8716-3", "Vital Signs Document"),
-//                "Sinais Vitais",
-//                Collections.emptyList());
-//
-//        addSection(composition, "Alergias e Intolerâncias",
-//                new Coding("https://loinc.org/", "48765-2", "Allergies and adverse reactions Document"),
-//                "Alergias e Intolerâncias",
-//                List.of(new Reference("urn:liberty:" + allergyIntolerance.getId())));
-//
-//        addSection(composition, "Medicamentos",
-//                new Coding("https://loinc.org/", "52471-0", "Medications Document"),
-//                "Medicamentos",
-//                Collections.emptyList());
-//
-//        addSection(composition, "Plano de Cuidados",
-//                new Coding("https://loinc.org/", "18776-5", "Plan of care note"),
-//                "Plano de Cuidados",
-//                Collections.emptyList());
+                new Coding("https://loinc.org/", "47519-4", "History of Procedures Document"),
+                "Procedimentos Realizados",
+                List.of(new Reference("urn:liberty:" + procedure.getId())));
+
+        addSection(composition, "Sinais Vitais",
+                new Coding("https://loinc.org/", "8716-3", "Vital Signs Document"),
+                "Sinais Vitais",
+                Collections.emptyList());
+
+        addSection(composition, "Alergias e Intolerâncias",
+                new Coding("https://loinc.org/", "48765-2", "Allergies and adverse reactions Document"),
+                "Alergias e Intolerâncias",
+                List.of(new Reference("urn:liberty:" + allergyIntolerance.getId())));
+
+        addSection(composition, "Medicamentos",
+                new Coding("https://loinc.org/", "52471-0", "Medications Document"),
+                "Medicamentos",
+                Collections.emptyList());
+
+        addSection(composition, "Plano de Cuidados",
+                new Coding("https://loinc.org/", "18776-5", "Plan of care note"),
+                "Plano de Cuidados",
+                Collections.emptyList());
 
         return composition;
     }
