@@ -66,32 +66,19 @@ public class Teste {
         validator.registerValidatorModule(instanceValidator);
 
 //        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
-        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-rac.json")));
-        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-location.json")));
-        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-organization.json")));
-        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-encounter.json")));
-        validate(validator, jsonParser.parseResource(readResourceAsString("samples/sample-condition.json")));
-//        Patient parsedJson = jsonParser.parseResource(Patient.class, readResourceAsString("samples/patient-br.json"));
-
-//        StopWatch sw = new StopWatch();
-//        System.out.println("====>INICIANDO VALIDACAO");
-//        sw.start();
-//        var validationRes = validator.validateWithResult(parsedJson);
-//        final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
-//                .filter(message -> message.getSeverity().equals(severity))
-//                .forEach(message -> System.out.printf((LOG_VALIDATION_MESSAGE_TEMPLATE) + "%n", message.getSeverity(), message.getLocationString(), message.getMessage()));
-//        logger.accept(ResultSeverityEnum.INFORMATION);
-//        logger.accept(ResultSeverityEnum.WARNING);
-//        logger.accept(ResultSeverityEnum.ERROR);
-//        logger.accept(ResultSeverityEnum.FATAL);
-//
-//        sw.stop();
-//        System.out.println("QUANTIDADE DE ERROS: " + validationRes.getMessages().stream().filter(message -> message.getSeverity().equals(ResultSeverityEnum.ERROR)).count() + " de " + validationRes.getMessages().size() + "(" + sw.getTotalTimeMillis() + "ms)");
+//        validate(validator, jsonParser,"rac-output.json");
+        validate(validator, jsonParser, "samples/sample-rac.json");
+        validate(validator, jsonParser, "samples/sample-location.json");
+        validate(validator, jsonParser, "samples/sample-organization.json");
+        validate(validator, jsonParser, "samples/sample-encounter.json");
+        validate(validator, jsonParser, "samples/sample-condition.json");
     }
 
-    private static void validate(FhirValidator validator, IBaseResource resource) {
+    private static void validate(FhirValidator validator, IParser parser, String resourcePath) {
+        var resource = parser.parseResource(readResourceAsString(resourcePath));
         StopWatch sw = new StopWatch();
-        System.out.println("====>INICIANDO VALIDACAO: " + resource.getMeta().getProfile().getFirst().getValue());
+            System.out.println("====>INICIANDO VALIDACAO: " + resourcePath);
+
         sw.start();
         var validationRes = validator.validateWithResult(resource);
         final Consumer<ResultSeverityEnum> logger = (severity) -> validationRes.getMessages().stream()
