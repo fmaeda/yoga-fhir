@@ -62,7 +62,7 @@
                 {
                   "system": "http://loinc.org",
                   "code": "57852-6",
-                  "display": "Problem List"
+                  "display": "Problem list Narrative - Reported"
                 }
               ],
               "text": "Lista de Problemas - Diagnósticos Avaliados"
@@ -522,9 +522,11 @@
         ],
         "location": [
           {
+            "id": "teste-location",
             "location": {
               "reference": "urn:liberty:location/1"
             },
+            "display": "Sírio Libanes",
             "status": "active"
           }
         ],
