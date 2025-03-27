@@ -62,7 +62,7 @@ public class Teste {
                 remoteTerminologyService
 //                new SnapshotGeneratingValidationSupport(ctx)
         );
-        instanceValidator.setValidationSupport(supportChain);
+        instanceValidator.setValidationSupport(new CachingValidationSupport(supportChain));
         validator.registerValidatorModule(instanceValidator);
 
         Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
@@ -77,7 +77,7 @@ public class Teste {
     private static void validate(FhirValidator validator, IParser parser, String resourcePath) {
         var resource = parser.parseResource(readResourceAsString(resourcePath));
         StopWatch sw = new StopWatch();
-            System.out.println("====>INICIANDO VALIDACAO: " + resourcePath);
+        System.out.println("====>INICIANDO VALIDACAO: " + resourcePath);
 
         sw.start();
         var validationRes = validator.validateWithResult(resource);
