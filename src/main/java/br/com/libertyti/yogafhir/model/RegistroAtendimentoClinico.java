@@ -15,8 +15,7 @@ public record RegistroAtendimentoClinico(
         List<ValueObject> categorias,
         Paciente paciente,
         Atendimento atendimento,
-        Profissional autor,
-        List<Secoes> secoes
+        Profissional autor
 ) {
     public record Atendimento(
             String id,
@@ -44,9 +43,6 @@ public record RegistroAtendimentoClinico(
         }
 
         public record Alergia(String categoria, ValueObject code, String manifestacao, String grauCerteza, String criticidade, LocalDateTime registradoEm, ValueObject statusClinico, ValueObject statusDeVerificacao){}
-    }
-
-    public record Secoes(String titulo, ValueObject tipo, List<String> referencias) {
     }
 
     public record Condicao(String id, CID cid, ValueObject statusClinico, ValueObject statusDeVerificacao,

@@ -65,13 +65,13 @@ public class Teste {
         instanceValidator.setValidationSupport(supportChain);
         validator.registerValidatorModule(instanceValidator);
 
-//        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
-//        validate(validator, jsonParser,"rac-output.json");
+        Bundle parsedJson = jsonParser.parseResource(Bundle.class, readResourceAsString("rac-output.json"));
         validate(validator, jsonParser, "samples/sample-rac.json");
         validate(validator, jsonParser, "samples/sample-location.json");
         validate(validator, jsonParser, "samples/sample-organization.json");
         validate(validator, jsonParser, "samples/sample-encounter.json");
         validate(validator, jsonParser, "samples/sample-condition.json");
+        validate(validator, jsonParser,"rac-output.json");
     }
 
     private static void validate(FhirValidator validator, IParser parser, String resourcePath) {

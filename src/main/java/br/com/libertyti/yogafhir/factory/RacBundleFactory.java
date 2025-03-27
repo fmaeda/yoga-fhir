@@ -84,7 +84,7 @@ public class RacBundleFactory {
         composition.addAuthor(new Reference("urn:liberty:" + rac.autor().id()));
 
         addSection(composition, "Diagnósticos Avaliados",
-                new Coding("http://loinc.org", "57852-6", "Problem List"),
+                new Coding("http://loinc.org", "57852-6", "Problem list Narrative - Reported"),
                 "Lista de Problemas - Diagnósticos Avaliados",
                 rac.atendimento().diagnosticos().stream().map(d -> new Reference("urn:liberty:" + d.condicao().id())).toList());
 
@@ -132,9 +132,9 @@ public class RacBundleFactory {
         rac.atendimento().tipos().forEach(t -> type.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRAtendimentoPrestado", t.codigo(), t.descricao())));
         encounter.addType(type);
 
-        CodeableConcept serviceType = new CodeableConcept();
-        serviceType.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRServicoEspecializado", rac.atendimento().tipoServico().codigo(), rac.atendimento().tipoServico().descricao()));
-        encounter.setServiceType(serviceType);
+//        CodeableConcept serviceType = new CodeableConcept();
+//        serviceType.addCoding(new Coding("https://terminologia.saude.gov.br/fhir/CodeSystem/BRServicoEspecializado", rac.atendimento().tipoServico().codigo(), rac.atendimento().tipoServico().descricao()));
+//        encounter.setServiceType(serviceType);
 
         CodeableConcept priority = new CodeableConcept();
         priority.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v3-ActPriority", rac.atendimento().prioridadeDoAto().codigo(), rac.atendimento().prioridadeDoAto().descricao()));
@@ -142,12 +142,12 @@ public class RacBundleFactory {
 
         encounter.setSubject(new Reference("urn:liberty:" + patient.getId()));
 
-        rac.atendimento().participantes().forEach(p -> {
-            Encounter.EncounterParticipantComponent participant = new Encounter.EncounterParticipantComponent();
-            p.tipos().forEach(t -> participant.addType(new CodeableConcept().addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v3-ParticipationType", t.codigo(), t.descricao()))));
-            participant.setIndividual(new Reference("urn:liberty:" + p.profissionalId()));
-            encounter.addParticipant(participant);
-        });
+//        rac.atendimento().participantes().forEach(p -> {
+//            Encounter.EncounterParticipantComponent participant = new Encounter.EncounterParticipantComponent();
+//            p.tipos().forEach(t -> participant.addType(new CodeableConcept().addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v3-ParticipationType", t.codigo(), t.descricao()))));
+//            participant.setIndividual(new Reference("urn:liberty:" + p.profissionalId()));
+//            encounter.addParticipant(participant);
+//        });
 
         Period period = new Period();
         period.setStartElement(new DateTimeType(rac.atendimento().dataInicio()));
@@ -164,7 +164,7 @@ public class RacBundleFactory {
             Encounter.DiagnosisComponent diagnosis = new Encounter.DiagnosisComponent();
             diagnosis.setCondition(new Reference("urn:liberty:" + d.condicao().id()).setDisplay(d.condicao().cid().descricao()));
             CodeableConcept diagnosisUse = new CodeableConcept();
-            diagnosisUse.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/diagnosis-role", d.tipo().codigo(), d.tipo().descricao()));
+//            diagnosisUse.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/diagnosis-role", d.tipo().codigo(), d.tipo().descricao()));
             diagnosis.setUse(diagnosisUse);
             diagnosis.setRank(d.classificacao());
             encounter.addDiagnosis(diagnosis);
@@ -362,13 +362,13 @@ public class RacBundleFactory {
         allergyIntolerance.setId("allergyintolerance/1");
         allergyIntolerance.setMeta(new Meta().addProfile("https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-allergyintolerance"));
 //        fixme dados adicionais que não sei se temos
-        CodeableConcept clinicalStatus = new CodeableConcept();
-        clinicalStatus.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "active", "Active"));
-        allergyIntolerance.setClinicalStatus(clinicalStatus);
+//        CodeableConcept clinicalStatus = new CodeableConcept();
+//        clinicalStatus.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "active", "Active"));
+//        allergyIntolerance.setClinicalStatus(clinicalStatus);
 
-        CodeableConcept verificationStatus = new CodeableConcept();
-        verificationStatus.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "confirmed", "Confirmed"));
-        allergyIntolerance.setVerificationStatus(verificationStatus);
+//        CodeableConcept verificationStatus = new CodeableConcept();
+//        verificationStatus.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "confirmed", "Confirmed"));
+//        allergyIntolerance.setVerificationStatus(verificationStatus);
 
         allergyIntolerance.setType(AllergyIntolerance.AllergyIntoleranceType.ALLERGY);
 

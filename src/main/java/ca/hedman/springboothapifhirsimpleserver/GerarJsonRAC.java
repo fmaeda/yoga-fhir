@@ -13,6 +13,7 @@ import org.hl7.fhir.r4.model.Bundle;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 public class GerarJsonRAC {
@@ -30,16 +31,16 @@ public class GerarJsonRAC {
                 RacaCor.AMARELA,
                 IdentidadeGenero.MASCULINO,
                 new Paciente.Endereco(
-                        "Rua Paris", "11", "", "Centro", "87935-180", "PR", "Paranavaí", "Brasil"
+                        "", "", "", "", "", "PR", "Paranavaí", "Brasil"
                 ),
                 List.of(new Paciente.Endereco(
                         "Av. Brasil", "1", "Casa", "Centro", "87800-000", "PR", "Rondon", "Brasil"
                 )),
                 List.of(new Paciente.Contato(
                                 "Maria da Silva",
-                                "(61) 5555-8888",
-                                "(61) 98888-8888",
-                                "teste@teste.com",
+                                "",
+                                "",
+                                "",
                                 new Paciente.Endereco("Av. São Paulo", "123", "Ap 1001", "Vila ABC", "85000-000", "PR", "Maringá", "Brasil")
                         )
                 ));
@@ -48,23 +49,23 @@ public class GerarJsonRAC {
         var cid = new ValueObject("R06.0", "Dispnéia");
         var evidencia = new RegistroAtendimentoClinico.Condicao.Evidencia(List.of(cid), "observacaoclinica/207790-2256");
         var informacoesAdicionais = new RegistroAtendimentoClinico.Condicao.InformacoesAdicionais(profissional.id(), "Texto Adicional", LocalDateTime.now());
-        var condicao = new RegistroAtendimentoClinico.Condicao("condition/1", new RegistroAtendimentoClinico.CID("B34.2", "Infecção por coronavírus de localização não especificada", ""), new ValueObject("active", "Active"),
-                new ValueObject("confirmed", "Confirmed"), List.of(new ValueObject("01", "Principal")),
-                new ValueObject("6736007", "Moderate (severity modifier) (qualifier value)"), List.of(new ValueObject("80891009", "Heart structure (body structure)"))
+        var condicao = new RegistroAtendimentoClinico.Condicao("condition/1", new RegistroAtendimentoClinico.CID("B34.2", "Infecção por coronavírus de localização não especificada", ""), new ValueObject("", ""),
+                new ValueObject("", ""), List.of(new ValueObject("01", "Principal")),
+                new ValueObject("6736007", "Moderate (severity modifier) (qualifier value)"), List.of(new ValueObject("", ""))
                 , "2024-12-19", LocalDateTime.now(), paciente.id(), profissional.id(),
                 List.of(evidencia),
                 informacoesAdicionais);
         var localDeAtendimento = new RegistroAtendimentoClinico.Local("location/1", "Local de Atendimento");
         var organizacao = new RegistroAtendimentoClinico.Organizacao("oganization/1", "Hospital Sírio-Libanês", "2079127");
         var diagnostico = new RegistroAtendimentoClinico.Atendimento.Diagnostico(condicao,
-                new ValueObject("CC", "Chief Complaint"), 1);
-        var participante = new RegistroAtendimentoClinico.Atendimento.Participante(List.of(new ValueObject("ADM", "admitter")), profissional.id());
+                new ValueObject("", ""), 1);
+        var participante = new RegistroAtendimentoClinico.Atendimento.Participante(List.of(new ValueObject("", "")), profissional.id());
         var atendimento = new RegistroAtendimentoClinico.Atendimento("encounter/1", "final", "2024-04-05T10:00:00Z", "2024-04-05T11:00:00Z", new ValueObject("AMB", "Ambulatory"), new ValueObject("R", "Routine"),
-                List.of(new ValueObject("02", "AMBULATORIAL")), new ValueObject("116", "SERVICO DE ATENCAO CARDIOVASCULAR CARDIOLOGIA"),
+                List.of(new ValueObject("02", "AMBULATORIAL")), new ValueObject("", ""),
                 paciente.id(), List.of(participante),
                 new RegistroAtendimentoClinico.Periodo(LocalDateTime.now(), LocalDateTime.now().plusHours(1)),
                 List.of(new RegistroAtendimentoClinico.CID("B34.2", "Infecção por coronavírus de localização não especificada", "")), List.of(diagnostico),
-                localDeAtendimento, organizacao, List.of(new ValueObject("0211060127", "MAPEAMENTO DE RETINA")), List.of(new RegistroAtendimentoClinico.Atendimento.Alergia("Alergia", new ValueObject("A100", "Amendoim"), "Urticária", "Alta", "Alta", LocalDateTime.now(), new ValueObject("active", "Active"), new ValueObject("confirmed", "Confirmed"))));
+                localDeAtendimento, organizacao, List.of(new ValueObject("0211060127", "MAPEAMENTO DE RETINA")), List.of(new RegistroAtendimentoClinico.Atendimento.Alergia("Alergia", new ValueObject("A100", "Amendoim"), "Urticária", "Alta", "Alta", LocalDateTime.now(), new ValueObject("", ""), new ValueObject("", ""))));
         var registroAtendimentoClinico = new RegistroAtendimentoClinico(
                 "1",
                 "final",
@@ -74,8 +75,7 @@ public class GerarJsonRAC {
                 List.of(new ValueObject("11488-4", "Consult note")),
                 paciente,
                 atendimento,
-                profissional,
-                List.of(new RegistroAtendimentoClinico.Secoes("Seção 1", new ValueObject("tipoSecao1", "Tipo de Seção"), List.of("referencia1", "referencia2")))
+                profissional
         );
         System.out.println(new ObjectMapper().registerModule(new JavaTimeModule()).configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false).writeValueAsString(registroAtendimentoClinico));
 
