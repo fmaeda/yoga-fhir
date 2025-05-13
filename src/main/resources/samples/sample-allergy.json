@@ -6,6 +6,10 @@
       "https://br-core.saude.gov.br/fhir/StructureDefinition/br-core-allergyintolerance"
     ]
   },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Composition 5c0878bd-a787-489d-82aa-82f4fb55909e</b></p><a name=\"5c0878bd-a787-489d-82aa-82f4fb55909e\"> </a><a name=\"hc5c0878bd-a787-489d-82aa-82f4fb55909e\"> </a><a name=\"5c0878bd-a787-489d-82aa-82f4fb55909e-pt-BR\"> </a><p><b>identifier</b>: <code>http://terminologia.saude.gov.br/fhir/NamingSystem/cnes</code>/9876543</p><p><b>status</b>: Final</p><p><b>type</b>: <span title=\"Codes:{http://loinc.org 11488-4}\">Nota de Consulta Especializada</span></p><p><b>category</b>: <span title=\"Codes:{http://loinc.org 11488-4}\">Consult Note</span></p><p><b>encounter</b>: <a href=\"Encounter-c6d553d8-cce0-404b-9d1f-eeffbf7fc6df.html\">Ambulatorial</a></p><p><b>date</b>: 2024-02-06 10:00:00+0000</p><p><b>author</b>: <a href=\"Practitioner-d3b61455-f432-48f0-b83b-ba825922d735.html\">Maria Clara</a></p><p><b>title</b>: Nota de Consulta Especializada</p><p><b>confidentiality</b>: normal</p><h3>Attesters</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Mode</b></td><td><b>Time</b></td><td><b>Party</b></td></tr><tr><td style=\"display: none\">*</td><td>Professional</td><td>2024-02-06 10:30:00+0000</td><td><a href=\"Practitioner-d3b61455-f432-48f0-b83b-ba825922d735.html\">Maria Clara</a></td></tr></table><p><b>custodian</b>: <a href=\"Organization-1428c345-c221-411f-880f-6fb163817387.html\">Hospital Sírio-Libanês</a></p></div>"
+  },
   "clinicalStatus": {
     "coding": [
       {
