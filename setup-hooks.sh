@@ -14,5 +14,6 @@ if ! grep -qE \"\$commit_regex\" \"\$1\"; then
 fi
 " > .git/hooks/commit-msg
 chmod +x .git/hooks/commit-msg
+chmod +x mvnw
 #rm .git/hooks/commit-msg.sample
 echo "Completed git hook commit message setup"
